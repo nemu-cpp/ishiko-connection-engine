@@ -1,0 +1,14 @@
+version: 2
+jobs:
+  build:
+    docker:
+      - image: ishiko/gcc-ishiko-cpp:0.4.0
+    steps:
+      - run: 
+          name: "Set NEMU_CPP environment variable and create workspace directory"
+          command: mkdir -p /projects/nemu-cpp && echo 'export NEMU_CPP="/projects/nemu-cpp"' >> $BASH_ENV
+      - checkout:
+          path: /projects/nemu-cpp/ishiko-networking-engine
+      - run:
+          name: Build
+          command: cd /projects/nemu-cpp/ishiko-networking-engine/build/gnumake && make
