@@ -45,13 +45,30 @@ _false :=
 _not    = $(if $(1),$(_false),$(_true_))
 _equal  = $(and $(findstring $(1),$(2)),$(findstring $(2),$(1)))
 
+
+# The directory for the build files, may be overridden on make command line.
+builddir = .
+
+ifneq ($(builddir),.)
+_builddir := $(if $(findstring $(abspath $(builddir)),$(builddir)),,../../)$(builddir)/../gnumake/
+_builddir_error := $(shell mkdir -p $(_builddir) 2>&1)
+$(if $(_builddir_error),$(error Failed to create build directory: $(_builddir_error)))
+endif
 all: ../bakefile/../../lib/lib$(if $(call _equal,$(config),Debug),NemuIshikoConnectionEngine-d,NemuIshikoConnectionEngine).a
 
-../bakefile/../../lib/lib$(if $(call _equal,$(config),Debug),NemuIshikoConnectionEngine-d,NemuIshikoConnectionEngine).a:
-	$(AR) rc $@ 
+../bakefile/../../lib/lib$(if $(call _equal,$(config),Debug),NemuIshikoConnectionEngine-d,NemuIshikoConnectionEngine).a: $(_builddir)NemuIshikoConnectionEngine_IshikoServer.o
+	$(AR) rc $@ $(_builddir)NemuIshikoConnectionEngine_IshikoServer.o
 	$(RANLIB) $@
 
+$(_builddir)NemuIshikoConnectionEngine_IshikoServer.o: ../../src/IshikoServer.cpp
+	$(CXX) -c -o $@ $(CPPFLAGS) $(CXXFLAGS) -MD -MP -fPIC -DPIC -pthread -I../../include/Nemu/IshikoConnectionEngine -std=c++11 ../../src/IshikoServer.cpp
+
 clean:
+	rm -f $(_builddir)*.o
+	rm -f $(_builddir)*.d
 	rm -f ../bakefile/../../lib/lib$(if $(call _equal,$(config),Debug),NemuIshikoConnectionEngine-d,NemuIshikoConnectionEngine).a
 
 .PHONY: all clean
+
+# Dependencies tracking:
+-include $(_builddir)*.d

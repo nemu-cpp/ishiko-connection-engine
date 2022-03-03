@@ -31,5 +31,11 @@ library NemuIshikoConnectionEngine
     headers
     {
         ../../include/Nemu/IshikoConnectionEngine.h
+        ../../include/Nemu/IshikoConnectionEngine/IshikoServer.hpp
+    }
+
+    sources
+    {
+        ../../src/IshikoServer.cpp
     }
 }

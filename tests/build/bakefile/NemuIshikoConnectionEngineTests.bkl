@@ -19,8 +19,14 @@ program NemuIshikoConnectionEngineTests : IshikoTests
         libs += IshikoTests IshikoTestsCore IshikoProcess IshikoErrors boost_filesystem boost_system;
     }
 
+    headers
+    {
+        ../../src/IshikoServerTests.hpp
+    }
+
     sources
     {
+        ../../src/IshikoServerTests.cpp
         ../../src/main.cpp
     }
 }
