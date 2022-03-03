@@ -6,15 +6,15 @@ jobs:
     steps:
       - run: 
           name: "Set NEMU_CPP environment variable and create workspace directory"
-          command: mkdir -p /projects/nemu-cpp && echo 'export NEMU_CPP="/projects/nemu-cpp"' >> $BASH_ENV
+          command: mkdir -p /projects/nemu/cpp && echo 'export NEMU_CPP="/projects/nemu/cpp"' >> $BASH_ENV
       - checkout:
-          path: /projects/nemu-cpp/ishiko-connection-engine
+          path: /projects/nemu/cpp/ishiko-connection-engine
       - run:
           name: "Build: Nemu IshikoConnectionEngine"
-          command: cd /projects/nemu-cpp/ishiko-connection-engine/build/gnumake && make
+          command: cd /projects/nemu/cpp/ishiko-connection-engine/build/gnumake && make
       - run:
           name: "Test: Nemu IshikoConnectionEngine"
-          command: cd /projects/nemu-cpp/ishiko-connection-engine/tests/build/gnumake && make && ./NemuIshikoConnectionEngineTests
+          command: cd /projects/nemu/cpp/ishiko-connection-engine/tests/build/gnumake && make && ./NemuIshikoConnectionEngineTests
 workflows:
   version: 2
   continuous_build:
