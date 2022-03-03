@@ -23,7 +23,7 @@
     <ClInclude Include="..\..\include\Nemu\IshikoConnectionEngine\IshikoServer.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\include\Nemu\linkoptions.hpp">
+    <ClInclude Include="..\..\include\Nemu\IshikoConnectionEngine\linkoptions.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

@@ -155,7 +155,7 @@
   <ItemGroup>
     <ClInclude Include="..\..\include\Nemu\IshikoConnectionEngine.h" />
     <ClInclude Include="..\..\include\Nemu\IshikoConnectionEngine\IshikoServer.hpp" />
-    <ClInclude Include="..\..\include\Nemu\linkoptions.hpp" />
+    <ClInclude Include="..\..\include\Nemu\IshikoConnectionEngine\linkoptions.hpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

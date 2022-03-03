@@ -35,7 +35,7 @@ library NemuIshikoConnectionEngine : NemuCore
     {
         ../../include/Nemu/IshikoConnectionEngine.h
         ../../include/Nemu/IshikoConnectionEngine/IshikoServer.hpp
-        ../../include/Nemu/linkoptions.hpp
+        ../../include/Nemu/IshikoConnectionEngine/linkoptions.hpp
     }
 
     sources
