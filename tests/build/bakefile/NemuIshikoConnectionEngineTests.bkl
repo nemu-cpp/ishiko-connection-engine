@@ -1,4 +1,5 @@
 ishikopath = envvar("ISHIKO_CPP");
+import $(ishikopath)/http/include/Ishiko/HTTP.bkl;
 import $(ishikopath)/tests/include/Ishiko/Tests.bkl;
 nemupath = envvar("NEMU_CPP");
 import $(nemupath)/ishiko-connection-engine/include/Nemu/IshikoConnectionEngine.bkl;
@@ -11,7 +12,7 @@ vs2017.solutionfile = ../vc15/NemuIshikoConnectionEngineTests.sln;
 vs2015.solutionfile = ../vc14/NemuIshikoConnectionEngineTests.sln;
 vs2013.solutionfile = ../vc12/NemuIshikoConnectionEngineTests.sln;
 
-program NemuIshikoConnectionEngineTests : NemuIshikoConnectionEngine, IshikoTests
+program NemuIshikoConnectionEngineTests : NemuIshikoConnectionEngine, IshikoHTTP, IshikoTests
 {
     archs = x86 x86_64;
 
