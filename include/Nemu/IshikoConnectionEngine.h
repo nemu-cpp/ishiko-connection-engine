@@ -9,4 +9,6 @@
 
 #include "IshikoConnectionEngine/IshikoServer.hpp"
 
+#include "IshikoConnectionEngine/linkoptions.hpp"
+
 #endif

@@ -5,6 +5,7 @@
 */
 
 #include "IshikoServerTests.hpp"
+#include "Nemu/IshikoConnectionEngine/linkoptions.hpp"
 #include <Ishiko/Tests.hpp>
 
 using namespace Ishiko::Tests;

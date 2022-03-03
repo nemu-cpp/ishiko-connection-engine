@@ -7,4 +7,21 @@
 #ifndef _NEMU_CPP_ISHIKOCONNECTIONENGINE_ISHIKOSERVER_H_
 #define _NEMU_CPP_ISHIKOCONNECTIONENGINE_ISHIKOSERVER_H_
 
+#include <Nemu/Core.h>
+
+namespace Nemu
+{
+
+class IshikoServer : public Server
+{
+public:
+    void start() override;
+    void stop() override;
+    void join() override;
+
+    bool isRunning() const override;
+};
+
+}
+
 #endif

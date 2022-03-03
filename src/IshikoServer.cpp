@@ -5,3 +5,29 @@
 */
 
 #include "IshikoServer.hpp"
+
+namespace Nemu
+{
+
+void IshikoServer::start()
+{
+    // TODO
+}
+
+void IshikoServer::stop()
+{
+    // TODO
+}
+
+void IshikoServer::join()
+{
+    // TODO
+}
+
+bool IshikoServer::isRunning() const
+{
+    // TODO
+    return false;
+}
+
+}

@@ -5,8 +5,10 @@
 */
 
 #include "IshikoServerTests.hpp"
+#include "Nemu/IshikoConnectionEngine/IshikoServer.hpp"
 
 using namespace Ishiko::Tests;
+using namespace Nemu;
 
 IshikoServerTests::IshikoServerTests(const TestNumber& number, const TestContext& context)
     : TestSequence(number, "IshikoServer tests", context)
@@ -16,4 +18,7 @@ IshikoServerTests::IshikoServerTests(const TestNumber& number, const TestContext
 
 void IshikoServerTests::ConstructorTest1(Test& test)
 {
+    IshikoServer server;
+
+    ISHIKO_PASS();
 }
