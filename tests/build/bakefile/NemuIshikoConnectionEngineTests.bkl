@@ -25,11 +25,13 @@ program NemuIshikoConnectionEngineTests : NemuIshikoConnectionEngine, IshikoHTTP
     headers
     {
         ../../src/IshikoServerTests.hpp
+        ../../src/helpers/TestServerObserver.hpp
     }
 
     sources
     {
         ../../src/IshikoServerTests.cpp
         ../../src/main.cpp
+        ../../src/helpers/TestServerObserver.cpp
     }
 }
