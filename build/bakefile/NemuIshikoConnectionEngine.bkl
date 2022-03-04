@@ -1,3 +1,6 @@
+nemupath = envvar("NEMU_CPP");
+import $(nemupath)/core/include/Nemu/Core.bkl;
+
 toolsets = gnu vs2019 vs2017 vs2015 vs2013;
 
 gnu.makefile = ../gnumake/GNUmakefile;
@@ -6,7 +9,7 @@ vs2017.solutionfile = ../vc15/NemuIshikoConnectionEngine.sln;
 vs2015.solutionfile = ../vc14/NemuIshikoConnectionEngine.sln;
 vs2013.solutionfile = ../vc12/NemuIshikoConnectionEngine.sln;
 
-library NemuIshikoConnectionEngine
+library NemuIshikoConnectionEngine : NemuCore
 {
     archs = x86 x86_64;
    
@@ -31,5 +34,12 @@ library NemuIshikoConnectionEngine
     headers
     {
         ../../include/Nemu/IshikoConnectionEngine.h
+        ../../include/Nemu/IshikoConnectionEngine/IshikoServer.hpp
+        ../../include/Nemu/IshikoConnectionEngine/linkoptions.hpp
+    }
+
+    sources
+    {
+        ../../src/IshikoServer.cpp
     }
 }
