@@ -1,3 +1,5 @@
+ishikopath = envvar("ISHIKO_CPP");
+import $(ishikopath)/networking/include/Ishiko/Networking.bkl;
 nemupath = envvar("NEMU_CPP");
 import $(nemupath)/core/include/Nemu/Core.bkl;
 
@@ -7,7 +9,7 @@ setting NEMU_CPP_ISHIKOCONNECTIONENGINE_ROOT
     default = '$(NEMU_CPP)/ishiko-connection-engine';
 }
 
-template NemuIshikoConnectionEngine : NemuCore
+template NemuIshikoConnectionEngine : NemuCore, IshikoNetworking
 {
     includedirs += $(NEMU_CPP_ISHIKOCONNECTIONENGINE_ROOT)/include;
 
