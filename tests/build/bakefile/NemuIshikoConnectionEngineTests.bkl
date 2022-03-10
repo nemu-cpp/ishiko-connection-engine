@@ -19,7 +19,7 @@ program NemuIshikoConnectionEngineTests : NemuIshikoConnectionEngine, IshikoHTTP
     if ($(toolset) == gnu)
     {
         cxx-compiler-options = "-std=c++11";
-        libs += NemuIshikoConnectionEngine NemuCore IshikoHTTP IshikoTests IshikoTestsCore IshikoDiff IshikoProcess IshikoErrors boost_filesystem boost_system;
+        libs += NemuIshikoConnectionEngine NemuCore IshikoHTTP IshikoTests IshikoTestsCore IshikoDiff IshikoFileSystem IshikoProcess IshikoText IshikoErrors boost_filesystem;
     }
 
     headers
