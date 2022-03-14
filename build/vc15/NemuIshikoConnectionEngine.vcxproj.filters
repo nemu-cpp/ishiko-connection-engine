@@ -20,6 +20,9 @@
     <ClInclude Include="..\..\include\Nemu\IshikoConnectionEngine.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\include\Nemu\IshikoConnectionEngine\IshikoConnectionEngine.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
     <ClInclude Include="..\..\include\Nemu\IshikoConnectionEngine\IshikoServer.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -28,6 +31,9 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\src\IshikoConnectionEngine.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
     <ClCompile Include="..\..\src\IshikoServer.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>

@@ -92,12 +92,15 @@ NEMU_CPP_CORE_ROOT ?= $(NEMU_CPP)/core
 
 all: ../bakefile/../../lib/lib$(if $(call _equal,$(config),Debug),NemuIshikoConnectionEngine-d,NemuIshikoConnectionEngine).a
 
-../bakefile/../../lib/lib$(if $(call _equal,$(config),Debug),NemuIshikoConnectionEngine-d,NemuIshikoConnectionEngine).a: $(_builddir)NemuIshikoConnectionEngine_IshikoServer.o
-	$(AR) rc $@ $(_builddir)NemuIshikoConnectionEngine_IshikoServer.o
+../bakefile/../../lib/lib$(if $(call _equal,$(config),Debug),NemuIshikoConnectionEngine-d,NemuIshikoConnectionEngine).a: $(_builddir)NemuIshikoConnectionEngine_IshikoConnectionEngine.o $(_builddir)NemuIshikoConnectionEngine_IshikoServer.o
+	$(AR) rc $@ $(_builddir)NemuIshikoConnectionEngine_IshikoConnectionEngine.o $(_builddir)NemuIshikoConnectionEngine_IshikoServer.o
 	$(RANLIB) $@
 
+$(_builddir)NemuIshikoConnectionEngine_IshikoConnectionEngine.o: ../../src/IshikoConnectionEngine.cpp
+	$(CXX) -c -o $@ $(CPPFLAGS) $(CXXFLAGS) -MD -MP -fPIC -DPIC -pthread -I$(ISHIKO_CPP_ERRORS_ROOT)/include -I$(ISHIKO_CPP_BASEPLATFORM_ROOT)/include -I$(ISHIKO_CPP_TEXT_ROOT)/include -I$(ISHIKO_CPP_NETWORKING_ROOT)/include -I$(ISHIKO_CPP_FMT_ROOT)/include -I$(ISHIKO_CPP_LOGGING_ROOT)/include -I$(ISHIKO_CPP_BOOST_ROOT)/include -I$(NEMU_CPP_CORE_ROOT)/include -I../../include/Nemu/IshikoConnectionEngine -std=c++11 ../../src/IshikoConnectionEngine.cpp
+
 $(_builddir)NemuIshikoConnectionEngine_IshikoServer.o: ../../src/IshikoServer.cpp
-	$(CXX) -c -o $@ $(CPPFLAGS) $(CXXFLAGS) -MD -MP -fPIC -DPIC -pthread -I$(ISHIKO_CPP_FMT_ROOT)/include -I$(ISHIKO_CPP_LOGGING_ROOT)/include -I$(ISHIKO_CPP_ERRORS_ROOT)/include -I$(ISHIKO_CPP_BOOST_ROOT)/include -I$(NEMU_CPP_CORE_ROOT)/include -I$(ISHIKO_CPP_BASEPLATFORM_ROOT)/include -I$(ISHIKO_CPP_TEXT_ROOT)/include -I$(ISHIKO_CPP_NETWORKING_ROOT)/include -I../../include/Nemu/IshikoConnectionEngine -std=c++11 ../../src/IshikoServer.cpp
+	$(CXX) -c -o $@ $(CPPFLAGS) $(CXXFLAGS) -MD -MP -fPIC -DPIC -pthread -I$(ISHIKO_CPP_ERRORS_ROOT)/include -I$(ISHIKO_CPP_BASEPLATFORM_ROOT)/include -I$(ISHIKO_CPP_TEXT_ROOT)/include -I$(ISHIKO_CPP_NETWORKING_ROOT)/include -I$(ISHIKO_CPP_FMT_ROOT)/include -I$(ISHIKO_CPP_LOGGING_ROOT)/include -I$(ISHIKO_CPP_BOOST_ROOT)/include -I$(NEMU_CPP_CORE_ROOT)/include -I../../include/Nemu/IshikoConnectionEngine -std=c++11 ../../src/IshikoServer.cpp
 
 clean:
 	rm -f $(_builddir)*.o
