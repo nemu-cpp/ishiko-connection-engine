@@ -36,14 +36,12 @@ library NemuIshikoConnectionEngine : NemuCore, IshikoNetworking
     headers
     {
         ../../include/Nemu/IshikoConnectionEngine.h
-        ../../include/Nemu/IshikoConnectionEngine/IshikoConnectionEngine.hpp
         ../../include/Nemu/IshikoConnectionEngine/IshikoServer.hpp
         ../../include/Nemu/IshikoConnectionEngine/linkoptions.hpp
     }
 
     sources
     {
-        ../../src/IshikoConnectionEngine.cpp
         ../../src/IshikoServer.cpp
     }
 }

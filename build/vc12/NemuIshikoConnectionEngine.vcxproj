@@ -150,12 +150,10 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\src\IshikoConnectionEngine.cpp" />
     <ClCompile Include="..\..\src\IshikoServer.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\include\Nemu\IshikoConnectionEngine.h" />
-    <ClInclude Include="..\..\include\Nemu\IshikoConnectionEngine\IshikoConnectionEngine.hpp" />
     <ClInclude Include="..\..\include\Nemu\IshikoConnectionEngine\IshikoServer.hpp" />
     <ClInclude Include="..\..\include\Nemu\IshikoConnectionEngine\linkoptions.hpp" />
   </ItemGroup>
