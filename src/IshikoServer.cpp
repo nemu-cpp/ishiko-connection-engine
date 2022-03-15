@@ -39,7 +39,7 @@ void IshikoServer::stop()
     // TODO: for now send a dummy request to trigger the accept
     Error error;
     TCPClientSocket socket(error);
-    socket.connect(m_socket.address(), m_socket.port(), error);
+    socket.connect(m_socket.ipAddress(), m_socket.port(), error);
 }
 
 void IshikoServer::join()
