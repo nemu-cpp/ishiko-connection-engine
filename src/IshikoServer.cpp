@@ -6,22 +6,45 @@
 
 #include "IshikoServer.hpp"
 
+using namespace Ishiko;
+using namespace Ishiko::Networking;
+using namespace std;
+
 namespace Nemu
 {
 
+IshikoServer::IshikoServer(IPv4Address address, Port port, Error& error)
+    : m_socket(address, port, error)
+{
+}
+
 void IshikoServer::start()
 {
-    // TODO
+    // TODO: as a quick hack we put the blocking stuff in a secondary thread
+    m_acceptThread = thread(
+        [this]()
+        {
+            // TODO: this is a temporary blocking implementation
+            // TODO: handle error
+            Error error;
+            m_socket.accept(error);
+
+            // TODO: loop and do something with the connected stuff
+        }
+    );
 }
 
 void IshikoServer::stop()
 {
-    // TODO
+    // TODO: for now send a dummy request to trigger the accept
+    Error error;
+    TCPClientSocket socket(error);
+    socket.connect(m_socket.ipAddress(), m_socket.port(), error);
 }
 
 void IshikoServer::join()
 {
-    // TODO
+    m_acceptThread.join();
 }
 
 bool IshikoServer::isRunning() const

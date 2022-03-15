@@ -9,10 +9,12 @@
 #include "Nemu/IshikoConnectionEngine/IshikoServer.hpp"
 #include <boost/filesystem.hpp>
 #include <Ishiko/HTTP.hpp>
+#include <Ishiko/Networking.hpp>
 
 using namespace boost::filesystem;
 using namespace Ishiko;
 using namespace Ishiko::HTTP;
+using namespace Ishiko::Networking;
 using namespace Ishiko::Tests;
 using namespace Nemu;
 
@@ -26,14 +28,17 @@ IshikoServerTests::IshikoServerTests(const TestNumber& number, const TestContext
 
 void IshikoServerTests::ConstructorTest1(Test& test)
 {
-    IshikoServer server;
+    Error error;
+    IshikoServer server(IPv4Address::Localhost(), 0, error);
 
+    ISHIKO_FAIL_IF(error);
     ISHIKO_PASS();
 }
 
 void IshikoServerTests::StartTest1(Test& test)
 {
-    IshikoServer server;
+    Error error;
+    IshikoServer server(IPv4Address::Localhost(), 8585, error);
 
     server.start();
     server.stop();
@@ -49,7 +54,7 @@ void IshikoServerTests::RequestTest1(FileComparisonTest& test)
 
     std::shared_ptr<TestServerObserver> observer = std::make_shared<TestServerObserver>();
     Error error;
-    IshikoServer server;
+    IshikoServer server(IPv4Address::Localhost(), 8586, error);
 
     server.start();
 

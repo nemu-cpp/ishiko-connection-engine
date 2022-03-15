@@ -1,3 +1,5 @@
+ishikopath = envvar("ISHIKO_CPP");
+import $(ishikopath)/networking/include/Ishiko/Networking.bkl;
 nemupath = envvar("NEMU_CPP");
 import $(nemupath)/core/include/Nemu/Core.bkl;
 
@@ -9,7 +11,7 @@ vs2017.solutionfile = ../vc15/NemuIshikoConnectionEngine.sln;
 vs2015.solutionfile = ../vc14/NemuIshikoConnectionEngine.sln;
 vs2013.solutionfile = ../vc12/NemuIshikoConnectionEngine.sln;
 
-library NemuIshikoConnectionEngine : NemuCore
+library NemuIshikoConnectionEngine : NemuCore, IshikoNetworking
 {
     archs = x86 x86_64;
    

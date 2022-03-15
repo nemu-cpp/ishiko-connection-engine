@@ -7,7 +7,7 @@
 #ifndef _NEMU_CPP_ISHIKOCONNECTIONENGINE_TESTS_HELPERS_TESTSERVEROBSERVER_H_
 #define _NEMU_CPP_ISHIKOCONNECTIONENGINE_TESTS_HELPERS_TESTSERVEROBSERVER_H_
 
-#include <Nemu/Core/Server.h>
+#include <Nemu/Core.hpp>
 #include <mutex>
 #include <vector>
 #include <tuple>
