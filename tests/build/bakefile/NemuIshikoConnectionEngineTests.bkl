@@ -1,5 +1,8 @@
 ishikopath = envvar("ISHIKO_CPP");
+import $(ishikopath)/http/include/Ishiko/HTTP.bkl;
 import $(ishikopath)/tests/include/Ishiko/Tests.bkl;
+nemupath = envvar("NEMU_CPP");
+import $(nemupath)/ishiko-connection-engine/include/Nemu/IshikoConnectionEngine.bkl;
 
 toolsets = gnu vs2019 vs2017 vs2015 vs2013;
 
@@ -9,18 +12,26 @@ vs2017.solutionfile = ../vc15/NemuIshikoConnectionEngineTests.sln;
 vs2015.solutionfile = ../vc14/NemuIshikoConnectionEngineTests.sln;
 vs2013.solutionfile = ../vc12/NemuIshikoConnectionEngineTests.sln;
 
-program NemuIshikoConnectionEngineTests : IshikoTests
+program NemuIshikoConnectionEngineTests : NemuIshikoConnectionEngine, IshikoHTTP, IshikoTests
 {
     archs = x86 x86_64;
 
     if ($(toolset) == gnu)
     {
         cxx-compiler-options = "-std=c++11";
-        libs += IshikoTests IshikoTestsCore IshikoProcess IshikoErrors boost_filesystem boost_system;
+        libs += NemuIshikoConnectionEngine NemuCore IshikoHTTP IshikoNetworking IshikoTests IshikoTestsCore IshikoDiff IshikoFileSystem IshikoProcess IshikoText IshikoErrors boost_filesystem;
+    }
+
+    headers
+    {
+        ../../src/IshikoServerTests.hpp
+        ../../src/helpers/TestServerObserver.hpp
     }
 
     sources
     {
+        ../../src/IshikoServerTests.cpp
         ../../src/main.cpp
+        ../../src/helpers/TestServerObserver.cpp
     }
 }
