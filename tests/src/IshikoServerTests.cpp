@@ -13,8 +13,6 @@
 
 using namespace boost::filesystem;
 using namespace Ishiko;
-using namespace Ishiko::HTTP;
-using namespace Ishiko::Networking;
 using namespace Ishiko::Tests;
 using namespace Nemu;
 
