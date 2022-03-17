@@ -7,7 +7,6 @@
 #include "IshikoServer.hpp"
 
 using namespace Ishiko;
-using namespace Ishiko::Networking;
 using namespace std;
 
 namespace Nemu
@@ -27,7 +26,12 @@ void IshikoServer::start()
             // TODO: this is a temporary blocking implementation
             // TODO: handle error
             Error error;
-            m_socket.accept(error);
+            TCPClientSocket clientSocket = m_socket.accept(error);
+            
+            char buffer[1000];
+            clientSocket.read(buffer, 1000, error);
+            clientSocket.write("HTTP/1.1 404 Not Found", 22, error);
+
 
             // TODO: loop and do something with the connected stuff
         }

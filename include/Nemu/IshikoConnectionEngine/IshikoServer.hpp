@@ -18,7 +18,7 @@ namespace Nemu
 class IshikoServer : public Server
 {
 public:
-    IshikoServer(Ishiko::Networking::IPv4Address address, Ishiko::Networking::Port port, Ishiko::Error& error);
+    IshikoServer(Ishiko::IPv4Address address, Ishiko::Port port, Ishiko::Error& error);
 
     void start() override;
     void stop() override;
@@ -27,7 +27,7 @@ public:
     bool isRunning() const override;
 
 private:
-    Ishiko::Networking::TCPServerSocket m_socket;
+    Ishiko::TCPServerSocket m_socket;
     std::thread m_acceptThread;
 };
 

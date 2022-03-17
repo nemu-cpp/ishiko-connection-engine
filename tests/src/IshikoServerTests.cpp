@@ -40,6 +40,8 @@ void IshikoServerTests::StartTest1(Test& test)
     Error error;
     IshikoServer server(IPv4Address::Localhost(), 8585, error);
 
+    ISHIKO_FAIL_IF(error);
+
     server.start();
     server.stop();
     server.join();
