@@ -77,4 +77,9 @@ bool IshikoServer::isRunning() const
     return false;
 }
 
+const TCPServerSocket& IshikoServer::socket() const
+{
+    return m_socket;
+}
+
 }

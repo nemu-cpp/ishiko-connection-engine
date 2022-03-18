@@ -26,6 +26,8 @@ public:
 
     bool isRunning() const override;
 
+    const Ishiko::TCPServerSocket& socket() const;
+
 private:
     Ishiko::TCPServerSocket m_socket;
     std::thread m_acceptThread;
