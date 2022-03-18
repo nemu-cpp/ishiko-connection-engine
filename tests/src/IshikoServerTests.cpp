@@ -29,8 +29,8 @@ void IshikoServerTests::ConstructorTest1(Test& test)
     Error error;
     IshikoServer server(IPv4Address::Localhost(), 0, error);
 
-    ISHIKO_FAIL_IF(error);
-    ISHIKO_PASS();
+    ISHIKO_TEST_FAIL_IF(error);
+    ISHIKO_TEST_PASS();
 }
 
 void IshikoServerTests::StartTest1(Test& test)
@@ -38,13 +38,13 @@ void IshikoServerTests::StartTest1(Test& test)
     Error error;
     IshikoServer server(IPv4Address::Localhost(), 8585, error);
 
-    ISHIKO_FAIL_IF(error);
+    ISHIKO_TEST_FAIL_IF(error);
 
     server.start();
     server.stop();
     server.join();
 
-    ISHIKO_PASS();
+    ISHIKO_TEST_PASS();
 }
 
 void IshikoServerTests::RequestTest1(FileComparisonTest& test)
@@ -68,16 +68,16 @@ void IshikoServerTests::RequestTest1(FileComparisonTest& test)
     const std::vector<std::tuple<TestServerObserver::EEventType, const Nemu::Server*, std::string>>& events =
         observer->connectionEvents();
 
-    ISHIKO_ABORT_IF_NEQ(events.size(), 2);
-    ISHIKO_FAIL_IF_NEQ(std::get<0>(events[0]), TestServerObserver::eConnectionOpened);
-    ISHIKO_FAIL_IF_NEQ(std::get<1>(events[0]), &server);
-    ISHIKO_FAIL_IF_NEQ(std::get<2>(events[0]).substr(0, 10), "127.0.0.1:");
-    ISHIKO_FAIL_IF_NEQ(std::get<0>(events[1]), TestServerObserver::eConnectionClosed);
-    ISHIKO_FAIL_IF_NEQ(std::get<1>(events[1]), &server);
-    ISHIKO_FAIL_IF_NEQ(std::get<2>(events[0]), std::get<2>(events[1]));
+    ISHIKO_TEST_ABORT_IF_NEQ(events.size(), 2);
+    ISHIKO_TEST_FAIL_IF_NEQ(std::get<0>(events[0]), TestServerObserver::eConnectionOpened);
+    ISHIKO_TEST_FAIL_IF_NEQ(std::get<1>(events[0]), &server);
+    ISHIKO_TEST_FAIL_IF_NEQ(std::get<2>(events[0]).substr(0, 10), "127.0.0.1:");
+    ISHIKO_TEST_FAIL_IF_NEQ(std::get<0>(events[1]), TestServerObserver::eConnectionClosed);
+    ISHIKO_TEST_FAIL_IF_NEQ(std::get<1>(events[1]), &server);
+    ISHIKO_TEST_FAIL_IF_NEQ(std::get<2>(events[0]), std::get<2>(events[1]));
     
     test.setOutputFilePath(outputPath);
     test.setReferenceFilePath(referencePath);
 
-    ISHIKO_PASS();
+    ISHIKO_TEST_PASS();
 }
