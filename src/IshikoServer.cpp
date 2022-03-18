@@ -5,6 +5,7 @@
 */
 
 #include "IshikoServer.hpp"
+#include <Ishiko/HTTP.hpp>
 
 using namespace Ishiko;
 using namespace std;
@@ -28,9 +29,22 @@ void IshikoServer::start()
             Error error;
             TCPClientSocket clientSocket = m_socket.accept(error);
             
+            // TODO: read the request but we need to do something with it
+            HTTPMessagePushParser::Callbacks callbacks;
+            HTTPMessagePushParser requestParser(callbacks);
+
+            // TODO: how big should this buffer be? Adjust automatically?
             char buffer[1000];
-            clientSocket.read(buffer, 1000, error);
-            clientSocket.write("HTTP/1.1 404 Not Found", 22, error);
+            int n = clientSocket.read(buffer, 1000, error); // TODO: handle error
+            while (!requestParser.onData(boost::string_view(buffer, n)))
+            {
+                n = clientSocket.read(buffer, 1000, error);
+            }
+            
+            HTTPResponse response;
+            response.setBody("Hello World!");
+            string responseString = response.toString();
+            clientSocket.write(responseString.c_str(), responseString.size(), error);
 
 
             // TODO: loop and do something with the connected stuff
