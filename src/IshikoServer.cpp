@@ -36,15 +36,21 @@ void IshikoServer::start()
             // TODO: how big should this buffer be? Adjust automatically?
             char buffer[1000];
             int n = clientSocket.read(buffer, 1000, error); // TODO: handle error
-            while (!requestParser.onData(boost::string_view(buffer, n)))
+            while (!requestParser.onData(boost::string_view(buffer, n)) && (n != 0))
             {
                 n = clientSocket.read(buffer, 1000, error);
             }
-            
-            HTTPResponse response;
-            response.setBody("Hello World!");
-            string responseString = response.toString();
-            clientSocket.write(responseString.c_str(), responseString.size(), error);
+            if (n == 0)
+            {
+                // TODO: we received a partial request
+            }
+            else
+            {
+                HTTPResponse response;
+                response.setBody("Hello World!");
+                string responseString = response.toString();
+                clientSocket.write(responseString.c_str(), responseString.size(), error);
+            }
 
 
             // TODO: loop and do something with the connected stuff
