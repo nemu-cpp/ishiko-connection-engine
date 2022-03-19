@@ -38,13 +38,14 @@ endif
 # settings:
 #
 #      ISHIKO_CPP_ERRORS_ROOT        Path to the Ishiko Errors installation
-#      ISHIKO_CPP_BOOST_ROOT         Path to the Boost installation
-#      ISHIKO_CPP_TYPES_ROOT         Path to the Ishiko Types installation
-#      ISHIKO_CPP_HTTP_ROOT          Path to the Ishiko HTTP installation
 #      ISHIKO_CPP_BASEPLATFORM_ROOT  Path to the Ishiko BasePlatform installation
 #      ISHIKO_CPP_TEXT_ROOT          Path to the Ishiko/Text installation
 #      ISHIKO_CPP_NETWORKING_ROOT    Path to the Ishiko Networking installation
+#      ISHIKO_CPP_BOOST_ROOT         Path to the Boost installation
 #      ISHIKO_CPP_FMT_ROOT           Path to the fmt installation
+#      ISHIKO_CPP_TIME_ROOT          Path to the Ishiko Timeinstallation
+#      ISHIKO_CPP_TYPES_ROOT         Path to the Ishiko Types installation
+#      ISHIKO_CPP_HTTP_ROOT          Path to the Ishiko HTTP installation
 #      ISHIKO_CPP_LOGGING_ROOT       Path to the Ishiko Logging installation
 #      NEMU_CPP_CORE_ROOT            Path to the Nemu installation
 
@@ -75,20 +76,22 @@ endif
 
 # Path to the Ishiko Errors installation
 ISHIKO_CPP_ERRORS_ROOT ?= $(ISHIKO_CPP)/errors
-# Path to the Boost installation
-ISHIKO_CPP_BOOST_ROOT ?= $(ISHIKO_CPP_THIRD_PARTY_BOOST)
-# Path to the Ishiko Types installation
-ISHIKO_CPP_TYPES_ROOT ?= $(ISHIKO_CPP)/types
-# Path to the Ishiko HTTP installation
-ISHIKO_CPP_HTTP_ROOT ?= $(ISHIKO_CPP)/http
 # Path to the Ishiko BasePlatform installation
 ISHIKO_CPP_BASEPLATFORM_ROOT ?= $(ISHIKO_CPP)/base-platform
 # Path to the Ishiko/Text installation
 ISHIKO_CPP_TEXT_ROOT ?= $(ISHIKO_CPP)/text
 # Path to the Ishiko Networking installation
 ISHIKO_CPP_NETWORKING_ROOT ?= $(ISHIKO_CPP)/networking
+# Path to the Boost installation
+ISHIKO_CPP_BOOST_ROOT ?= $(ISHIKO_CPP_THIRD_PARTY_BOOST)
 # Path to the fmt installation
 ISHIKO_CPP_FMT_ROOT ?= $(ISHIKO_CPP_THIRD_PARTY_FMT)
+# Path to the Ishiko Timeinstallation
+ISHIKO_CPP_TIME_ROOT ?= $(ISHIKO_CPP)/time
+# Path to the Ishiko Types installation
+ISHIKO_CPP_TYPES_ROOT ?= $(ISHIKO_CPP)/types
+# Path to the Ishiko HTTP installation
+ISHIKO_CPP_HTTP_ROOT ?= $(ISHIKO_CPP)/http
 # Path to the Ishiko Logging installation
 ISHIKO_CPP_LOGGING_ROOT ?= $(ISHIKO_CPP)/logging
 # Path to the Nemu installation
@@ -103,7 +106,7 @@ all: ../bakefile/../../lib/lib$(if $(call _equal,$(config),Debug),NemuIshikoConn
 	$(RANLIB) $@
 
 $(_builddir)NemuIshikoConnectionEngine_IshikoServer.o: ../../src/IshikoServer.cpp
-	$(CXX) -c -o $@ $(CPPFLAGS) $(CXXFLAGS) -MD -MP -fPIC -DPIC -pthread -I$(ISHIKO_CPP_ERRORS_ROOT)/include -I$(ISHIKO_CPP_BASEPLATFORM_ROOT)/include -I$(ISHIKO_CPP_TEXT_ROOT)/include -I$(ISHIKO_CPP_NETWORKING_ROOT)/include -I$(ISHIKO_CPP_FMT_ROOT)/include -I$(ISHIKO_CPP_LOGGING_ROOT)/include -I$(ISHIKO_CPP_BOOST_ROOT)/include -I$(NEMU_CPP_CORE_ROOT)/include -I$(ISHIKO_CPP_TYPES_ROOT)/include -I$(ISHIKO_CPP_HTTP_ROOT)/include -I../../include/Nemu/IshikoConnectionEngine -std=c++11 ../../src/IshikoServer.cpp
+	$(CXX) -c -o $@ $(CPPFLAGS) $(CXXFLAGS) -MD -MP -fPIC -DPIC -pthread -I$(ISHIKO_CPP_ERRORS_ROOT)/include -I$(ISHIKO_CPP_BASEPLATFORM_ROOT)/include -I$(ISHIKO_CPP_TEXT_ROOT)/include -I$(ISHIKO_CPP_NETWORKING_ROOT)/include -I$(ISHIKO_CPP_FMT_ROOT)/include -I$(ISHIKO_CPP_LOGGING_ROOT)/include -I$(ISHIKO_CPP_BOOST_ROOT)/include -I$(NEMU_CPP_CORE_ROOT)/include -I$(ISHIKO_CPP_TIME_ROOT)/include -I$(ISHIKO_CPP_TYPES_ROOT)/include -I$(ISHIKO_CPP_HTTP_ROOT)/include -I../../include/Nemu/IshikoConnectionEngine -std=c++11 ../../src/IshikoServer.cpp
 
 clean:
 	rm -f $(_builddir)*.o

@@ -46,7 +46,7 @@ void IshikoServer::start()
             }
             else
             {
-                HTTPResponse response;
+                HTTPResponse response = HTTPResponse::OK();
                 response.setBody("Hello World!");
                 string responseString = response.toString();
                 clientSocket.write(responseString.c_str(), responseString.size(), error);
