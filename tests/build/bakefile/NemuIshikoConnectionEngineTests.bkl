@@ -19,12 +19,13 @@ program NemuIshikoConnectionEngineTests : NemuIshikoConnectionEngine, IshikoHTTP
     if ($(toolset) == gnu)
     {
         cxx-compiler-options = "-std=c++11";
-        libs += NemuIshikoConnectionEngine NemuCore IshikoHTTP IshikoNetworking IshikoTests IshikoTestsCore IshikoDiff IshikoFileSystem IshikoProcess IshikoText IshikoErrors boost_filesystem;
+        libs += NemuIshikoConnectionEngine NemuCore IshikoHTTP IshikoNetworking IshikoTests IshikoTestsCore IshikoDiff IshikoFileSystem IshikoProcess IshikoTime IshikoText IshikoTypes IshikoErrors fmt boost_filesystem;
     }
 
     headers
     {
         ../../src/IshikoServerTests.hpp
+        ../../src/helpers/TestRoutes.hpp
         ../../src/helpers/TestServerObserver.hpp
     }
 
@@ -32,6 +33,7 @@ program NemuIshikoConnectionEngineTests : NemuIshikoConnectionEngine, IshikoHTTP
     {
         ../../src/IshikoServerTests.cpp
         ../../src/main.cpp
+        ../../src/helpers/TestRoutes.cpp
         ../../src/helpers/TestServerObserver.cpp
     }
 }

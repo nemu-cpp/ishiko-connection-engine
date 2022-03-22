@@ -5,6 +5,7 @@
 */
 
 #include "IshikoServerTests.hpp"
+#include "helpers/TestRoutes.hpp"
 #include "helpers/TestServerObserver.hpp"
 #include "Nemu/IshikoConnectionEngine/IshikoServer.hpp"
 #include <boost/filesystem.hpp>
@@ -55,6 +56,9 @@ void IshikoServerTests::RequestTest1(FileComparisonTest& test)
     std::shared_ptr<TestServerObserver> observer = std::make_shared<TestServerObserver>();
     Error error;
     IshikoServer server(IPv4Address::Localhost(), TCPServerSocket::AnyPort, error);
+
+    TestRoutes routes;
+    server.m_routes = &routes;
 
     server.start();
 
