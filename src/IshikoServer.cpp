@@ -5,6 +5,8 @@
 */
 
 #include "IshikoServer.hpp"
+#include "IshikoWebRequest.hpp"
+#include "IshikoWebResponseBuilder.hpp"
 #include <Ishiko/HTTP.hpp>
 
 using namespace Ishiko;
@@ -29,9 +31,8 @@ void IshikoServer::start()
             Error error;
             TCPClientSocket clientSocket = m_socket.accept(error);
             
-            // TODO: read the request but we need to do something with it
-            HTTPMessagePushParser::Callbacks callbacks;
-            HTTPMessagePushParser requestParser(callbacks);
+            IshikoWebRequest request;
+            HTTPMessagePushParser requestParser(request);
 
             // TODO: how big should this buffer be? Adjust automatically?
             char buffer[1000];
@@ -46,8 +47,15 @@ void IshikoServer::start()
             }
             else
             {
-                HTTPResponse response = HTTPResponse::OK();
-                response.setBody("Hello World!");
+                const Route& route = m_routes->match(request.URI());
+
+                Views views;
+                IshikoWebResponseBuilder response(views);
+
+                route.runHandler(request, response, *m_logger);
+
+
+                
                 string responseString = response.toString();
                 clientSocket.write(responseString.c_str(), responseString.size(), error);
             }

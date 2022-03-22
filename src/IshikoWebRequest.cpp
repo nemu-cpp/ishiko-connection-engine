@@ -5,3 +5,21 @@
 */
 
 #include "IshikoWebRequest.hpp"
+
+using namespace boost;
+using namespace std;
+
+namespace Nemu
+{
+
+string IshikoWebRequest::URI() const
+{
+    return m_uri;
+}
+
+void IshikoWebRequest::onRequestURI(string_view data)
+{
+    m_uri = data.to_string();
+}
+
+}
