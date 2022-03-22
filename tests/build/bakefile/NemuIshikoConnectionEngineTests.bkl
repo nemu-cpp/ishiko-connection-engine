@@ -25,6 +25,7 @@ program NemuIshikoConnectionEngineTests : NemuIshikoConnectionEngine, IshikoHTTP
     headers
     {
         ../../src/IshikoServerTests.hpp
+        ../../src/helpers/TestRoutes.hpp
         ../../src/helpers/TestServerObserver.hpp
     }
 
@@ -32,6 +33,7 @@ program NemuIshikoConnectionEngineTests : NemuIshikoConnectionEngine, IshikoHTTP
     {
         ../../src/IshikoServerTests.cpp
         ../../src/main.cpp
+        ../../src/helpers/TestRoutes.cpp
         ../../src/helpers/TestServerObserver.cpp
     }
 }

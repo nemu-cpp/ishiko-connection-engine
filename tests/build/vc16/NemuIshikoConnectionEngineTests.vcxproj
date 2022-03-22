@@ -158,10 +158,12 @@
   <ItemGroup>
     <ClCompile Include="..\..\src\IshikoServerTests.cpp" />
     <ClCompile Include="..\..\src\main.cpp" />
+    <ClCompile Include="..\..\src\helpers\TestRoutes.cpp" />
     <ClCompile Include="..\..\src\helpers\TestServerObserver.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\src\IshikoServerTests.hpp" />
+    <ClInclude Include="..\..\src\helpers\TestRoutes.hpp" />
     <ClInclude Include="..\..\src\helpers\TestServerObserver.hpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
