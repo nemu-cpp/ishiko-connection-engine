@@ -151,10 +151,14 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="..\..\src\IshikoServer.cpp" />
+    <ClCompile Include="..\..\src\IshikoWebRequest.cpp" />
+    <ClCompile Include="..\..\src\IshikoWebResponseBuilder.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\include\Nemu\IshikoConnectionEngine.h" />
     <ClInclude Include="..\..\include\Nemu\IshikoConnectionEngine\IshikoServer.hpp" />
+    <ClInclude Include="..\..\include\Nemu\IshikoConnectionEngine\IshikoWebRequest.hpp" />
+    <ClInclude Include="..\..\include\Nemu\IshikoConnectionEngine\IshikoWebResponseBuilder.hpp" />
     <ClInclude Include="..\..\include\Nemu\IshikoConnectionEngine\linkoptions.hpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
