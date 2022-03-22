@@ -14,7 +14,7 @@ namespace Nemu
 {
 
 IshikoServer::IshikoServer(IPv4Address address, Port port, Error& error)
-    : m_socket(address, port, error)
+    : m_init(error), m_socket(address, port, error)
 {
 }
 
