@@ -29,6 +29,7 @@ public:
     const Ishiko::TCPServerSocket& socket() const;
 
 private:
+    Ishiko::NetworkingLibraryInitialization m_init;
     Ishiko::TCPServerSocket m_socket;
     std::thread m_acceptThread;
 };

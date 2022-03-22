@@ -38,11 +38,15 @@ library NemuIshikoConnectionEngine : NemuCore, IshikoHTTP, IshikoNetworking
     {
         ../../include/Nemu/IshikoConnectionEngine.h
         ../../include/Nemu/IshikoConnectionEngine/IshikoServer.hpp
+        ../../include/Nemu/IshikoConnectionEngine/IshikoWebRequest.hpp
+        ../../include/Nemu/IshikoConnectionEngine/IshikoWebResponseBuilder.hpp
         ../../include/Nemu/IshikoConnectionEngine/linkoptions.hpp
     }
 
     sources
     {
         ../../src/IshikoServer.cpp
+        ../../src/IshikoWebRequest.cpp
+        ../../src/IshikoWebResponseBuilder.cpp
     }
 }
