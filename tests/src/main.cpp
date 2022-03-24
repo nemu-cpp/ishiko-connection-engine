@@ -5,6 +5,8 @@
 */
 
 #include "IshikoServerTests.hpp"
+#include "IshikoWebRequestTests.hpp"
+#include "IshikoWebResponseBuilderTests.hpp"
 #include "Nemu/IshikoConnectionEngine/linkoptions.hpp"
 #include <Ishiko/Tests.hpp>
 
@@ -19,6 +21,8 @@ int main(int argc, char* argv[])
 
     TestSequence& theTests = theTestHarness.tests();
     theTests.append<IshikoServerTests>();
+    theTests.append<IshikoWebRequestTests>();
+    theTests.append<IshikoWebResponseBuilderTests>();
 
     return theTestHarness.run();
 }
