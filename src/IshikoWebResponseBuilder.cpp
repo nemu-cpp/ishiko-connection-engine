@@ -23,6 +23,11 @@ void IshikoWebResponseBuilder::setStatus(unsigned int status)
     m_response.setStatusCode(status);
 }
     
+void IshikoWebResponseBuilder::setDateHeader(Ishiko::TimePoint time)
+{
+    m_response.setDateHeader(time);
+}
+
 string& IshikoWebResponseBuilder::body()
 {
     return m_body;

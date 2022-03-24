@@ -14,7 +14,6 @@
 
 using namespace boost::filesystem;
 using namespace Ishiko;
-using namespace Ishiko::Tests;
 using namespace Nemu;
 
 IshikoServerTests::IshikoServerTests(const TestNumber& number, const TestContext& context)
