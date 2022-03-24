@@ -23,7 +23,7 @@ void IshikoWebResponseBuilder::setStatus(unsigned int status)
     m_response.setStatusCode(status);
 }
     
-void IshikoWebResponseBuilder::setDateHeader(Ishiko::TimePoint time)
+void IshikoWebResponseBuilder::setDateHeader(const Ishiko::UTCTime& time)
 {
     m_response.setDateHeader(time);
 }

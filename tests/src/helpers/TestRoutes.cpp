@@ -15,7 +15,7 @@ TestRoutes::TestRoutes()
     setDefaultRoute(Route("",
         [](const WebRequest& request, WebResponseBuilder& response, void* handlerData, Nemu::Logger& logger)
     {
-        response.setDateHeader(TimePoint(Date(2022, 3, 24), TimeOfDay(1, 15, 0)));
+        response.setDateHeader(UTCTime(Date(2022, 3, 24), TimeOfDay(1, 15, 0)));
         response.setStatus(404);
     }));
 }

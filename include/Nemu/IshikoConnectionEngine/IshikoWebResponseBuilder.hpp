@@ -20,7 +20,7 @@ public:
     IshikoWebResponseBuilder(const Views& views);
 
     void setStatus(unsigned int status) override;
-    void setDateHeader(Ishiko::TimePoint time) override;
+    void setDateHeader(const Ishiko::UTCTime& time) override;
     std::string& body() override;
 
     std::string toString() const;
