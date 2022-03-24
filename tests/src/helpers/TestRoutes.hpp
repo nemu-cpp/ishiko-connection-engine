@@ -11,6 +11,8 @@
 
 class TestRoutes : public Nemu::Routes
 {
+public:
+    TestRoutes();
 };
 
 #endif
