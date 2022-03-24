@@ -5,8 +5,10 @@
 */
 
 #include "IshikoWebRequestTests.hpp"
+#include "Nemu/IshikoConnectionEngine/IshikoWebRequest.hpp"
 
 using namespace Ishiko;
+using namespace Nemu;
 
 IshikoWebRequestTests::IshikoWebRequestTests(const TestNumber& number, const TestContext& context)
     : TestSequence(number, "IshikoWebRequest tests", context)
@@ -16,4 +18,7 @@ IshikoWebRequestTests::IshikoWebRequestTests(const TestNumber& number, const Tes
 
 void IshikoWebRequestTests::ConstructorTest1(Test& test)
 {
+    IshikoWebRequest request;
+
+    ISHIKO_TEST_PASS();
 }

@@ -5,8 +5,11 @@
 */
 
 #include "IshikoWebResponseBuilderTests.hpp"
+#include "Nemu/Core.hpp"
+#include "Nemu/IshikoConnectionEngine/IshikoWebResponseBuilder.hpp"
 
 using namespace Ishiko;
+using namespace Nemu;
 
 IshikoWebResponseBuilderTests::IshikoWebResponseBuilderTests(const TestNumber& number, const TestContext& context)
     : TestSequence(number, "IshikoWebResponseBuilder tests", context)
@@ -16,4 +19,8 @@ IshikoWebResponseBuilderTests::IshikoWebResponseBuilderTests(const TestNumber& n
 
 void IshikoWebResponseBuilderTests::ConstructorTest1(Test& test)
 {
+    Views views;
+    IshikoWebResponseBuilder responseBuilder(views);
+
+    ISHIKO_TEST_PASS();
 }
