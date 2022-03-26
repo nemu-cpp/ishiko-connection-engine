@@ -9,13 +9,16 @@
 
 using namespace Ishiko;
 using namespace Nemu;
+using namespace std;
 
 TestRoutes::TestRoutes()
 {
-    setDefaultRoute(Route("",
-        [](const WebRequest& request, WebResponseBuilder& response, void* handlerData, Nemu::Logger& logger)
-    {
-        response.setDateHeader(UTCTime(Date(2022, 3, 24), TimeOfDay(1, 15, 0)));
-        response.setStatus(404);
-    }));
+    setDefaultRoute(
+        Route("",
+            make_shared<FunctionWebRequestHandler>(
+                [](const WebRequest& request, WebResponseBuilder& response, void* handlerData, Logger& logger)
+                {
+                    response.setDateHeader(UTCTime(Date(2022, 3, 24), TimeOfDay(1, 15, 0)));
+                    response.setStatus(404);
+                })));
 }
