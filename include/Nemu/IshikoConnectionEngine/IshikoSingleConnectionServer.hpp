@@ -10,6 +10,7 @@
 #include <Nemu/Core.hpp>
 #include <Ishiko/Errors.hpp>
 #include <Ishiko/Networking.hpp>
+#include <atomic>
 #include <thread>
 
 namespace Nemu
@@ -32,6 +33,7 @@ private:
     Ishiko::NetworkingLibraryInitialization m_init;
     Ishiko::TCPServerSocket m_socket;
     std::thread m_acceptThread;
+    std::atomic<bool> m_stop;
 };
 
 }
