@@ -4,7 +4,7 @@
     See https://github.com/nemu-cpp/ishiko-connection-engine/blob/main/LICENSE.txt
 */
 
-#include "IshikoServer.hpp"
+#include "IshikoSingleConnectionServer.hpp"
 #include "IshikoWebRequest.hpp"
 #include "IshikoWebResponseBuilder.hpp"
 #include <Ishiko/HTTP.hpp>
@@ -15,12 +15,12 @@ using namespace std;
 namespace Nemu
 {
 
-IshikoServer::IshikoServer(IPv4Address address, Port port, Error& error)
+IshikoSingleConnectionServer::IshikoSingleConnectionServer(IPv4Address address, Port port, Error& error)
     : m_init(error), m_socket(address, port, error)
 {
 }
 
-void IshikoServer::start()
+void IshikoSingleConnectionServer::start()
 {
     // TODO: as a quick hack we put the blocking stuff in a secondary thread
     m_acceptThread = thread(
@@ -66,7 +66,7 @@ void IshikoServer::start()
     );
 }
 
-void IshikoServer::stop()
+void IshikoSingleConnectionServer::stop()
 {
     // TODO: for now send a dummy request to trigger the accept
     Error error;
@@ -74,18 +74,18 @@ void IshikoServer::stop()
     socket.connect(m_socket.ipAddress(), m_socket.port(), error);
 }
 
-void IshikoServer::join()
+void IshikoSingleConnectionServer::join()
 {
     m_acceptThread.join();
 }
 
-bool IshikoServer::isRunning() const
+bool IshikoSingleConnectionServer::isRunning() const
 {
     // TODO
     return false;
 }
 
-const TCPServerSocket& IshikoServer::socket() const
+const TCPServerSocket& IshikoSingleConnectionServer::socket() const
 {
     return m_socket;
 }

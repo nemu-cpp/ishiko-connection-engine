@@ -24,7 +24,7 @@ program NemuIshikoConnectionEngineTests : NemuIshikoConnectionEngine, IshikoHTTP
 
     headers
     {
-        ../../src/IshikoServerTests.hpp
+        ../../src/IshikoSingleConnectionServerTests.hpp
         ../../src/IshikoWebRequestTests.hpp
         ../../src/IshikoWebResponseBuilderTests.hpp
         ../../src/helpers/TestRoutes.hpp
@@ -33,7 +33,7 @@ program NemuIshikoConnectionEngineTests : NemuIshikoConnectionEngine, IshikoHTTP
 
     sources
     {
-        ../../src/IshikoServerTests.cpp
+        ../../src/IshikoSingleConnectionServerTests.cpp
         ../../src/IshikoWebRequestTests.cpp
         ../../src/IshikoWebResponseBuilderTests.cpp
         ../../src/main.cpp

@@ -4,8 +4,8 @@
     See https://github.com/nemu-cpp/ishiko-connection-engine/blob/main/LICENSE.txt
 */
 
-#ifndef _NEMU_CPP_ISHIKOCONNECTIONENGINE_ISHIKOSERVER_HPP_
-#define _NEMU_CPP_ISHIKOCONNECTIONENGINE_ISHIKOSERVER_HPP_
+#ifndef _NEMU_CPP_ISHIKOCONNECTIONENGINE_ISHIKOSINGLECONNECTIONSERVER_HPP_
+#define _NEMU_CPP_ISHIKOCONNECTIONENGINE_ISHIKOSINGLECONNECTIONSERVER_HPP_
 
 #include <Nemu/Core.hpp>
 #include <Ishiko/Errors.hpp>
@@ -15,10 +15,10 @@
 namespace Nemu
 {
 
-class IshikoServer : public Server
+class IshikoSingleConnectionServer : public Server
 {
 public:
-    IshikoServer(Ishiko::IPv4Address address, Ishiko::Port port, Ishiko::Error& error);
+    IshikoSingleConnectionServer(Ishiko::IPv4Address address, Ishiko::Port port, Ishiko::Error& error);
 
     void start() override;
     void stop() override;
