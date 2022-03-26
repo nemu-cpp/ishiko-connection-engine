@@ -17,7 +17,7 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\src\IshikoServerTests.hpp">
+    <ClInclude Include="..\..\src\IshikoSingleConnectionServerTests.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\..\src\IshikoWebRequestTests.hpp">
@@ -34,7 +34,7 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\src\IshikoServerTests.cpp">
+    <ClCompile Include="..\..\src\IshikoSingleConnectionServerTests.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\..\src\IshikoWebRequestTests.cpp">
