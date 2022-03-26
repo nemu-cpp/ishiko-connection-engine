@@ -4,7 +4,7 @@
     See https://github.com/nemu-cpp/ishiko-connection-engine/blob/main/LICENSE.txt
 */
 
-#include "IshikoServerTests.hpp"
+#include "IshikoSingleConnectionServerTests.hpp"
 #include "IshikoWebRequestTests.hpp"
 #include "IshikoWebResponseBuilderTests.hpp"
 #include "Nemu/IshikoConnectionEngine/linkoptions.hpp"
@@ -20,7 +20,7 @@ int main(int argc, char* argv[])
     theTestHarness.context().setReferenceDataDirectory("../../reference");
 
     TestSequence& theTests = theTestHarness.tests();
-    theTests.append<IshikoServerTests>();
+    theTests.append<IshikoSingleConnectionServerTests>();
     theTests.append<IshikoWebRequestTests>();
     theTests.append<IshikoWebResponseBuilderTests>();
 

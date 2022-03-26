@@ -4,10 +4,10 @@
     See https://github.com/nemu-cpp/ishiko-connection-engine/blob/main/LICENSE.txt
 */
 
-#include "IshikoServerTests.hpp"
+#include "IshikoSingleConnectionServerTests.hpp"
 #include "helpers/TestRoutes.hpp"
 #include "helpers/TestServerObserver.hpp"
-#include "Nemu/IshikoConnectionEngine/IshikoServer.hpp"
+#include "Nemu/IshikoConnectionEngine/IshikoSingleConnectionServer.hpp"
 #include <boost/filesystem.hpp>
 #include <Ishiko/HTTP.hpp>
 #include <Ishiko/Networking.hpp>
@@ -16,27 +16,28 @@ using namespace boost::filesystem;
 using namespace Ishiko;
 using namespace Nemu;
 
-IshikoServerTests::IshikoServerTests(const TestNumber& number, const TestContext& context)
-    : TestSequence(number, "IshikoServer tests", context)
+IshikoSingleConnectionServerTests::IshikoSingleConnectionServerTests(const TestNumber& number,
+    const TestContext& context)
+    : TestSequence(number, "IshikoSingleConnectionServer tests", context)
 {
     append<HeapAllocationErrorsTest>("Constructor test 1", ConstructorTest1);
     append<HeapAllocationErrorsTest>("start test 1", StartTest1);
     append<FileComparisonTest>("Request test 1", RequestTest1);
 }
 
-void IshikoServerTests::ConstructorTest1(Test& test)
+void IshikoSingleConnectionServerTests::ConstructorTest1(Test& test)
 {
     Error error;
-    IshikoServer server(IPv4Address::Localhost(), 0, error);
+    IshikoSingleConnectionServer server(IPv4Address::Localhost(), 0, error);
 
     ISHIKO_TEST_FAIL_IF(error);
     ISHIKO_TEST_PASS();
 }
 
-void IshikoServerTests::StartTest1(Test& test)
+void IshikoSingleConnectionServerTests::StartTest1(Test& test)
 {
     Error error;
-    IshikoServer server(IPv4Address::Localhost(), 8585, error);
+    IshikoSingleConnectionServer server(IPv4Address::Localhost(), 8585, error);
 
     ISHIKO_TEST_FAIL_IF(error);
 
@@ -47,14 +48,14 @@ void IshikoServerTests::StartTest1(Test& test)
     ISHIKO_TEST_PASS();
 }
 
-void IshikoServerTests::RequestTest1(FileComparisonTest& test)
+void IshikoSingleConnectionServerTests::RequestTest1(FileComparisonTest& test)
 {
-    path outputPath(test.context().getTestOutputPath("IshikoServerTests_RequestTest1.bin"));
-    path referencePath(test.context().getReferenceDataPath("IshikoServerTests_RequestTest1.bin"));
+    path outputPath(test.context().getTestOutputPath("IshikoSingleConnectionServerTests_RequestTest1.bin"));
+    path referencePath(test.context().getReferenceDataPath("IshikoSingleConnectionServerTests_RequestTest1.bin"));
 
     std::shared_ptr<TestServerObserver> observer = std::make_shared<TestServerObserver>();
     Error error;
-    IshikoServer server(IPv4Address::Localhost(), TCPServerSocket::AnyPort, error);
+    IshikoSingleConnectionServer server(IPv4Address::Localhost(), TCPServerSocket::AnyPort, error);
 
     TestRoutes routes;
     server.m_routes = &routes;

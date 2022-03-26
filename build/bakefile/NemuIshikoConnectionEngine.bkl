@@ -37,7 +37,7 @@ library NemuIshikoConnectionEngine : NemuCore, IshikoHTTP, IshikoNetworking
     headers
     {
         ../../include/Nemu/IshikoConnectionEngine.h
-        ../../include/Nemu/IshikoConnectionEngine/IshikoServer.hpp
+        ../../include/Nemu/IshikoConnectionEngine/IshikoSingleConnectionServer.hpp
         ../../include/Nemu/IshikoConnectionEngine/IshikoWebRequest.hpp
         ../../include/Nemu/IshikoConnectionEngine/IshikoWebResponseBuilder.hpp
         ../../include/Nemu/IshikoConnectionEngine/linkoptions.hpp
@@ -45,7 +45,7 @@ library NemuIshikoConnectionEngine : NemuCore, IshikoHTTP, IshikoNetworking
 
     sources
     {
-        ../../src/IshikoServer.cpp
+        ../../src/IshikoSingleConnectionServer.cpp
         ../../src/IshikoWebRequest.cpp
         ../../src/IshikoWebResponseBuilder.cpp
     }
