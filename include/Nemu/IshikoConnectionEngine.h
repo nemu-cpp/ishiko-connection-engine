@@ -7,7 +7,9 @@
 #ifndef _NEMU_CPP_ISHIKOCONNECTIONENGINE_H_
 #define _NEMU_CPP_ISHIKOCONNECTIONENGINE_H_
 
-#include "IshikoConnectionEngine/IshikoServer.hpp"
+#include "IshikoConnectionEngine/IshikoSingleConnectionServer.hpp"
+#include "IshikoConnectionEngine/IshikoWebRequest.hpp"
+#include "IshikoConnectionEngine/IshikoWebResponseBuilder.hpp"
 
 #include "IshikoConnectionEngine/linkoptions.hpp"
 
