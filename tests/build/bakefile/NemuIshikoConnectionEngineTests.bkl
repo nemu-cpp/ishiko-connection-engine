@@ -27,8 +27,8 @@ program NemuIshikoConnectionEngineTests : NemuIshikoConnectionEngine, IshikoHTTP
         ../../src/IshikoSingleConnectionServerTests.hpp
         ../../src/IshikoWebRequestTests.hpp
         ../../src/IshikoWebResponseBuilderTests.hpp
-        ../../src/helpers/TestRoutes.hpp
-        ../../src/helpers/TestServerObserver.hpp
+        ../../src/Helpers/TestConnectionHandler.hpp
+        ../../src/Helpers/TestServerObserver.hpp
     }
 
     sources
@@ -37,7 +37,7 @@ program NemuIshikoConnectionEngineTests : NemuIshikoConnectionEngine, IshikoHTTP
         ../../src/IshikoWebRequestTests.cpp
         ../../src/IshikoWebResponseBuilderTests.cpp
         ../../src/main.cpp
-        ../../src/helpers/TestRoutes.cpp
-        ../../src/helpers/TestServerObserver.cpp
+        ../../src/Helpers/TestConnectionHandler.cpp
+        ../../src/Helpers/TestServerObserver.cpp
     }
 }

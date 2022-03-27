@@ -17,7 +17,7 @@ namespace Nemu
 class IshikoWebResponseBuilder : public WebResponseBuilder
 {
 public:
-    IshikoWebResponseBuilder(const Views& views);
+    IshikoWebResponseBuilder();
 
     void setStatus(unsigned int status) override;
     void setDateHeader(const Ishiko::UTCTime& time) override;

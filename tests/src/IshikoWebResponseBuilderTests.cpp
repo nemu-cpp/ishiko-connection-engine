@@ -19,8 +19,7 @@ IshikoWebResponseBuilderTests::IshikoWebResponseBuilderTests(const TestNumber& n
 
 void IshikoWebResponseBuilderTests::ConstructorTest1(Test& test)
 {
-    Views views;
-    IshikoWebResponseBuilder responseBuilder(views);
+    IshikoWebResponseBuilder responseBuilder;
 
     ISHIKO_TEST_PASS();
 }
