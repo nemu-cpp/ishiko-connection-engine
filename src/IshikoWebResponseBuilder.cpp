@@ -12,8 +12,8 @@ using namespace std;
 namespace Nemu
 {
 
-IshikoWebResponseBuilder::IshikoWebResponseBuilder(const Views& views)
-    : WebResponseBuilder(views), m_response(HTTPStatusCode::internalServerError)
+IshikoWebResponseBuilder::IshikoWebResponseBuilder()
+    : m_response(HTTPStatusCode::internalServerError)
 {
     // TODO: this doesn't work as the user would be left with specifying all the right headers. Do I assume some default?
 }

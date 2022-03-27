@@ -48,16 +48,9 @@ void IshikoSingleConnectionServer::start()
                     // TODO: we received a partial request
                 }
                 else
-                {
-                    const Route& route = m_routes->match(request.URI());
-
-                    Views views;
-                    IshikoWebResponseBuilder response(views);
-
-                    route.runHandler(request, response, *m_logger);
-
-
-
+                {                    
+                    IshikoWebResponseBuilder response;
+                    m_connectionHandler->onConnection(request, response);
                     string responseString = response.toString();
                     clientSocket.write(responseString.c_str(), responseString.size(), error);
                 }

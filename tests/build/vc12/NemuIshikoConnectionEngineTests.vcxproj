@@ -160,15 +160,15 @@
     <ClCompile Include="..\..\src\IshikoWebRequestTests.cpp" />
     <ClCompile Include="..\..\src\IshikoWebResponseBuilderTests.cpp" />
     <ClCompile Include="..\..\src\main.cpp" />
-    <ClCompile Include="..\..\src\helpers\TestRoutes.cpp" />
-    <ClCompile Include="..\..\src\helpers\TestServerObserver.cpp" />
+    <ClCompile Include="..\..\src\Helpers\TestConnectionHandler.cpp" />
+    <ClCompile Include="..\..\src\Helpers\TestServerObserver.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\src\IshikoSingleConnectionServerTests.hpp" />
     <ClInclude Include="..\..\src\IshikoWebRequestTests.hpp" />
     <ClInclude Include="..\..\src\IshikoWebResponseBuilderTests.hpp" />
-    <ClInclude Include="..\..\src\helpers\TestRoutes.hpp" />
-    <ClInclude Include="..\..\src\helpers\TestServerObserver.hpp" />
+    <ClInclude Include="..\..\src\Helpers\TestConnectionHandler.hpp" />
+    <ClInclude Include="..\..\src\Helpers\TestServerObserver.hpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
