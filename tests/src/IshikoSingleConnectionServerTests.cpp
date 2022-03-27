@@ -5,8 +5,8 @@
 */
 
 #include "IshikoSingleConnectionServerTests.hpp"
-#include "helpers/TestConnectionHandler.hpp"
-#include "helpers/TestServerObserver.hpp"
+#include "Helpers/TestConnectionHandler.hpp"
+#include "Helpers/TestServerObserver.hpp"
 #include "Nemu/IshikoConnectionEngine/IshikoSingleConnectionServer.hpp"
 #include <boost/filesystem.hpp>
 #include <Ishiko/HTTP.hpp>
