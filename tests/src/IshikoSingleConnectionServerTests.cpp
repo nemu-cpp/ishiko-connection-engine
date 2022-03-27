@@ -5,7 +5,7 @@
 */
 
 #include "IshikoSingleConnectionServerTests.hpp"
-#include "helpers/TestRoutes.hpp"
+#include "helpers/TestConnectionHandler.hpp"
 #include "helpers/TestServerObserver.hpp"
 #include "Nemu/IshikoConnectionEngine/IshikoSingleConnectionServer.hpp"
 #include <boost/filesystem.hpp>
@@ -61,8 +61,8 @@ void IshikoSingleConnectionServerTests::RequestTest1(FileComparisonTest& test)
     Error error;
     IshikoSingleConnectionServer server(IPv4Address::Localhost(), TCPServerSocket::AnyPort, error);
 
-    TestRoutes routes;
-    server.m_routes = &routes;
+    TestConnectionHandler connectionHandler;
+    server.m_connectionHandler = &connectionHandler;
 
     server.start();
 
@@ -102,8 +102,8 @@ void IshikoSingleConnectionServerTests::RequestTest2(FileComparisonTest& test)
     Error error;
     IshikoSingleConnectionServer server(IPv4Address::Localhost(), TCPServerSocket::AnyPort, error);
 
-    TestRoutes routes;
-    server.m_routes = &routes;
+    TestConnectionHandler connectionHandler;
+    server.m_connectionHandler = &connectionHandler;
 
     server.start();
 
@@ -148,9 +148,9 @@ void IshikoSingleConnectionServerTests::RequestTest3(FileComparisonTest& test)
     IshikoSingleConnectionServer server(IPv4Address::Localhost(), TCPServerSocket::AnyPort, error);
     Port port = server.socket().port();
 
-    TestRoutes routes;
-    server.m_routes = &routes;
-
+    TestConnectionHandler connectionHandler;
+    server.m_connectionHandler = &connectionHandler;
+ 
     // TODO: we should try to connect before the socket is opened but at the moment with my blocking HTTPClient I can't
     // do that
 

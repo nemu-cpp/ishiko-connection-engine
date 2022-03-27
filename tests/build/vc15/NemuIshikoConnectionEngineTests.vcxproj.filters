@@ -26,10 +26,10 @@
     <ClInclude Include="..\..\src\IshikoWebResponseBuilderTests.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\helpers\TestRoutes.hpp">
+    <ClInclude Include="..\..\src\Helpers\TestConnectionHandler.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\helpers\TestServerObserver.hpp">
+    <ClInclude Include="..\..\src\Helpers\TestServerObserver.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -46,10 +46,10 @@
     <ClCompile Include="..\..\src\main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\helpers\TestRoutes.cpp">
+    <ClCompile Include="..\..\src\Helpers\TestConnectionHandler.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\helpers\TestServerObserver.cpp">
+    <ClCompile Include="..\..\src\Helpers\TestServerObserver.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
