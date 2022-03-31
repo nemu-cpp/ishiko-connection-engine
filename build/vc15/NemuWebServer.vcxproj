@@ -21,10 +21,10 @@
     </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{5A5D7463-53B9-5C34-8415-D436BE2F98EE}</ProjectGuid>
+    <ProjectGuid>{577F475A-E001-5C1B-B7C1-3A5B4C996A00}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
-    <RootNamespace>NemuIshikoConnectionEngine</RootNamespace>
-    <ProjectName>NemuIshikoConnectionEngine</ProjectName>
+    <RootNamespace>NemuWebServer</RootNamespace>
+    <ProjectName>NemuWebServer</ProjectName>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Label="Configuration" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
@@ -68,11 +68,11 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <TargetName>NemuIshikoConnectionEngine-d</TargetName>
+    <TargetName>NemuWebServer-d</TargetName>
     <OutDir>..\bakefile\..\..\lib\$(Platform)\</OutDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-    <TargetName>NemuIshikoConnectionEngine-d</TargetName>
+    <TargetName>NemuWebServer-d</TargetName>
     <OutDir>..\bakefile\..\..\lib\$(Platform)\</OutDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">

@@ -37,23 +37,23 @@ endif
 # Additionally, this makefile is customizable with the following
 # settings:
 #
-#      ISHIKO_CPP_ERRORS_ROOT                Path to the Ishiko Errors installation
-#      ISHIKO_CPP_BASEPLATFORM_ROOT          Path to the Ishiko BasePlatform installation
-#      ISHIKO_CPP_TEXT_ROOT                  Path to the Ishiko/Text installation
-#      ISHIKO_CPP_NETWORKING_ROOT            Path to the Ishiko Networking installation
-#      ISHIKO_CPP_BOOST_ROOT                 Path to the Boost installation
-#      ISHIKO_CPP_FMT_ROOT                   Path to the fmt installation
-#      ISHIKO_CPP_TIME_ROOT                  Path to the Ishiko Timeinstallation
-#      ISHIKO_CPP_TYPES_ROOT                 Path to the Ishiko Types installation
-#      ISHIKO_CPP_HTTP_ROOT                  Path to the Ishiko HTTP installation
-#      ISHIKO_CPP_FILESYSTEM_ROOT            Path to the Ishiko FileSystem installation
-#      ISHIKO_CPP_DIFF_ROOT                  Path to the Ishiko Diff installation
-#      ISHIKO_CPP_PROCESS_ROOT               Path to the Ishiko Process installation
-#      ISHIKO_CPP_TESTFRAMEWORK_ROOT         Path to the Ishiko TestFramework installation
-#      ISHIKO_CPP_TESTS_ROOT                 Path to the Ishiko Tests installation
-#      ISHIKO_CPP_LOGGING_ROOT               Path to the Ishiko Logging installation
-#      NEMU_CPP_CORE_ROOT                    Path to the Nemu installation
-#      NEMU_CPP_ISHIKOCONNECTIONENGINE_ROOT  Path to the Nemu IshikoConnectionEngine installation
+#      ISHIKO_CPP_ERRORS_ROOT         Path to the Ishiko Errors installation
+#      ISHIKO_CPP_BASEPLATFORM_ROOT   Path to the Ishiko BasePlatform installation
+#      ISHIKO_CPP_TEXT_ROOT           Path to the Ishiko/Text installation
+#      ISHIKO_CPP_NETWORKING_ROOT     Path to the Ishiko Networking installation
+#      ISHIKO_CPP_BOOST_ROOT          Path to the Boost installation
+#      ISHIKO_CPP_FMT_ROOT            Path to the fmt installation
+#      ISHIKO_CPP_TIME_ROOT           Path to the Ishiko Timeinstallation
+#      ISHIKO_CPP_TYPES_ROOT          Path to the Ishiko Types installation
+#      ISHIKO_CPP_HTTP_ROOT           Path to the Ishiko HTTP installation
+#      ISHIKO_CPP_FILESYSTEM_ROOT     Path to the Ishiko FileSystem installation
+#      ISHIKO_CPP_DIFF_ROOT           Path to the Ishiko Diff installation
+#      ISHIKO_CPP_PROCESS_ROOT        Path to the Ishiko Process installation
+#      ISHIKO_CPP_TESTFRAMEWORK_ROOT  Path to the Ishiko TestFramework installation
+#      ISHIKO_CPP_TESTS_ROOT          Path to the Ishiko Tests installation
+#      ISHIKO_CPP_LOGGING_ROOT        Path to the Ishiko Logging installation
+#      NEMU_CPP_CORE_ROOT             Path to the Nemu installation
+#      NEMU_CPP_WEBSERVER_ROOT        Path to the Nemu WebServer installation
 
 # Use "make RANLIB=''" for platforms without ranlib.
 RANLIB ?= ranlib
@@ -106,38 +106,38 @@ ISHIKO_CPP_TESTS_ROOT ?= $(ISHIKO_CPP)/test-framework
 ISHIKO_CPP_LOGGING_ROOT ?= $(ISHIKO_CPP)/logging
 # Path to the Nemu installation
 NEMU_CPP_CORE_ROOT ?= $(NEMU_CPP)/core
-# Path to the Nemu IshikoConnectionEngine installation
-NEMU_CPP_ISHIKOCONNECTIONENGINE_ROOT ?= $(NEMU_CPP)/ishiko-connection-engine
+# Path to the Nemu WebServer installation
+NEMU_CPP_WEBSERVER_ROOT ?= $(NEMU_CPP)/web-server
 
 # ------------
 
-all: $(_builddir)NemuIshikoConnectionEngineTests
+all: $(_builddir)NemuWebServerTests
 
-$(_builddir)NemuIshikoConnectionEngineTests: $(_builddir)NemuIshikoConnectionEngineTests_IshikoSingleConnectionServerTests.o $(_builddir)NemuIshikoConnectionEngineTests_IshikoWebRequestTests.o $(_builddir)NemuIshikoConnectionEngineTests_IshikoWebResponseBuilderTests.o $(_builddir)NemuIshikoConnectionEngineTests_main.o $(_builddir)NemuIshikoConnectionEngineTests_TestConnectionHandler.o $(_builddir)NemuIshikoConnectionEngineTests_TestServerObserver.o
-	$(CXX) -o $@ $(LDFLAGS) $(_builddir)NemuIshikoConnectionEngineTests_IshikoSingleConnectionServerTests.o $(_builddir)NemuIshikoConnectionEngineTests_IshikoWebRequestTests.o $(_builddir)NemuIshikoConnectionEngineTests_IshikoWebResponseBuilderTests.o $(_builddir)NemuIshikoConnectionEngineTests_main.o $(_builddir)NemuIshikoConnectionEngineTests_TestConnectionHandler.o $(_builddir)NemuIshikoConnectionEngineTests_TestServerObserver.o -L$(ISHIKO_CPP_ERRORS_ROOT)/lib -L$(ISHIKO_CPP_TEXT_ROOT)/lib -L$(ISHIKO_CPP_NETWORKING_ROOT)/lib -L$(ISHIKO_CPP_BOOST_ROOT)/lib -L$(ISHIKO_CPP_FILESYSTEM_ROOT)/lib -L$(ISHIKO_CPP_FMT_ROOT)/lib -L$(ISHIKO_CPP_TIME_ROOT)/lib -L$(ISHIKO_CPP_LOGGING_ROOT)/lib -L$(NEMU_CPP_CORE_ROOT)/lib -L$(ISHIKO_CPP_TYPES_ROOT)/lib -L$(ISHIKO_CPP_HTTP_ROOT)/lib -L$(NEMU_CPP_ISHIKOCONNECTIONENGINE_ROOT)/lib -L$(ISHIKO_CPP_DIFF_ROOT)/lib -L$(ISHIKO_CPP_PROCESS_ROOT)/lib -L$(ISHIKO_CPP_TESTFRAMEWORK_ROOT)/lib -L$(ISHIKO_CPP_TESTS_ROOT)/lib -lNemuIshikoConnectionEngine -lNemuCore -lIshikoHTTP -lIshikoNetworking -lIshikoTests -lIshikoTestsCore -lIshikoDiff -lIshikoFileSystem -lIshikoProcess -lIshikoTime -lIshikoText -lIshikoTypes -lIshikoErrors -lfmt -lboost_filesystem -pthread
+$(_builddir)NemuWebServerTests: $(_builddir)NemuWebServerTests_IshikoSingleConnectionServerTests.o $(_builddir)NemuWebServerTests_IshikoWebRequestTests.o $(_builddir)NemuWebServerTests_IshikoWebResponseBuilderTests.o $(_builddir)NemuWebServerTests_main.o $(_builddir)NemuWebServerTests_TestConnectionHandler.o $(_builddir)NemuWebServerTests_TestServerObserver.o
+	$(CXX) -o $@ $(LDFLAGS) $(_builddir)NemuWebServerTests_IshikoSingleConnectionServerTests.o $(_builddir)NemuWebServerTests_IshikoWebRequestTests.o $(_builddir)NemuWebServerTests_IshikoWebResponseBuilderTests.o $(_builddir)NemuWebServerTests_main.o $(_builddir)NemuWebServerTests_TestConnectionHandler.o $(_builddir)NemuWebServerTests_TestServerObserver.o -L$(ISHIKO_CPP_ERRORS_ROOT)/lib -L$(ISHIKO_CPP_TEXT_ROOT)/lib -L$(ISHIKO_CPP_NETWORKING_ROOT)/lib -L$(ISHIKO_CPP_BOOST_ROOT)/lib -L$(ISHIKO_CPP_FILESYSTEM_ROOT)/lib -L$(ISHIKO_CPP_FMT_ROOT)/lib -L$(ISHIKO_CPP_TIME_ROOT)/lib -L$(ISHIKO_CPP_LOGGING_ROOT)/lib -L$(NEMU_CPP_CORE_ROOT)/lib -L$(ISHIKO_CPP_TYPES_ROOT)/lib -L$(ISHIKO_CPP_HTTP_ROOT)/lib -L$(NEMU_CPP_WEBSERVER_ROOT)/lib -L$(ISHIKO_CPP_DIFF_ROOT)/lib -L$(ISHIKO_CPP_PROCESS_ROOT)/lib -L$(ISHIKO_CPP_TESTFRAMEWORK_ROOT)/lib -L$(ISHIKO_CPP_TESTS_ROOT)/lib -lNemuWebServer -lNemuCore -lIshikoHTTP -lIshikoNetworking -lIshikoTests -lIshikoTestsCore -lIshikoDiff -lIshikoFileSystem -lIshikoProcess -lIshikoTime -lIshikoText -lIshikoTypes -lIshikoErrors -lfmt -lboost_filesystem -pthread
 
-$(_builddir)NemuIshikoConnectionEngineTests_IshikoSingleConnectionServerTests.o: ../../src/IshikoSingleConnectionServerTests.cpp
-	$(CXX) -c -o $@ $(CPPFLAGS) $(CXXFLAGS) -MD -MP -pthread -I$(ISHIKO_CPP_ERRORS_ROOT)/include -I$(ISHIKO_CPP_BASEPLATFORM_ROOT)/include -I$(ISHIKO_CPP_TEXT_ROOT)/include -I$(ISHIKO_CPP_NETWORKING_ROOT)/include -I$(ISHIKO_CPP_BOOST_ROOT)/include -I$(ISHIKO_CPP_FILESYSTEM_ROOT)/include -I$(ISHIKO_CPP_FMT_ROOT)/include -I$(ISHIKO_CPP_TIME_ROOT)/include -I$(ISHIKO_CPP_LOGGING_ROOT)/include -I$(NEMU_CPP_CORE_ROOT)/include -I$(ISHIKO_CPP_TYPES_ROOT)/include -I$(ISHIKO_CPP_HTTP_ROOT)/include -I$(NEMU_CPP_ISHIKOCONNECTIONENGINE_ROOT)/include -I$(ISHIKO_CPP_DIFF_ROOT)/include -I$(ISHIKO_CPP_PROCESS_ROOT)/include -I$(ISHIKO_CPP_TESTFRAMEWORK_ROOT)/include -I$(ISHIKO_CPP_TESTS_ROOT)/include -std=c++11 ../../src/IshikoSingleConnectionServerTests.cpp
+$(_builddir)NemuWebServerTests_IshikoSingleConnectionServerTests.o: ../../src/IshikoSingleConnectionServerTests.cpp
+	$(CXX) -c -o $@ $(CPPFLAGS) $(CXXFLAGS) -MD -MP -pthread -I$(ISHIKO_CPP_ERRORS_ROOT)/include -I$(ISHIKO_CPP_BASEPLATFORM_ROOT)/include -I$(ISHIKO_CPP_TEXT_ROOT)/include -I$(ISHIKO_CPP_NETWORKING_ROOT)/include -I$(ISHIKO_CPP_BOOST_ROOT)/include -I$(ISHIKO_CPP_FILESYSTEM_ROOT)/include -I$(ISHIKO_CPP_FMT_ROOT)/include -I$(ISHIKO_CPP_TIME_ROOT)/include -I$(ISHIKO_CPP_LOGGING_ROOT)/include -I$(NEMU_CPP_CORE_ROOT)/include -I$(ISHIKO_CPP_TYPES_ROOT)/include -I$(ISHIKO_CPP_HTTP_ROOT)/include -I$(NEMU_CPP_WEBSERVER_ROOT)/include -I$(ISHIKO_CPP_DIFF_ROOT)/include -I$(ISHIKO_CPP_PROCESS_ROOT)/include -I$(ISHIKO_CPP_TESTFRAMEWORK_ROOT)/include -I$(ISHIKO_CPP_TESTS_ROOT)/include -std=c++11 ../../src/IshikoSingleConnectionServerTests.cpp
 
-$(_builddir)NemuIshikoConnectionEngineTests_IshikoWebRequestTests.o: ../../src/IshikoWebRequestTests.cpp
-	$(CXX) -c -o $@ $(CPPFLAGS) $(CXXFLAGS) -MD -MP -pthread -I$(ISHIKO_CPP_ERRORS_ROOT)/include -I$(ISHIKO_CPP_BASEPLATFORM_ROOT)/include -I$(ISHIKO_CPP_TEXT_ROOT)/include -I$(ISHIKO_CPP_NETWORKING_ROOT)/include -I$(ISHIKO_CPP_BOOST_ROOT)/include -I$(ISHIKO_CPP_FILESYSTEM_ROOT)/include -I$(ISHIKO_CPP_FMT_ROOT)/include -I$(ISHIKO_CPP_TIME_ROOT)/include -I$(ISHIKO_CPP_LOGGING_ROOT)/include -I$(NEMU_CPP_CORE_ROOT)/include -I$(ISHIKO_CPP_TYPES_ROOT)/include -I$(ISHIKO_CPP_HTTP_ROOT)/include -I$(NEMU_CPP_ISHIKOCONNECTIONENGINE_ROOT)/include -I$(ISHIKO_CPP_DIFF_ROOT)/include -I$(ISHIKO_CPP_PROCESS_ROOT)/include -I$(ISHIKO_CPP_TESTFRAMEWORK_ROOT)/include -I$(ISHIKO_CPP_TESTS_ROOT)/include -std=c++11 ../../src/IshikoWebRequestTests.cpp
+$(_builddir)NemuWebServerTests_IshikoWebRequestTests.o: ../../src/IshikoWebRequestTests.cpp
+	$(CXX) -c -o $@ $(CPPFLAGS) $(CXXFLAGS) -MD -MP -pthread -I$(ISHIKO_CPP_ERRORS_ROOT)/include -I$(ISHIKO_CPP_BASEPLATFORM_ROOT)/include -I$(ISHIKO_CPP_TEXT_ROOT)/include -I$(ISHIKO_CPP_NETWORKING_ROOT)/include -I$(ISHIKO_CPP_BOOST_ROOT)/include -I$(ISHIKO_CPP_FILESYSTEM_ROOT)/include -I$(ISHIKO_CPP_FMT_ROOT)/include -I$(ISHIKO_CPP_TIME_ROOT)/include -I$(ISHIKO_CPP_LOGGING_ROOT)/include -I$(NEMU_CPP_CORE_ROOT)/include -I$(ISHIKO_CPP_TYPES_ROOT)/include -I$(ISHIKO_CPP_HTTP_ROOT)/include -I$(NEMU_CPP_WEBSERVER_ROOT)/include -I$(ISHIKO_CPP_DIFF_ROOT)/include -I$(ISHIKO_CPP_PROCESS_ROOT)/include -I$(ISHIKO_CPP_TESTFRAMEWORK_ROOT)/include -I$(ISHIKO_CPP_TESTS_ROOT)/include -std=c++11 ../../src/IshikoWebRequestTests.cpp
 
-$(_builddir)NemuIshikoConnectionEngineTests_IshikoWebResponseBuilderTests.o: ../../src/IshikoWebResponseBuilderTests.cpp
-	$(CXX) -c -o $@ $(CPPFLAGS) $(CXXFLAGS) -MD -MP -pthread -I$(ISHIKO_CPP_ERRORS_ROOT)/include -I$(ISHIKO_CPP_BASEPLATFORM_ROOT)/include -I$(ISHIKO_CPP_TEXT_ROOT)/include -I$(ISHIKO_CPP_NETWORKING_ROOT)/include -I$(ISHIKO_CPP_BOOST_ROOT)/include -I$(ISHIKO_CPP_FILESYSTEM_ROOT)/include -I$(ISHIKO_CPP_FMT_ROOT)/include -I$(ISHIKO_CPP_TIME_ROOT)/include -I$(ISHIKO_CPP_LOGGING_ROOT)/include -I$(NEMU_CPP_CORE_ROOT)/include -I$(ISHIKO_CPP_TYPES_ROOT)/include -I$(ISHIKO_CPP_HTTP_ROOT)/include -I$(NEMU_CPP_ISHIKOCONNECTIONENGINE_ROOT)/include -I$(ISHIKO_CPP_DIFF_ROOT)/include -I$(ISHIKO_CPP_PROCESS_ROOT)/include -I$(ISHIKO_CPP_TESTFRAMEWORK_ROOT)/include -I$(ISHIKO_CPP_TESTS_ROOT)/include -std=c++11 ../../src/IshikoWebResponseBuilderTests.cpp
+$(_builddir)NemuWebServerTests_IshikoWebResponseBuilderTests.o: ../../src/IshikoWebResponseBuilderTests.cpp
+	$(CXX) -c -o $@ $(CPPFLAGS) $(CXXFLAGS) -MD -MP -pthread -I$(ISHIKO_CPP_ERRORS_ROOT)/include -I$(ISHIKO_CPP_BASEPLATFORM_ROOT)/include -I$(ISHIKO_CPP_TEXT_ROOT)/include -I$(ISHIKO_CPP_NETWORKING_ROOT)/include -I$(ISHIKO_CPP_BOOST_ROOT)/include -I$(ISHIKO_CPP_FILESYSTEM_ROOT)/include -I$(ISHIKO_CPP_FMT_ROOT)/include -I$(ISHIKO_CPP_TIME_ROOT)/include -I$(ISHIKO_CPP_LOGGING_ROOT)/include -I$(NEMU_CPP_CORE_ROOT)/include -I$(ISHIKO_CPP_TYPES_ROOT)/include -I$(ISHIKO_CPP_HTTP_ROOT)/include -I$(NEMU_CPP_WEBSERVER_ROOT)/include -I$(ISHIKO_CPP_DIFF_ROOT)/include -I$(ISHIKO_CPP_PROCESS_ROOT)/include -I$(ISHIKO_CPP_TESTFRAMEWORK_ROOT)/include -I$(ISHIKO_CPP_TESTS_ROOT)/include -std=c++11 ../../src/IshikoWebResponseBuilderTests.cpp
 
-$(_builddir)NemuIshikoConnectionEngineTests_main.o: ../../src/main.cpp
-	$(CXX) -c -o $@ $(CPPFLAGS) $(CXXFLAGS) -MD -MP -pthread -I$(ISHIKO_CPP_ERRORS_ROOT)/include -I$(ISHIKO_CPP_BASEPLATFORM_ROOT)/include -I$(ISHIKO_CPP_TEXT_ROOT)/include -I$(ISHIKO_CPP_NETWORKING_ROOT)/include -I$(ISHIKO_CPP_BOOST_ROOT)/include -I$(ISHIKO_CPP_FILESYSTEM_ROOT)/include -I$(ISHIKO_CPP_FMT_ROOT)/include -I$(ISHIKO_CPP_TIME_ROOT)/include -I$(ISHIKO_CPP_LOGGING_ROOT)/include -I$(NEMU_CPP_CORE_ROOT)/include -I$(ISHIKO_CPP_TYPES_ROOT)/include -I$(ISHIKO_CPP_HTTP_ROOT)/include -I$(NEMU_CPP_ISHIKOCONNECTIONENGINE_ROOT)/include -I$(ISHIKO_CPP_DIFF_ROOT)/include -I$(ISHIKO_CPP_PROCESS_ROOT)/include -I$(ISHIKO_CPP_TESTFRAMEWORK_ROOT)/include -I$(ISHIKO_CPP_TESTS_ROOT)/include -std=c++11 ../../src/main.cpp
+$(_builddir)NemuWebServerTests_main.o: ../../src/main.cpp
+	$(CXX) -c -o $@ $(CPPFLAGS) $(CXXFLAGS) -MD -MP -pthread -I$(ISHIKO_CPP_ERRORS_ROOT)/include -I$(ISHIKO_CPP_BASEPLATFORM_ROOT)/include -I$(ISHIKO_CPP_TEXT_ROOT)/include -I$(ISHIKO_CPP_NETWORKING_ROOT)/include -I$(ISHIKO_CPP_BOOST_ROOT)/include -I$(ISHIKO_CPP_FILESYSTEM_ROOT)/include -I$(ISHIKO_CPP_FMT_ROOT)/include -I$(ISHIKO_CPP_TIME_ROOT)/include -I$(ISHIKO_CPP_LOGGING_ROOT)/include -I$(NEMU_CPP_CORE_ROOT)/include -I$(ISHIKO_CPP_TYPES_ROOT)/include -I$(ISHIKO_CPP_HTTP_ROOT)/include -I$(NEMU_CPP_WEBSERVER_ROOT)/include -I$(ISHIKO_CPP_DIFF_ROOT)/include -I$(ISHIKO_CPP_PROCESS_ROOT)/include -I$(ISHIKO_CPP_TESTFRAMEWORK_ROOT)/include -I$(ISHIKO_CPP_TESTS_ROOT)/include -std=c++11 ../../src/main.cpp
 
-$(_builddir)NemuIshikoConnectionEngineTests_TestConnectionHandler.o: ../../src/Helpers/TestConnectionHandler.cpp
-	$(CXX) -c -o $@ $(CPPFLAGS) $(CXXFLAGS) -MD -MP -pthread -I$(ISHIKO_CPP_ERRORS_ROOT)/include -I$(ISHIKO_CPP_BASEPLATFORM_ROOT)/include -I$(ISHIKO_CPP_TEXT_ROOT)/include -I$(ISHIKO_CPP_NETWORKING_ROOT)/include -I$(ISHIKO_CPP_BOOST_ROOT)/include -I$(ISHIKO_CPP_FILESYSTEM_ROOT)/include -I$(ISHIKO_CPP_FMT_ROOT)/include -I$(ISHIKO_CPP_TIME_ROOT)/include -I$(ISHIKO_CPP_LOGGING_ROOT)/include -I$(NEMU_CPP_CORE_ROOT)/include -I$(ISHIKO_CPP_TYPES_ROOT)/include -I$(ISHIKO_CPP_HTTP_ROOT)/include -I$(NEMU_CPP_ISHIKOCONNECTIONENGINE_ROOT)/include -I$(ISHIKO_CPP_DIFF_ROOT)/include -I$(ISHIKO_CPP_PROCESS_ROOT)/include -I$(ISHIKO_CPP_TESTFRAMEWORK_ROOT)/include -I$(ISHIKO_CPP_TESTS_ROOT)/include -std=c++11 ../../src/Helpers/TestConnectionHandler.cpp
+$(_builddir)NemuWebServerTests_TestConnectionHandler.o: ../../src/Helpers/TestConnectionHandler.cpp
+	$(CXX) -c -o $@ $(CPPFLAGS) $(CXXFLAGS) -MD -MP -pthread -I$(ISHIKO_CPP_ERRORS_ROOT)/include -I$(ISHIKO_CPP_BASEPLATFORM_ROOT)/include -I$(ISHIKO_CPP_TEXT_ROOT)/include -I$(ISHIKO_CPP_NETWORKING_ROOT)/include -I$(ISHIKO_CPP_BOOST_ROOT)/include -I$(ISHIKO_CPP_FILESYSTEM_ROOT)/include -I$(ISHIKO_CPP_FMT_ROOT)/include -I$(ISHIKO_CPP_TIME_ROOT)/include -I$(ISHIKO_CPP_LOGGING_ROOT)/include -I$(NEMU_CPP_CORE_ROOT)/include -I$(ISHIKO_CPP_TYPES_ROOT)/include -I$(ISHIKO_CPP_HTTP_ROOT)/include -I$(NEMU_CPP_WEBSERVER_ROOT)/include -I$(ISHIKO_CPP_DIFF_ROOT)/include -I$(ISHIKO_CPP_PROCESS_ROOT)/include -I$(ISHIKO_CPP_TESTFRAMEWORK_ROOT)/include -I$(ISHIKO_CPP_TESTS_ROOT)/include -std=c++11 ../../src/Helpers/TestConnectionHandler.cpp
 
-$(_builddir)NemuIshikoConnectionEngineTests_TestServerObserver.o: ../../src/Helpers/TestServerObserver.cpp
-	$(CXX) -c -o $@ $(CPPFLAGS) $(CXXFLAGS) -MD -MP -pthread -I$(ISHIKO_CPP_ERRORS_ROOT)/include -I$(ISHIKO_CPP_BASEPLATFORM_ROOT)/include -I$(ISHIKO_CPP_TEXT_ROOT)/include -I$(ISHIKO_CPP_NETWORKING_ROOT)/include -I$(ISHIKO_CPP_BOOST_ROOT)/include -I$(ISHIKO_CPP_FILESYSTEM_ROOT)/include -I$(ISHIKO_CPP_FMT_ROOT)/include -I$(ISHIKO_CPP_TIME_ROOT)/include -I$(ISHIKO_CPP_LOGGING_ROOT)/include -I$(NEMU_CPP_CORE_ROOT)/include -I$(ISHIKO_CPP_TYPES_ROOT)/include -I$(ISHIKO_CPP_HTTP_ROOT)/include -I$(NEMU_CPP_ISHIKOCONNECTIONENGINE_ROOT)/include -I$(ISHIKO_CPP_DIFF_ROOT)/include -I$(ISHIKO_CPP_PROCESS_ROOT)/include -I$(ISHIKO_CPP_TESTFRAMEWORK_ROOT)/include -I$(ISHIKO_CPP_TESTS_ROOT)/include -std=c++11 ../../src/Helpers/TestServerObserver.cpp
+$(_builddir)NemuWebServerTests_TestServerObserver.o: ../../src/Helpers/TestServerObserver.cpp
+	$(CXX) -c -o $@ $(CPPFLAGS) $(CXXFLAGS) -MD -MP -pthread -I$(ISHIKO_CPP_ERRORS_ROOT)/include -I$(ISHIKO_CPP_BASEPLATFORM_ROOT)/include -I$(ISHIKO_CPP_TEXT_ROOT)/include -I$(ISHIKO_CPP_NETWORKING_ROOT)/include -I$(ISHIKO_CPP_BOOST_ROOT)/include -I$(ISHIKO_CPP_FILESYSTEM_ROOT)/include -I$(ISHIKO_CPP_FMT_ROOT)/include -I$(ISHIKO_CPP_TIME_ROOT)/include -I$(ISHIKO_CPP_LOGGING_ROOT)/include -I$(NEMU_CPP_CORE_ROOT)/include -I$(ISHIKO_CPP_TYPES_ROOT)/include -I$(ISHIKO_CPP_HTTP_ROOT)/include -I$(NEMU_CPP_WEBSERVER_ROOT)/include -I$(ISHIKO_CPP_DIFF_ROOT)/include -I$(ISHIKO_CPP_PROCESS_ROOT)/include -I$(ISHIKO_CPP_TESTFRAMEWORK_ROOT)/include -I$(ISHIKO_CPP_TESTS_ROOT)/include -std=c++11 ../../src/Helpers/TestServerObserver.cpp
 
 clean:
 	rm -f $(_builddir)*.o
 	rm -f $(_builddir)*.d
-	rm -f $(_builddir)NemuIshikoConnectionEngineTests
+	rm -f $(_builddir)NemuWebServerTests
 
 .PHONY: all clean
 
