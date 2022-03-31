@@ -1,6 +1,6 @@
-# Nemu/C++ IshikoConnectionEngine
+# Nemu/C++ WebServer
 
-A connection engine based on the [Ishiko/C++ Networking](https://github.com/ishiko-cpp/networking) and
+A web server built on the [Ishiko/C++ Networking](https://github.com/ishiko-cpp/networking) and
 [Ishiko/C++ HTTP](https://github.com/ishiko-cpp/http) networking libraries.
 
 # Contents
@@ -12,7 +12,7 @@ A connection engine based on the [Ishiko/C++ Networking](https://github.com/ishi
 
 # Project Status
 
-[![nemu-cpp](https://circleci.com/gh/nemu-cpp/ishiko-connection-engine.svg?style=shield)](https://circleci.com/gh/nemu-cpp/ishiko-connection-engine)
+[![nemu-cpp](https://circleci.com/gh/nemu-cpp/web-server.svg?style=shield)](https://circleci.com/gh/nemu-cpp/web-server)
 
 This project is in early development and not ready for public use yet. 
 
@@ -28,4 +28,4 @@ None.
 
 Copyright (c) 2021-2022 Xavier Leclercq\
 Released under the MIT License\
-See https://github.com/nemu-cpp/ishiko-connection-engine/blob/main/LICENSE.txt
+See https://github.com/nemu-cpp/web-server/blob/main/LICENSE.txt
