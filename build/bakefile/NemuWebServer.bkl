@@ -7,12 +7,12 @@ import $(nemupath)/core/include/Nemu/Core.bkl;
 toolsets = gnu vs2019 vs2017 vs2015 vs2013;
 
 gnu.makefile = ../gnumake/GNUmakefile;
-vs2019.solutionfile = ../vc16/NemuIshikoConnectionEngine.sln;
-vs2017.solutionfile = ../vc15/NemuIshikoConnectionEngine.sln;
-vs2015.solutionfile = ../vc14/NemuIshikoConnectionEngine.sln;
-vs2013.solutionfile = ../vc12/NemuIshikoConnectionEngine.sln;
+vs2019.solutionfile = ../vc16/NemuWebServer.sln;
+vs2017.solutionfile = ../vc15/NemuWebServer.sln;
+vs2015.solutionfile = ../vc14/NemuWebServer.sln;
+vs2013.solutionfile = ../vc12/NemuWebServer.sln;
 
-library NemuIshikoConnectionEngine : NemuCore, IshikoHTTP, IshikoNetworking
+library NemuWebServer : NemuCore, IshikoHTTP, IshikoNetworking
 {
     archs = x86 x86_64;
    
@@ -31,7 +31,7 @@ library NemuIshikoConnectionEngine : NemuCore, IshikoHTTP, IshikoNetworking
 
     if ($(config) == Debug)
     {
-        basename = NemuIshikoConnectionEngine-d;
+        basename = NemuWebServer-d;
     }
 
     headers
