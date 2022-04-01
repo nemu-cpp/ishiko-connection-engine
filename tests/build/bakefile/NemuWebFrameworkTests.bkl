@@ -12,7 +12,7 @@ vs2017.solutionfile = ../vc15/NemuWebServerTests.sln;
 vs2015.solutionfile = ../vc14/NemuWebServerTests.sln;
 vs2013.solutionfile = ../vc12/NemuWebServerTests.sln;
 
-program NemuWebServerTests: NemuWebFramework, IshikoHTTP, IshikoTests
+program NemuWebFrameworkTests: NemuWebFramework, IshikoHTTP, IshikoTests
 {
     archs = x86 x86_64;
 
