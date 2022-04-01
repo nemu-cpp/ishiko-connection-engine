@@ -2,24 +2,24 @@ ishikopath = envvar("ISHIKO_CPP");
 import $(ishikopath)/http/include/Ishiko/HTTP.bkl;
 import $(ishikopath)/test-framework/include/Ishiko/Tests.bkl;
 nemupath = envvar("NEMU_CPP");
-import $(nemupath)/web-server/include/Nemu/WebServer.bkl;
+import $(nemupath)/web-framework/include/Nemu/WebFramework.bkl;
 
 toolsets = gnu vs2019 vs2017 vs2015 vs2013;
 
 gnu.makefile = ../gnumake/GNUmakefile;
-vs2019.solutionfile = ../vc16/NemuWebServerTests.sln;
-vs2017.solutionfile = ../vc15/NemuWebServerTests.sln;
-vs2015.solutionfile = ../vc14/NemuWebServerTests.sln;
-vs2013.solutionfile = ../vc12/NemuWebServerTests.sln;
+vs2019.solutionfile = ../vc16/NemuWebFrameworkTests.sln;
+vs2017.solutionfile = ../vc15/NemuWebFrameworkTests.sln;
+vs2015.solutionfile = ../vc14/NemuWebFrameworkTests.sln;
+vs2013.solutionfile = ../vc12/NemuWebFrameworkTests.sln;
 
-program NemuWebServerTests: NemuWebServer, IshikoHTTP, IshikoTests
+program NemuWebFrameworkTests: NemuWebFramework, IshikoHTTP, IshikoTests
 {
     archs = x86 x86_64;
 
     if ($(toolset) == gnu)
     {
         cxx-compiler-options = "-std=c++11";
-        libs += NemuWebServer NemuCore IshikoHTTP IshikoNetworking IshikoTests IshikoTestsCore IshikoDiff IshikoFileSystem IshikoProcess IshikoTime IshikoText IshikoTypes IshikoErrors fmt boost_filesystem;
+        libs += NemuWebFramework NemuCore IshikoHTTP IshikoNetworking IshikoTests IshikoTestsCore IshikoDiff IshikoFileSystem IshikoProcess IshikoTime IshikoText IshikoTypes IshikoErrors fmt boost_filesystem;
     }
 
     headers
