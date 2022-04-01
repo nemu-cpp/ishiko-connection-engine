@@ -11,13 +11,13 @@ jobs:
           name: "Install build dependency: Nemu/C++ Core"
           command: cd /projects/nemu/cpp && git clone https://github.com/nemu-cpp/core.git && cd core/build/gnumake && make
       - checkout:
-          path: /projects/nemu/cpp/web-server
+          path: /projects/nemu/cpp/web-framework
       - run:
           name: "Build: Nemu WebServer"
-          command: cd /projects/nemu/cpp/web-server/build/gnumake && make
+          command: cd /projects/nemu/cpp/web-framework/build/gnumake && make
       - run:
           name: "Test: Nemu WebServer"
-          command: cd /projects/nemu/cpp/web-server/tests/build/gnumake && make && ./NemuWebServerTests
+          command: cd /projects/nemu/cpp/web-framework/tests/build/gnumake && make && ./NemuWebFrameworkTests
 workflows:
   version: 2
   continuous_build:
