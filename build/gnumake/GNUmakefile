@@ -104,21 +104,18 @@ NEMU_CPP_CORE_ROOT ?= $(NEMU_CPP)/core
 
 all: ../bakefile/../../lib/lib$(if $(call _equal,$(config),Debug),NemuWebFramework-d,NemuWebFramework).a
 
-../bakefile/../../lib/lib$(if $(call _equal,$(config),Debug),NemuWebFramework-d,NemuWebFramework).a: $(_builddir)NemuWebFramework_IshikoSingleConnectionServer.o $(_builddir)NemuWebFramework_IshikoWebRequest.o $(_builddir)NemuWebFramework_IshikoWebResponseBuilder.o $(_builddir)NemuWebFramework_IshikoWebServer.o
-	$(AR) rc $@ $(_builddir)NemuWebFramework_IshikoSingleConnectionServer.o $(_builddir)NemuWebFramework_IshikoWebRequest.o $(_builddir)NemuWebFramework_IshikoWebResponseBuilder.o $(_builddir)NemuWebFramework_IshikoWebServer.o
+../bakefile/../../lib/lib$(if $(call _equal,$(config),Debug),NemuWebFramework-d,NemuWebFramework).a: $(_builddir)NemuWebFramework_SingleConnectionWebServer.o $(_builddir)NemuWebFramework_WebRequest.o $(_builddir)NemuWebFramework_WebResponseBuilder.o
+	$(AR) rc $@ $(_builddir)NemuWebFramework_SingleConnectionWebServer.o $(_builddir)NemuWebFramework_WebRequest.o $(_builddir)NemuWebFramework_WebResponseBuilder.o
 	$(RANLIB) $@
 
-$(_builddir)NemuWebFramework_IshikoSingleConnectionServer.o: ../../src/IshikoSingleConnectionServer.cpp
-	$(CXX) -c -o $@ $(CPPFLAGS) $(CXXFLAGS) -MD -MP -fPIC -DPIC -pthread -I$(ISHIKO_CPP_ERRORS_ROOT)/include -I$(ISHIKO_CPP_BASEPLATFORM_ROOT)/include -I$(ISHIKO_CPP_TEXT_ROOT)/include -I$(ISHIKO_CPP_NETWORKING_ROOT)/include -I$(ISHIKO_CPP_BOOST_ROOT)/include -I$(ISHIKO_CPP_FILESYSTEM_ROOT)/include -I$(ISHIKO_CPP_FMT_ROOT)/include -I$(ISHIKO_CPP_TIME_ROOT)/include -I$(ISHIKO_CPP_LOGGING_ROOT)/include -I$(NEMU_CPP_CORE_ROOT)/include -I$(ISHIKO_CPP_TYPES_ROOT)/include -I$(ISHIKO_CPP_HTTP_ROOT)/include -I../../include/Nemu/IshikoConnectionEngine -std=c++11 ../../src/IshikoSingleConnectionServer.cpp
+$(_builddir)NemuWebFramework_SingleConnectionWebServer.o: ../../src/SingleConnectionWebServer.cpp
+	$(CXX) -c -o $@ $(CPPFLAGS) $(CXXFLAGS) -MD -MP -fPIC -DPIC -pthread -I$(ISHIKO_CPP_ERRORS_ROOT)/include -I$(ISHIKO_CPP_BASEPLATFORM_ROOT)/include -I$(ISHIKO_CPP_TEXT_ROOT)/include -I$(ISHIKO_CPP_NETWORKING_ROOT)/include -I$(ISHIKO_CPP_BOOST_ROOT)/include -I$(ISHIKO_CPP_FILESYSTEM_ROOT)/include -I$(ISHIKO_CPP_FMT_ROOT)/include -I$(ISHIKO_CPP_TIME_ROOT)/include -I$(ISHIKO_CPP_LOGGING_ROOT)/include -I$(NEMU_CPP_CORE_ROOT)/include -I$(ISHIKO_CPP_TYPES_ROOT)/include -I$(ISHIKO_CPP_HTTP_ROOT)/include -I../../include/Nemu/WebFramework -std=c++11 ../../src/SingleConnectionWebServer.cpp
 
-$(_builddir)NemuWebFramework_IshikoWebRequest.o: ../../src/IshikoWebRequest.cpp
-	$(CXX) -c -o $@ $(CPPFLAGS) $(CXXFLAGS) -MD -MP -fPIC -DPIC -pthread -I$(ISHIKO_CPP_ERRORS_ROOT)/include -I$(ISHIKO_CPP_BASEPLATFORM_ROOT)/include -I$(ISHIKO_CPP_TEXT_ROOT)/include -I$(ISHIKO_CPP_NETWORKING_ROOT)/include -I$(ISHIKO_CPP_BOOST_ROOT)/include -I$(ISHIKO_CPP_FILESYSTEM_ROOT)/include -I$(ISHIKO_CPP_FMT_ROOT)/include -I$(ISHIKO_CPP_TIME_ROOT)/include -I$(ISHIKO_CPP_LOGGING_ROOT)/include -I$(NEMU_CPP_CORE_ROOT)/include -I$(ISHIKO_CPP_TYPES_ROOT)/include -I$(ISHIKO_CPP_HTTP_ROOT)/include -I../../include/Nemu/IshikoConnectionEngine -std=c++11 ../../src/IshikoWebRequest.cpp
+$(_builddir)NemuWebFramework_WebRequest.o: ../../src/WebRequest.cpp
+	$(CXX) -c -o $@ $(CPPFLAGS) $(CXXFLAGS) -MD -MP -fPIC -DPIC -pthread -I$(ISHIKO_CPP_ERRORS_ROOT)/include -I$(ISHIKO_CPP_BASEPLATFORM_ROOT)/include -I$(ISHIKO_CPP_TEXT_ROOT)/include -I$(ISHIKO_CPP_NETWORKING_ROOT)/include -I$(ISHIKO_CPP_BOOST_ROOT)/include -I$(ISHIKO_CPP_FILESYSTEM_ROOT)/include -I$(ISHIKO_CPP_FMT_ROOT)/include -I$(ISHIKO_CPP_TIME_ROOT)/include -I$(ISHIKO_CPP_LOGGING_ROOT)/include -I$(NEMU_CPP_CORE_ROOT)/include -I$(ISHIKO_CPP_TYPES_ROOT)/include -I$(ISHIKO_CPP_HTTP_ROOT)/include -I../../include/Nemu/WebFramework -std=c++11 ../../src/WebRequest.cpp
 
-$(_builddir)NemuWebFramework_IshikoWebResponseBuilder.o: ../../src/IshikoWebResponseBuilder.cpp
-	$(CXX) -c -o $@ $(CPPFLAGS) $(CXXFLAGS) -MD -MP -fPIC -DPIC -pthread -I$(ISHIKO_CPP_ERRORS_ROOT)/include -I$(ISHIKO_CPP_BASEPLATFORM_ROOT)/include -I$(ISHIKO_CPP_TEXT_ROOT)/include -I$(ISHIKO_CPP_NETWORKING_ROOT)/include -I$(ISHIKO_CPP_BOOST_ROOT)/include -I$(ISHIKO_CPP_FILESYSTEM_ROOT)/include -I$(ISHIKO_CPP_FMT_ROOT)/include -I$(ISHIKO_CPP_TIME_ROOT)/include -I$(ISHIKO_CPP_LOGGING_ROOT)/include -I$(NEMU_CPP_CORE_ROOT)/include -I$(ISHIKO_CPP_TYPES_ROOT)/include -I$(ISHIKO_CPP_HTTP_ROOT)/include -I../../include/Nemu/IshikoConnectionEngine -std=c++11 ../../src/IshikoWebResponseBuilder.cpp
-
-$(_builddir)NemuWebFramework_IshikoWebServer.o: ../../src/IshikoWebServer.cpp
-	$(CXX) -c -o $@ $(CPPFLAGS) $(CXXFLAGS) -MD -MP -fPIC -DPIC -pthread -I$(ISHIKO_CPP_ERRORS_ROOT)/include -I$(ISHIKO_CPP_BASEPLATFORM_ROOT)/include -I$(ISHIKO_CPP_TEXT_ROOT)/include -I$(ISHIKO_CPP_NETWORKING_ROOT)/include -I$(ISHIKO_CPP_BOOST_ROOT)/include -I$(ISHIKO_CPP_FILESYSTEM_ROOT)/include -I$(ISHIKO_CPP_FMT_ROOT)/include -I$(ISHIKO_CPP_TIME_ROOT)/include -I$(ISHIKO_CPP_LOGGING_ROOT)/include -I$(NEMU_CPP_CORE_ROOT)/include -I$(ISHIKO_CPP_TYPES_ROOT)/include -I$(ISHIKO_CPP_HTTP_ROOT)/include -I../../include/Nemu/IshikoConnectionEngine -std=c++11 ../../src/IshikoWebServer.cpp
+$(_builddir)NemuWebFramework_WebResponseBuilder.o: ../../src/WebResponseBuilder.cpp
+	$(CXX) -c -o $@ $(CPPFLAGS) $(CXXFLAGS) -MD -MP -fPIC -DPIC -pthread -I$(ISHIKO_CPP_ERRORS_ROOT)/include -I$(ISHIKO_CPP_BASEPLATFORM_ROOT)/include -I$(ISHIKO_CPP_TEXT_ROOT)/include -I$(ISHIKO_CPP_NETWORKING_ROOT)/include -I$(ISHIKO_CPP_BOOST_ROOT)/include -I$(ISHIKO_CPP_FILESYSTEM_ROOT)/include -I$(ISHIKO_CPP_FMT_ROOT)/include -I$(ISHIKO_CPP_TIME_ROOT)/include -I$(ISHIKO_CPP_LOGGING_ROOT)/include -I$(NEMU_CPP_CORE_ROOT)/include -I$(ISHIKO_CPP_TYPES_ROOT)/include -I$(ISHIKO_CPP_HTTP_ROOT)/include -I../../include/Nemu/WebFramework -std=c++11 ../../src/WebResponseBuilder.cpp
 
 clean:
 	rm -f $(_builddir)*.o

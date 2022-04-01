@@ -17,36 +17,30 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\include\Nemu\IshikoConnectionEngine.h">
+    <ClInclude Include="..\..\include\Nemu\WebFramework.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\include\Nemu\IshikoConnectionEngine\IshikoSingleConnectionServer.hpp">
+    <ClInclude Include="..\..\include\Nemu\WebFramework\SingleConnectionWebServer.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\include\Nemu\IshikoConnectionEngine\IshikoWebRequest.hpp">
+    <ClInclude Include="..\..\include\Nemu\WebFramework\WebRequest.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\include\Nemu\IshikoConnectionEngine\IshikoWebResponseBuilder.hpp">
+    <ClInclude Include="..\..\include\Nemu\WebFramework\WebResponseBuilder.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\include\Nemu\IshikoConnectionEngine\IshikoWebServer.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\include\Nemu\IshikoConnectionEngine\linkoptions.hpp">
+    <ClInclude Include="..\..\include\Nemu\WebFramework\linkoptions.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\src\IshikoSingleConnectionServer.cpp">
+    <ClCompile Include="..\..\src\SingleConnectionWebServer.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\IshikoWebRequest.cpp">
+    <ClCompile Include="..\..\src\WebRequest.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\IshikoWebResponseBuilder.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\IshikoWebServer.cpp">
+    <ClCompile Include="..\..\src\WebResponseBuilder.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
