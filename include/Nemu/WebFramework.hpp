@@ -7,9 +7,17 @@
 #ifndef _NEMU_CPP_WEBFRAMEWORK_HPP_
 #define _NEMU_CPP_WEBFRAMEWORK_HPP_
 
+#include "WebFramework/Route.hpp"
+#include "WebFramework/Routes.hpp"
 #include "WebFramework/SingleWebConnectionServer.hpp"
+#include "WebFramework/Views.hpp"
+#include "WebFramework/WebApplication.hpp"
 #include "WebFramework/WebRequest.hpp"
+#include "WebFramework/WebRequestHandler.hpp"
 #include "WebFramework/WebResponseBuilder.hpp"
+#include "WebFramework/RequestHandlers/FileSystemWebRequestHandler.hpp"
+#include "WebFramework/RequestHandlers/FunctionWebRequestHandler.hpp"
+#include "WebFramework/RequestHandlers/HardcodedWebRequestHandler.hpp"
 
 #include "WebFramework/linkoptions.hpp"
 

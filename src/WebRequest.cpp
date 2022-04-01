@@ -12,12 +12,12 @@ using namespace std;
 namespace Nemu
 {
 
-string IshikoWebRequest::URI() const
+string WebRequest::URI() const
 {
     return m_uri;
 }
 
-void IshikoWebRequest::onRequestURI(string_view data)
+void WebRequest::onRequestURI(string_view data)
 {
     m_uri = data.to_string();
 }

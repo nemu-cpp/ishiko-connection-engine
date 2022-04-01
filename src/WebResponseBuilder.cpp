@@ -13,7 +13,7 @@ namespace Nemu
 {
 
 WebResponseBuilder::WebResponseBuilder()
-    : m_response(HTTPStatusCode::internalServerError), : m_views(nullptr)
+    : m_response(HTTPStatusCode::internalServerError), m_views(nullptr)
 {
     // TODO: this doesn't work as the user would be left with specifying all the right headers. Do I assume some default?
 }

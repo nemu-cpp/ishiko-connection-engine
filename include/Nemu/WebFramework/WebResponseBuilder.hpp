@@ -7,6 +7,7 @@
 #ifndef _NEMU_CPP_WEBFRAMEWORK_WEBRESPONSEBUILDER_HPP_
 #define _NEMU_CPP_WEBFRAMEWORK_WEBRESPONSEBUILDER_HPP_
 
+#include "Views.hpp"
 #include <Ishiko/HTTP.hpp>
 #include <string>
 

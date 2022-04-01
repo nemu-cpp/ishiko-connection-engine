@@ -150,16 +150,33 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\src\Route.cpp" />
+    <ClCompile Include="..\..\src\Routes.cpp" />
     <ClCompile Include="..\..\src\SingleConnectionWebServer.cpp" />
+    <ClCompile Include="..\..\src\Views.cpp" />
+    <ClCompile Include="..\..\src\WebApplication.cpp" />
     <ClCompile Include="..\..\src\WebRequest.cpp" />
     <ClCompile Include="..\..\src\WebResponseBuilder.cpp" />
+    <ClCompile Include="..\..\src\RequestHandlers\FileSystemWebRequestHandler.cpp" />
+    <ClCompile Include="..\..\src\RequestHandlers\FunctionWebRequestHandler.cpp" />
+    <ClCompile Include="..\..\src\RequestHandlers\HardcodedWebRequestHandler.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\include\Nemu\WebFramework.hpp" />
-    <ClInclude Include="..\..\include\Nemu\WebFramework\SingleConnectionWebServer.hpp" />
-    <ClInclude Include="..\..\include\Nemu\WebFramework\WebRequest.hpp" />
-    <ClInclude Include="..\..\include\Nemu\WebFramework\WebResponseBuilder.hpp" />
     <ClInclude Include="..\..\include\Nemu\WebFramework\linkoptions.hpp" />
+    <ClInclude Include="..\..\include\Nemu\WebFramework\Route.hpp" />
+    <ClInclude Include="..\..\include\Nemu\WebFramework\Routes.hpp" />
+    <ClInclude Include="..\..\include\Nemu\WebFramework\SingleConnectionWebServer.hpp" />
+    <ClInclude Include="..\..\include\Nemu\WebFramework\TemplateEngine.hpp" />
+    <ClInclude Include="..\..\include\Nemu\WebFramework\Views.hpp" />
+    <ClInclude Include="..\..\include\Nemu\WebFramework\WebApplication.hpp" />
+    <ClInclude Include="..\..\include\Nemu\WebFramework\WebRequest.hpp" />
+    <ClInclude Include="..\..\include\Nemu\WebFramework\WebRequestHandler.hpp" />
+    <ClInclude Include="..\..\include\Nemu\WebFramework\WebResponseBuilder.hpp" />
+    <ClInclude Include="..\..\include\Nemu\WebFramework\WebServer.hpp" />
+    <ClInclude Include="..\..\include\Nemu\WebFramework\RequestHandlers\FileSystemWebRequestHandler.hpp" />
+    <ClInclude Include="..\..\include\Nemu\WebFramework\RequestHandlers\FunctionWebRequestHandler.hpp" />
+    <ClInclude Include="..\..\include\Nemu\WebFramework\RequestHandlers\HardcodedWebRequestHandler.hpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
