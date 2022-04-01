@@ -13,10 +13,10 @@ jobs:
       - checkout:
           path: /projects/nemu/cpp/web-framework
       - run:
-          name: "Build: Nemu WebServer"
+          name: "Build: Nemu WebFramework"
           command: cd /projects/nemu/cpp/web-framework/build/gnumake && make
       - run:
-          name: "Test: Nemu WebServer"
+          name: "Test: Nemu WebFramework"
           command: cd /projects/nemu/cpp/web-framework/tests/build/gnumake && make && ./NemuWebFrameworkTests
 workflows:
   version: 2
