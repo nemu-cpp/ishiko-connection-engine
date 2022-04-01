@@ -7,10 +7,10 @@ import $(nemupath)/web-framework/include/Nemu/WebFramework.bkl;
 toolsets = gnu vs2019 vs2017 vs2015 vs2013;
 
 gnu.makefile = ../gnumake/GNUmakefile;
-vs2019.solutionfile = ../vc16/NemuWebServerTests.sln;
-vs2017.solutionfile = ../vc15/NemuWebServerTests.sln;
-vs2015.solutionfile = ../vc14/NemuWebServerTests.sln;
-vs2013.solutionfile = ../vc12/NemuWebServerTests.sln;
+vs2019.solutionfile = ../vc16/NemuWebFrameworkTests.sln;
+vs2017.solutionfile = ../vc15/NemuWebFrameworkTests.sln;
+vs2015.solutionfile = ../vc14/NemuWebFrameworkTests.sln;
+vs2013.solutionfile = ../vc12/NemuWebFrameworkTests.sln;
 
 program NemuWebFrameworkTests: NemuWebFramework, IshikoHTTP, IshikoTests
 {
