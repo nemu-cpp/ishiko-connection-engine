@@ -88,7 +88,7 @@
       <PreprocessorDefinitions>WIN32;_DEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <MinimalRebuild>false</MinimalRebuild>
-      <AdditionalIncludeDirectories>$(ISHIKO_CPP)/errors\include;$(ISHIKO_CPP)/base-platform\include;$(ISHIKO_CPP)/text\include;$(ISHIKO_CPP)/networking\include;$(ISHIKO_CPP_THIRD_PARTY_BOOST);$(ISHIKO_CPP)/filesystem\include;$(ISHIKO_CPP_THIRD_PARTY_FMT)\include;$(ISHIKO_CPP)/time\include;$(ISHIKO_CPP)/logging\include;$(NEMU_CPP)/core\include;$(ISHIKO_CPP)/types\include;$(ISHIKO_CPP)/http\include;..\..\include\Nemu\IshikoConnectionEngine;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ISHIKO_CPP)/errors\include;$(ISHIKO_CPP)/base-platform\include;$(ISHIKO_CPP)/text\include;$(ISHIKO_CPP)/networking\include;$(ISHIKO_CPP_THIRD_PARTY_BOOST);$(ISHIKO_CPP)/filesystem\include;$(ISHIKO_CPP_THIRD_PARTY_FMT)\include;$(ISHIKO_CPP)/time\include;$(ISHIKO_CPP)/logging\include;$(NEMU_CPP)/core\include;$(ISHIKO_CPP)/types\include;$(ISHIKO_CPP)/http\include;..\..\include\Nemu\WebFramework;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
     </ClCompile>
     <Link>
@@ -103,7 +103,7 @@
       <PreprocessorDefinitions>WIN32;_DEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <MinimalRebuild>false</MinimalRebuild>
-      <AdditionalIncludeDirectories>$(ISHIKO_CPP)/errors\include;$(ISHIKO_CPP)/base-platform\include;$(ISHIKO_CPP)/text\include;$(ISHIKO_CPP)/networking\include;$(ISHIKO_CPP_THIRD_PARTY_BOOST);$(ISHIKO_CPP)/filesystem\include;$(ISHIKO_CPP_THIRD_PARTY_FMT)\include;$(ISHIKO_CPP)/time\include;$(ISHIKO_CPP)/logging\include;$(NEMU_CPP)/core\include;$(ISHIKO_CPP)/types\include;$(ISHIKO_CPP)/http\include;..\..\include\Nemu\IshikoConnectionEngine;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ISHIKO_CPP)/errors\include;$(ISHIKO_CPP)/base-platform\include;$(ISHIKO_CPP)/text\include;$(ISHIKO_CPP)/networking\include;$(ISHIKO_CPP_THIRD_PARTY_BOOST);$(ISHIKO_CPP)/filesystem\include;$(ISHIKO_CPP_THIRD_PARTY_FMT)\include;$(ISHIKO_CPP)/time\include;$(ISHIKO_CPP)/logging\include;$(NEMU_CPP)/core\include;$(ISHIKO_CPP)/types\include;$(ISHIKO_CPP)/http\include;..\..\include\Nemu\WebFramework;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
     </ClCompile>
     <Link>
@@ -120,7 +120,7 @@
       <PreprocessorDefinitions>WIN32;NDEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <MinimalRebuild>false</MinimalRebuild>
-      <AdditionalIncludeDirectories>$(ISHIKO_CPP)/errors\include;$(ISHIKO_CPP)/base-platform\include;$(ISHIKO_CPP)/text\include;$(ISHIKO_CPP)/networking\include;$(ISHIKO_CPP_THIRD_PARTY_BOOST);$(ISHIKO_CPP)/filesystem\include;$(ISHIKO_CPP_THIRD_PARTY_FMT)\include;$(ISHIKO_CPP)/time\include;$(ISHIKO_CPP)/logging\include;$(NEMU_CPP)/core\include;$(ISHIKO_CPP)/types\include;$(ISHIKO_CPP)/http\include;..\..\include\Nemu\IshikoConnectionEngine;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ISHIKO_CPP)/errors\include;$(ISHIKO_CPP)/base-platform\include;$(ISHIKO_CPP)/text\include;$(ISHIKO_CPP)/networking\include;$(ISHIKO_CPP_THIRD_PARTY_BOOST);$(ISHIKO_CPP)/filesystem\include;$(ISHIKO_CPP_THIRD_PARTY_FMT)\include;$(ISHIKO_CPP)/time\include;$(ISHIKO_CPP)/logging\include;$(NEMU_CPP)/core\include;$(ISHIKO_CPP)/types\include;$(ISHIKO_CPP)/http\include;..\..\include\Nemu\WebFramework;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
     </ClCompile>
     <Link>
@@ -139,7 +139,7 @@
       <PreprocessorDefinitions>WIN32;NDEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <MinimalRebuild>false</MinimalRebuild>
-      <AdditionalIncludeDirectories>$(ISHIKO_CPP)/errors\include;$(ISHIKO_CPP)/base-platform\include;$(ISHIKO_CPP)/text\include;$(ISHIKO_CPP)/networking\include;$(ISHIKO_CPP_THIRD_PARTY_BOOST);$(ISHIKO_CPP)/filesystem\include;$(ISHIKO_CPP_THIRD_PARTY_FMT)\include;$(ISHIKO_CPP)/time\include;$(ISHIKO_CPP)/logging\include;$(NEMU_CPP)/core\include;$(ISHIKO_CPP)/types\include;$(ISHIKO_CPP)/http\include;..\..\include\Nemu\IshikoConnectionEngine;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ISHIKO_CPP)/errors\include;$(ISHIKO_CPP)/base-platform\include;$(ISHIKO_CPP)/text\include;$(ISHIKO_CPP)/networking\include;$(ISHIKO_CPP_THIRD_PARTY_BOOST);$(ISHIKO_CPP)/filesystem\include;$(ISHIKO_CPP_THIRD_PARTY_FMT)\include;$(ISHIKO_CPP)/time\include;$(ISHIKO_CPP)/logging\include;$(NEMU_CPP)/core\include;$(ISHIKO_CPP)/types\include;$(ISHIKO_CPP)/http\include;..\..\include\Nemu\WebFramework;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
     </ClCompile>
     <Link>
@@ -150,18 +150,16 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\src\IshikoSingleConnectionServer.cpp" />
-    <ClCompile Include="..\..\src\IshikoWebRequest.cpp" />
-    <ClCompile Include="..\..\src\IshikoWebResponseBuilder.cpp" />
-    <ClCompile Include="..\..\src\IshikoWebServer.cpp" />
+    <ClCompile Include="..\..\src\SingleConnectionWebServer.cpp" />
+    <ClCompile Include="..\..\src\WebRequest.cpp" />
+    <ClCompile Include="..\..\src\WebResponseBuilder.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\include\Nemu\IshikoConnectionEngine.h" />
-    <ClInclude Include="..\..\include\Nemu\IshikoConnectionEngine\IshikoSingleConnectionServer.hpp" />
-    <ClInclude Include="..\..\include\Nemu\IshikoConnectionEngine\IshikoWebRequest.hpp" />
-    <ClInclude Include="..\..\include\Nemu\IshikoConnectionEngine\IshikoWebResponseBuilder.hpp" />
-    <ClInclude Include="..\..\include\Nemu\IshikoConnectionEngine\IshikoWebServer.hpp" />
-    <ClInclude Include="..\..\include\Nemu\IshikoConnectionEngine\linkoptions.hpp" />
+    <ClInclude Include="..\..\include\Nemu\WebFramework.hpp" />
+    <ClInclude Include="..\..\include\Nemu\WebFramework\SingleConnectionWebServer.hpp" />
+    <ClInclude Include="..\..\include\Nemu\WebFramework\WebRequest.hpp" />
+    <ClInclude Include="..\..\include\Nemu\WebFramework\WebResponseBuilder.hpp" />
+    <ClInclude Include="..\..\include\Nemu\WebFramework\linkoptions.hpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
