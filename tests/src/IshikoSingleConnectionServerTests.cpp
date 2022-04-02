@@ -1,13 +1,13 @@
 /*
     Copyright (c) 2022 Xavier Leclercq
     Released under the MIT License
-    See https://github.com/nemu-cpp/ishiko-connection-engine/blob/main/LICENSE.txt
+    See https://github.com/nemu-cpp/web-framework/blob/main/LICENSE.txt
 */
 
 #include "IshikoSingleConnectionServerTests.hpp"
 #include "Helpers/TestConnectionHandler.hpp"
 #include "Helpers/TestServerObserver.hpp"
-#include "Nemu/IshikoConnectionEngine/IshikoSingleConnectionServer.hpp"
+#include "Nemu/WebFramework/SingleConnectionWebServer.hpp"
 #include <boost/filesystem.hpp>
 #include <Ishiko/HTTP.hpp>
 #include <Ishiko/Networking.hpp>
@@ -32,7 +32,7 @@ IshikoSingleConnectionServerTests::IshikoSingleConnectionServerTests(const TestN
 void IshikoSingleConnectionServerTests::ConstructorTest1(Test& test)
 {
     Error error;
-    IshikoSingleConnectionServer server(IPv4Address::Localhost(), 0, error);
+    SingleConnectionWebServer server(IPv4Address::Localhost(), 0, error);
 
     ISHIKO_TEST_FAIL_IF(error);
     ISHIKO_TEST_PASS();
@@ -41,7 +41,7 @@ void IshikoSingleConnectionServerTests::ConstructorTest1(Test& test)
 void IshikoSingleConnectionServerTests::StartTest1(Test& test)
 {
     Error error;
-    IshikoSingleConnectionServer server(IPv4Address::Localhost(), 8585, error);
+    SingleConnectionWebServer server(IPv4Address::Localhost(), 8585, error);
 
     ISHIKO_TEST_FAIL_IF(error);
 
@@ -59,7 +59,7 @@ void IshikoSingleConnectionServerTests::RequestTest1(FileComparisonTest& test)
 
     std::shared_ptr<TestServerObserver> observer = std::make_shared<TestServerObserver>();
     Error error;
-    IshikoSingleConnectionServer server(IPv4Address::Localhost(), TCPServerSocket::AnyPort, error);
+    SingleConnectionWebServer server(IPv4Address::Localhost(), TCPServerSocket::AnyPort, error);
 
     TestConnectionHandler connectionHandler;
     server.m_connectionHandler = &connectionHandler;
@@ -100,7 +100,7 @@ void IshikoSingleConnectionServerTests::RequestTest2(FileComparisonTest& test)
 
     std::shared_ptr<TestServerObserver> observer = std::make_shared<TestServerObserver>();
     Error error;
-    IshikoSingleConnectionServer server(IPv4Address::Localhost(), TCPServerSocket::AnyPort, error);
+    SingleConnectionWebServer server(IPv4Address::Localhost(), TCPServerSocket::AnyPort, error);
 
     TestConnectionHandler connectionHandler;
     server.m_connectionHandler = &connectionHandler;
@@ -145,7 +145,7 @@ void IshikoSingleConnectionServerTests::RequestTest3(FileComparisonTest& test)
 
     std::shared_ptr<TestServerObserver> observer = std::make_shared<TestServerObserver>();
     Error error;
-    IshikoSingleConnectionServer server(IPv4Address::Localhost(), TCPServerSocket::AnyPort, error);
+    SingleConnectionWebServer server(IPv4Address::Localhost(), TCPServerSocket::AnyPort, error);
     Port port = server.socket().port();
 
     TestConnectionHandler connectionHandler;

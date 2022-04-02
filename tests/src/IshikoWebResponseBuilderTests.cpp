@@ -1,12 +1,12 @@
 /*
     Copyright (c) 2022 Xavier Leclercq
     Released under the MIT License
-    See https://github.com/nemu-cpp/ishiko-connection-engine/blob/main/LICENSE.txt
+    See https://github.com/nemu-cpp/web-framework/blob/main/LICENSE.txt
 */
 
 #include "IshikoWebResponseBuilderTests.hpp"
 #include "Nemu/Core.hpp"
-#include "Nemu/IshikoConnectionEngine/IshikoWebResponseBuilder.hpp"
+#include "Nemu/WebFramework/WebResponseBuilder.hpp"
 
 using namespace Ishiko;
 using namespace Nemu;
@@ -19,7 +19,7 @@ IshikoWebResponseBuilderTests::IshikoWebResponseBuilderTests(const TestNumber& n
 
 void IshikoWebResponseBuilderTests::ConstructorTest1(Test& test)
 {
-    IshikoWebResponseBuilder responseBuilder;
+    WebResponseBuilder responseBuilder;
 
     ISHIKO_TEST_PASS();
 }
