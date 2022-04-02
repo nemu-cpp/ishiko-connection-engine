@@ -16,7 +16,7 @@ library NemuWebFramework : NemuCore, IshikoHTTP, IshikoNetworking
 {
     archs = x86 x86_64;
    
-    includedirs += ../../include/Nemu/IshikoConnectionEngine;
+    includedirs += ../../include/Nemu/WebFramework;
 
     if ($(toolset) == gnu)
     {
@@ -36,19 +36,34 @@ library NemuWebFramework : NemuCore, IshikoHTTP, IshikoNetworking
 
     headers
     {
-        ../../include/Nemu/IshikoConnectionEngine.h
-        ../../include/Nemu/IshikoConnectionEngine/IshikoSingleConnectionServer.hpp
-        ../../include/Nemu/IshikoConnectionEngine/IshikoWebRequest.hpp
-        ../../include/Nemu/IshikoConnectionEngine/IshikoWebResponseBuilder.hpp
-        ../../include/Nemu/IshikoConnectionEngine/IshikoWebServer.hpp
-        ../../include/Nemu/IshikoConnectionEngine/linkoptions.hpp
+        ../../include/Nemu/WebFramework.hpp
+        ../../include/Nemu/WebFramework/linkoptions.hpp
+        ../../include/Nemu/WebFramework/Route.hpp
+        ../../include/Nemu/WebFramework/Routes.hpp
+        ../../include/Nemu/WebFramework/SingleConnectionWebServer.hpp
+        ../../include/Nemu/WebFramework/TemplateEngine.hpp
+        ../../include/Nemu/WebFramework/Views.hpp
+        ../../include/Nemu/WebFramework/WebApplication.hpp
+        ../../include/Nemu/WebFramework/WebRequest.hpp
+        ../../include/Nemu/WebFramework/WebRequestHandler.hpp
+        ../../include/Nemu/WebFramework/WebResponseBuilder.hpp
+        ../../include/Nemu/WebFramework/WebServer.hpp
+        ../../include/Nemu/WebFramework/RequestHandlers/FileSystemWebRequestHandler.hpp
+        ../../include/Nemu/WebFramework/RequestHandlers/FunctionWebRequestHandler.hpp
+        ../../include/Nemu/WebFramework/RequestHandlers/HardcodedWebRequestHandler.hpp
     }
 
     sources
     {
-        ../../src/IshikoSingleConnectionServer.cpp
-        ../../src/IshikoWebRequest.cpp
-        ../../src/IshikoWebResponseBuilder.cpp
-        ../../src/IshikoWebServer.cpp
+        ../../src/Route.cpp
+        ../../src/Routes.cpp
+        ../../src/SingleConnectionWebServer.cpp
+        ../../src/Views.cpp
+        ../../src/WebApplication.cpp
+        ../../src/WebRequest.cpp
+        ../../src/WebResponseBuilder.cpp
+        ../../src/RequestHandlers/FileSystemWebRequestHandler.cpp
+        ../../src/RequestHandlers/FunctionWebRequestHandler.cpp
+        ../../src/RequestHandlers/HardcodedWebRequestHandler.cpp
     }
 }

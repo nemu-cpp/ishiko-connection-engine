@@ -17,36 +17,81 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\include\Nemu\IshikoConnectionEngine.h">
+    <ClInclude Include="..\..\include\Nemu\WebFramework.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\include\Nemu\IshikoConnectionEngine\IshikoSingleConnectionServer.hpp">
+    <ClInclude Include="..\..\include\Nemu\WebFramework\linkoptions.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\include\Nemu\IshikoConnectionEngine\IshikoWebRequest.hpp">
+    <ClInclude Include="..\..\include\Nemu\WebFramework\Route.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\include\Nemu\IshikoConnectionEngine\IshikoWebResponseBuilder.hpp">
+    <ClInclude Include="..\..\include\Nemu\WebFramework\Routes.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\include\Nemu\IshikoConnectionEngine\IshikoWebServer.hpp">
+    <ClInclude Include="..\..\include\Nemu\WebFramework\SingleConnectionWebServer.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\include\Nemu\IshikoConnectionEngine\linkoptions.hpp">
+    <ClInclude Include="..\..\include\Nemu\WebFramework\TemplateEngine.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\Nemu\WebFramework\Views.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\Nemu\WebFramework\WebApplication.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\Nemu\WebFramework\WebRequest.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\Nemu\WebFramework\WebRequestHandler.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\Nemu\WebFramework\WebResponseBuilder.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\Nemu\WebFramework\WebServer.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\Nemu\WebFramework\RequestHandlers\FileSystemWebRequestHandler.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\Nemu\WebFramework\RequestHandlers\FunctionWebRequestHandler.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\Nemu\WebFramework\RequestHandlers\HardcodedWebRequestHandler.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\src\IshikoSingleConnectionServer.cpp">
+    <ClCompile Include="..\..\src\Route.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\IshikoWebRequest.cpp">
+    <ClCompile Include="..\..\src\Routes.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\IshikoWebResponseBuilder.cpp">
+    <ClCompile Include="..\..\src\SingleConnectionWebServer.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\IshikoWebServer.cpp">
+    <ClCompile Include="..\..\src\Views.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\WebApplication.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\WebRequest.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\WebResponseBuilder.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\RequestHandlers\FileSystemWebRequestHandler.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\RequestHandlers\FunctionWebRequestHandler.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\RequestHandlers\HardcodedWebRequestHandler.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

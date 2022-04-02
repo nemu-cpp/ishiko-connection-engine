@@ -1,12 +1,12 @@
 /*
     Copyright (c) 2022 Xavier Leclercq
     Released under the MIT License
-    See https://github.com/nemu-cpp/ishiko-connection-engine/blob/main/LICENSE.txt
+    See https://github.com/nemu-cpp/web-framework/blob/main/LICENSE.txt
 */
 
-#include "IshikoSingleConnectionServer.hpp"
-#include "IshikoWebRequest.hpp"
-#include "IshikoWebResponseBuilder.hpp"
+#include "SingleConnectionWebServer.hpp"
+#include "WebRequest.hpp"
+#include "WebResponseBuilder.hpp"
 #include <Ishiko/HTTP.hpp>
 
 using namespace Ishiko;
@@ -15,12 +15,12 @@ using namespace std;
 namespace Nemu
 {
 
-IshikoSingleConnectionServer::IshikoSingleConnectionServer(IPv4Address address, Port port, Error& error)
+SingleConnectionWebServer::SingleConnectionWebServer(IPv4Address address, Port port, Error& error)
     : m_init(error), m_socket(address, port, error)
 {
 }
 
-void IshikoSingleConnectionServer::start()
+void SingleConnectionWebServer::start()
 {
     // TODO: as a quick hack we put the blocking stuff in a secondary thread
     m_acceptThread = thread(
@@ -33,7 +33,9 @@ void IshikoSingleConnectionServer::start()
                 Error error;
                 TCPClientSocket clientSocket = m_socket.accept(error);
 
-                IshikoWebRequest request;
+
+
+                WebRequest request;
                 HTTPMessagePushParser requestParser(request);
 
                 // TODO: how big should this buffer be? Adjust automatically?
@@ -49,8 +51,8 @@ void IshikoSingleConnectionServer::start()
                 }
                 else
                 {                    
-                    IshikoWebResponseBuilder response;
-                    m_connectionHandler->onConnection(request, response);
+                    WebResponseBuilder response;
+                    m_requestHandler->run(request, response, *m_logger);
                     string responseString = response.toString();
                     clientSocket.write(responseString.c_str(), responseString.size(), error);
                 }
@@ -64,7 +66,7 @@ void IshikoSingleConnectionServer::start()
     );
 }
 
-void IshikoSingleConnectionServer::stop()
+void SingleConnectionWebServer::stop()
 {
     m_stop = true;
     // TODO: for now send a dummy request to trigger the accept
@@ -73,18 +75,18 @@ void IshikoSingleConnectionServer::stop()
     socket.connect(m_socket.ipAddress(), m_socket.port(), error);
 }
 
-void IshikoSingleConnectionServer::join()
+void SingleConnectionWebServer::join()
 {
     m_acceptThread.join();
 }
 
-bool IshikoSingleConnectionServer::isRunning() const
+bool SingleConnectionWebServer::isRunning() const
 {
     // TODO
     return false;
 }
 
-const TCPServerSocket& IshikoSingleConnectionServer::socket() const
+const TCPServerSocket& SingleConnectionWebServer::socket() const
 {
     return m_socket;
 }

@@ -1,13 +1,13 @@
 /*
     Copyright (c) 2022 Xavier Leclercq
     Released under the MIT License
-    See https://github.com/nemu-cpp/ishiko-connection-engine/blob/main/LICENSE.txt
+    See https://github.com/nemu-cpp/web-framework/blob/main/LICENSE.txt
 */
 
-#include "IshikoSingleConnectionServerTests.hpp"
-#include "Helpers/TestConnectionHandler.hpp"
+#include "SingleConnectionWebServerTests.hpp"
 #include "Helpers/TestServerObserver.hpp"
-#include "Nemu/IshikoConnectionEngine/IshikoSingleConnectionServer.hpp"
+#include "Helpers/TestWebRequestHandler.hpp"
+#include "Nemu/WebFramework/SingleConnectionWebServer.hpp"
 #include <boost/filesystem.hpp>
 #include <Ishiko/HTTP.hpp>
 #include <Ishiko/Networking.hpp>
@@ -18,9 +18,8 @@ using namespace Ishiko;
 using namespace Nemu;
 using namespace std;
 
-IshikoSingleConnectionServerTests::IshikoSingleConnectionServerTests(const TestNumber& number,
-    const TestContext& context)
-    : TestSequence(number, "IshikoSingleConnectionServer tests", context)
+SingleConnectionWebServerTests::SingleConnectionWebServerTests(const TestNumber& number, const TestContext& context)
+    : TestSequence(number, "SingleConnectionWebServer tests", context)
 {
     append<HeapAllocationErrorsTest>("Constructor test 1", ConstructorTest1);
     append<HeapAllocationErrorsTest>("start test 1", StartTest1);
@@ -29,19 +28,19 @@ IshikoSingleConnectionServerTests::IshikoSingleConnectionServerTests(const TestN
     append<FileComparisonTest>("Request test 3", RequestTest3);
 }
 
-void IshikoSingleConnectionServerTests::ConstructorTest1(Test& test)
+void SingleConnectionWebServerTests::ConstructorTest1(Test& test)
 {
     Error error;
-    IshikoSingleConnectionServer server(IPv4Address::Localhost(), 0, error);
+    SingleConnectionWebServer server(IPv4Address::Localhost(), 0, error);
 
     ISHIKO_TEST_FAIL_IF(error);
     ISHIKO_TEST_PASS();
 }
 
-void IshikoSingleConnectionServerTests::StartTest1(Test& test)
+void SingleConnectionWebServerTests::StartTest1(Test& test)
 {
     Error error;
-    IshikoSingleConnectionServer server(IPv4Address::Localhost(), 8585, error);
+    SingleConnectionWebServer server(IPv4Address::Localhost(), 8585, error);
 
     ISHIKO_TEST_FAIL_IF(error);
 
@@ -52,22 +51,29 @@ void IshikoSingleConnectionServerTests::StartTest1(Test& test)
     ISHIKO_TEST_PASS();
 }
 
-void IshikoSingleConnectionServerTests::RequestTest1(FileComparisonTest& test)
+void SingleConnectionWebServerTests::RequestTest1(FileComparisonTest& test)
 {
-    path outputPath(test.context().getTestOutputPath("IshikoSingleConnectionServerTests_RequestTest1.bin"));
-    path referencePath(test.context().getReferenceDataPath("IshikoSingleConnectionServerTests_RequestTest1.bin"));
+    path outputPath(test.context().getTestOutputPath("SingleConnectionWebServerTests_RequestTest1.bin"));
+    path referencePath(test.context().getReferenceDataPath("SingleConnectionWebServerTests_RequestTest1.bin"));
 
     std::shared_ptr<TestServerObserver> observer = std::make_shared<TestServerObserver>();
     Error error;
-    IshikoSingleConnectionServer server(IPv4Address::Localhost(), TCPServerSocket::AnyPort, error);
+    SingleConnectionWebServer server(IPv4Address::Localhost(), 8089, error);
 
-    TestConnectionHandler connectionHandler;
-    server.m_connectionHandler = &connectionHandler;
+    TestWebRequestHandler requestHandler;
+    server.m_requestHandler = &requestHandler;
 
     server.start();
 
+    // TODO: there is a problem here, first I have to introduce this sleep and also it seems I can't use AnyPort else
+    // HTTPClient fails. Need more logging and checks. And yet in subsequent tests it's fine.
+    std::this_thread::sleep_for(std::chrono::seconds(1));
+
     std::ofstream responseFile(outputPath.string(), std::ios::out | std::ios::binary);
-    HTTPClient::Get(IPv4Address::Localhost(), server.socket().port(), "/", responseFile, error);
+    HTTPClient::Get(IPv4Address::Localhost(), 8089, "/", responseFile, error);
+
+    ISHIKO_TEST_FAIL_IF(error);
+
     responseFile.close();
 
     server.stop();
@@ -93,17 +99,17 @@ void IshikoSingleConnectionServerTests::RequestTest1(FileComparisonTest& test)
     ISHIKO_TEST_PASS();
 }
 
-void IshikoSingleConnectionServerTests::RequestTest2(FileComparisonTest& test)
+void SingleConnectionWebServerTests::RequestTest2(FileComparisonTest& test)
 {
-    path outputPath(test.context().getTestOutputPath("IshikoSingleConnectionServerTests_RequestTest2.bin"));
-    path referencePath(test.context().getReferenceDataPath("IshikoSingleConnectionServerTests_RequestTest2.bin"));
+    path outputPath(test.context().getTestOutputPath("SingleConnectionWebServerTests_RequestTest2.bin"));
+    path referencePath(test.context().getReferenceDataPath("SingleConnectionWebServerTests_RequestTest2.bin"));
 
     std::shared_ptr<TestServerObserver> observer = std::make_shared<TestServerObserver>();
     Error error;
-    IshikoSingleConnectionServer server(IPv4Address::Localhost(), TCPServerSocket::AnyPort, error);
+    SingleConnectionWebServer server(IPv4Address::Localhost(), TCPServerSocket::AnyPort, error);
 
-    TestConnectionHandler connectionHandler;
-    server.m_connectionHandler = &connectionHandler;
+    TestWebRequestHandler requestHandler;
+    server.m_requestHandler = &requestHandler;
 
     server.start();
 
@@ -111,7 +117,13 @@ void IshikoSingleConnectionServerTests::RequestTest2(FileComparisonTest& test)
     // test framework
     std::ofstream responseFile(outputPath.string(), std::ios::out | std::ios::binary);
     HTTPClient::Get(IPv4Address::Localhost(), server.socket().port(), "/", responseFile, error);
+
+    ISHIKO_TEST_FAIL_IF(error);
+
     HTTPClient::Get(IPv4Address::Localhost(), server.socket().port(), "/", responseFile, error);
+
+    ISHIKO_TEST_FAIL_IF(error);
+
     responseFile.close();
 
     server.stop();
@@ -138,18 +150,18 @@ void IshikoSingleConnectionServerTests::RequestTest2(FileComparisonTest& test)
     ISHIKO_TEST_PASS();
 }
 
-void IshikoSingleConnectionServerTests::RequestTest3(FileComparisonTest& test)
+void SingleConnectionWebServerTests::RequestTest3(FileComparisonTest& test)
 {
-    path outputPath(test.context().getTestOutputPath("IshikoSingleConnectionServerTests_RequestTest3.bin"));
-    path referencePath(test.context().getReferenceDataPath("IshikoSingleConnectionServerTests_RequestTest3.bin"));
+    path outputPath(test.context().getTestOutputPath("SingleConnectionWebServerTests_RequestTest3.bin"));
+    path referencePath(test.context().getReferenceDataPath("SingleConnectionWebServerTests_RequestTest3.bin"));
 
     std::shared_ptr<TestServerObserver> observer = std::make_shared<TestServerObserver>();
     Error error;
-    IshikoSingleConnectionServer server(IPv4Address::Localhost(), TCPServerSocket::AnyPort, error);
+    SingleConnectionWebServer server(IPv4Address::Localhost(), TCPServerSocket::AnyPort, error);
     Port port = server.socket().port();
 
-    TestConnectionHandler connectionHandler;
-    server.m_connectionHandler = &connectionHandler;
+    TestWebRequestHandler requestHandler;
+    server.m_requestHandler = &requestHandler;
  
     // TODO: we should try to connect before the socket is opened but at the moment with my blocking HTTPClient I can't
     // do that
@@ -158,6 +170,9 @@ void IshikoSingleConnectionServerTests::RequestTest3(FileComparisonTest& test)
 
     std::ofstream responseFile(outputPath.string(), std::ios::out | std::ios::binary);
     HTTPClient::Get(IPv4Address::Localhost(), port, "/", responseFile, error);
+
+    ISHIKO_TEST_FAIL_IF(error);
+
     responseFile.close();
 
     server.stop();
