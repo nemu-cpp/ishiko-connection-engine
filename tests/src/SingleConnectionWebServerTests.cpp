@@ -65,6 +65,8 @@ void SingleConnectionWebServerTests::RequestTest1(FileComparisonTest& test)
 
     server.start();
 
+    std::this_thread::sleep_for(std::chrono::seconds(1));
+
     std::ofstream responseFile(outputPath.string(), std::ios::out | std::ios::binary);
     HTTPClient::Get(IPv4Address::Localhost(), 8089, "/", responseFile, error);
 
