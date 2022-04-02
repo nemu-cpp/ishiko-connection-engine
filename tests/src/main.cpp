@@ -7,6 +7,9 @@
 #include "IshikoSingleConnectionServerTests.hpp"
 #include "IshikoWebRequestTests.hpp"
 #include "IshikoWebResponseBuilderTests.hpp"
+#include "FileSystemWebRequestHandlerTests.hpp"
+#include "FunctionWebRequestHandlerTests.hpp"
+#include "HardcodedWebRequestHandlerTests.hpp"
 #include "Nemu/WebFramework/linkoptions.hpp"
 #include <Ishiko/Tests.hpp>
 
@@ -23,6 +26,9 @@ int main(int argc, char* argv[])
     theTests.append<IshikoSingleConnectionServerTests>();
     theTests.append<IshikoWebRequestTests>();
     theTests.append<IshikoWebResponseBuilderTests>();
+    theTests.append<HardcodedWebRequestHandlerTests>();
+    theTests.append<FunctionWebRequestHandlerTests>();
+    theTests.append<FileSystemWebRequestHandlerTests>();
 
     return theTestHarness.run();
 }

@@ -26,6 +26,15 @@
     <ClInclude Include="..\..\src\IshikoWebResponseBuilderTests.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\src\FileSystemWebRequestHandlerTests.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\FunctionWebRequestHandlerTests.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\HardcodedWebRequestHandlerTests.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
     <ClInclude Include="..\..\src\Helpers\TestConnectionHandler.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -47,6 +56,15 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\..\src\IshikoWebResponseBuilderTests.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\FileSystemWebRequestHandlerTests.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\FunctionWebRequestHandlerTests.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\HardcodedWebRequestHandlerTests.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\..\src\main.cpp">
