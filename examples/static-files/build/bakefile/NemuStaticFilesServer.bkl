@@ -1,5 +1,5 @@
 nemupath = envvar("NEMU_CPP");
-import $(nemupath)/nemu/include/Nemu.bkl;
+import $(nemupath)/web-framework/include/Nemu/WebFramework.bkl;
 
 toolsets = gnu vs2019 vs2017 vs2015 vs2013;
 
@@ -9,14 +9,14 @@ vs2017.solutionfile = ../vc15/NemuStaticFilesServer.sln;
 vs2015.solutionfile = ../vc14/NemuStaticFilesServer.sln;
 vs2013.solutionfile = ../vc12/NemuStaticFilesServer.sln;
 
-program NemuStaticFilesServer : Nemu
+program NemuStaticFilesServer : NemuWebFramework
 {
     archs = x86 x86_64;
 
     if ($(toolset) == gnu)
     {
         cxx-compiler-options = "-std=c++11";
-        libs += NemuIshikoConnectionEngine NemuCore IshikoHTTP IshikoNetworking IshikoFileSystem IshikoTime IshikoText IshikoTypes IshikoLogging IshikoErrors fmt boost_filesystem;
+        libs += NemuWebFramework NemuCore IshikoHTTP IshikoNetworking IshikoFileSystem IshikoTime IshikoText IshikoTypes IshikoLogging IshikoErrors fmt boost_filesystem;
     }
 
     outputdir = ../../bin;
