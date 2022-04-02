@@ -18,6 +18,12 @@ jobs:
       - run:
           name: "Test: Nemu WebFramework"
           command: cd /projects/nemu/cpp/web-framework/tests/build/gnumake && make && ./NemuWebFrameworkTests
+      - run:
+          name: Build HelloWorld example
+          command: cd /projects/nemu/cpp/web-framework/examples/hello-world/build/gnumake && make
+      - run:
+          name: Build StaticFiles example
+          command: cd /projects/nemu/cpp/web-framework/examples/static-files/build/gnumake && make
 workflows:
   version: 2
   continuous_build:
