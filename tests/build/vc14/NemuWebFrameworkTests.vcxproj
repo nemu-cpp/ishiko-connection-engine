@@ -166,9 +166,7 @@
     <ClCompile Include="..\..\src\HardcodedWebRequestHandlerTests.cpp" />
     <ClCompile Include="..\..\src\main.cpp" />
     <ClCompile Include="..\..\src\Helpers\TestServerObserver.cpp" />
-    <ClCompile Include="..\..\src\Helpers\TestWebRequest.cpp" />
     <ClCompile Include="..\..\src\Helpers\TestWebRequestHandler.cpp" />
-    <ClCompile Include="..\..\src\Helpers\TestWebResponseBuilder.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\src\SingleConnectionWebServerTests.hpp" />
@@ -180,9 +178,7 @@
     <ClInclude Include="..\..\src\RouteTests.h" />
     <ClInclude Include="..\..\src\RoutesTests.h" />
     <ClInclude Include="..\..\src\Helpers\TestServerObserver.hpp" />
-    <ClInclude Include="..\..\src\Helpers\TestWebRequest.hpp" />
     <ClInclude Include="..\..\src\Helpers\TestWebRequestHandler.hpp" />
-    <ClInclude Include="..\..\src\Helpers\TestWebResponseBuilder.hpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -17,6 +17,9 @@ namespace Nemu
 class WebRequest : public Ishiko::HTTPMessagePushParser::Callbacks
 {
 public:
+    WebRequest() = default;
+    WebRequest(std::string uri);
+
     /// Returns the URI part of the request.
     // TODO: can we avoid the copy here
     std::string URI() const;

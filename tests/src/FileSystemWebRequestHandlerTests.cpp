@@ -5,8 +5,6 @@
 */
 
 #include "FileSystemWebRequestHandlerTests.hpp"
-#include "Helpers/TestWebRequest.hpp"
-#include "Helpers/TestWebResponseBuilder.hpp"
 #include "Nemu/WebFramework/RequestHandlers/FileSystemWebRequestHandler.hpp"
 #include <Ishiko/Logging.hpp>
 
@@ -38,14 +36,14 @@ void FileSystemWebRequestHandlerTests::RunTest1(FileComparisonTest& test)
 
     FileSystemWebRequestHandler requestHandler(inputPath.string().c_str());
 
-    TestWebRequest request("/");
-    TestWebResponseBuilder responseBuilder;
+    WebRequest request("/");
+    WebResponseBuilder responseBuilder;
     NullLoggingSink sink;
     Logger log(sink);
 
     requestHandler.run(request, responseBuilder, log);
 
-    responseBuilder.save(stream);
+    stream << responseBuilder.toString();
 
     test.setOutputFilePath(outputPath);
     test.setReferenceFilePath(test.context().getReferenceDataPath("FileSystemWebRequestHandlerTests_RunTest1.bin"));

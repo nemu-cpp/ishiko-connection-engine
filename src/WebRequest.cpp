@@ -12,6 +12,11 @@ using namespace std;
 namespace Nemu
 {
 
+WebRequest::WebRequest(string uri)
+    : m_uri(std::move(uri))
+{
+}
+
 string WebRequest::URI() const
 {
     return m_uri;
