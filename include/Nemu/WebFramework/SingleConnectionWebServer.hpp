@@ -7,7 +7,7 @@
 #ifndef _NEMU_CPP_WEBFRAMEWORK_SINGLECONNECTIONWEBSERVER_HPP_
 #define _NEMU_CPP_WEBFRAMEWORK_SINGLECONNECTIONWEBSERVER_HPP_
 
-#include <Nemu/Core.hpp>
+#include "WebServer.hpp"
 #include <Ishiko/Errors.hpp>
 #include <Ishiko/Networking.hpp>
 #include <atomic>
@@ -16,7 +16,7 @@
 namespace Nemu
 {
 
-class SingleConnectionWebServer : public Server
+class SingleConnectionWebServer : public WebServer
 {
 public:
     SingleConnectionWebServer(Ishiko::IPv4Address address, Ishiko::Port port, Ishiko::Error& error);

@@ -7,10 +7,9 @@
 #ifndef _NEMU_CPP_CORE_WEBAPPLICATION_HPP_
 #define _NEMU_CPP_CORE_WEBAPPLICATION_HPP_
 
-#include "Application.h"
-#include "Server.hpp"
-#include "Web/Routes.hpp"
-#include "Web/Views.hpp"
+#include "Routes.hpp"
+#include "Views.hpp"
+#include "WebServer.hpp"
 #include <Ishiko/Errors.hpp>
 #include <Ishiko/Logging.hpp>
 #include <vector>
@@ -24,8 +23,8 @@ class WebApplication : public Application
 {
 public:
     /// Constructor.
-    WebApplication(std::shared_ptr<Server> server, Ishiko::Logger& logger, Ishiko::Error& error);
-    WebApplication(std::shared_ptr<Server> server, Ishiko::Logger& logger, std::shared_ptr<Routes> routes,
+    WebApplication(std::shared_ptr<WebServer> server, Ishiko::Logger& logger, Ishiko::Error& error);
+    WebApplication(std::shared_ptr<WebServer> server, Ishiko::Logger& logger, std::shared_ptr<Routes> routes,
         Ishiko::Error& error);
 
     /// Returns the routes.
@@ -34,18 +33,18 @@ public:
     Views& views();
 
 private:
-    class ConnectionHandler : public Server::ConnectionHandler
+    class RequestHandler : public WebRequestHandler
     {
     public:
-        ConnectionHandler(WebApplication& owner);
+        RequestHandler(WebApplication& owner);
 
-        void onConnection(const WebRequest& request, WebResponseBuilder& responseBuilder) override;
+        void run(const WebRequest& request, WebResponseBuilder& response, Ishiko::Logger& logger) override;
 
     private:
         WebApplication& m_owner;
     };
 
-    ConnectionHandler m_connectionHandler;
+    RequestHandler m_requestHandler;
     std::shared_ptr<Routes> m_routes;
     Views m_views;
 };

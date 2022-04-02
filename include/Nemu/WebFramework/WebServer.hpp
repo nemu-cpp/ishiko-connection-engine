@@ -7,12 +7,17 @@
 #ifndef _NEMU_CPP_WEBFRAMEWORK_WEBSERVER_HPP_
 #define _NEMU_CPP_WEBFRAMEWORK_WEBSERVER_HPP_
 
+#include "WebRequestHandler.hpp"
+#include <Nemu/Core.hpp>
+
 namespace Nemu
 {
 
-class WebServer
+class WebServer : public Server
 {
-}
+public:
+    WebRequestHandler* m_requestHandler;
+};
 
 }
 
