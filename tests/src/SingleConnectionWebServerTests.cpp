@@ -58,7 +58,7 @@ void SingleConnectionWebServerTests::RequestTest1(FileComparisonTest& test)
 
     std::shared_ptr<TestServerObserver> observer = std::make_shared<TestServerObserver>();
     Error error;
-    SingleConnectionWebServer server(IPv4Address::Localhost(), 8089, error);
+    SingleConnectionWebServer server(IPv4Address::Localhost(), TCPServerSocket::AnyPort, error);
 
     TestWebRequestHandler requestHandler;
     server.m_requestHandler = &requestHandler;
@@ -68,7 +68,7 @@ void SingleConnectionWebServerTests::RequestTest1(FileComparisonTest& test)
     std::this_thread::sleep_for(std::chrono::seconds(10));
 
     std::ofstream responseFile(outputPath.string(), std::ios::out | std::ios::binary);
-    HTTPClient::Get(IPv4Address::Localhost(), 8089, "/", responseFile, error);
+    HTTPClient::Get(IPv4Address::Localhost(), server.socket().port(), "/", responseFile, error);
 
     ISHIKO_TEST_FAIL_IF(error);
 
