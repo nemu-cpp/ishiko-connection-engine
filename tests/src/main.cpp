@@ -10,6 +10,8 @@
 #include "FileSystemWebRequestHandlerTests.hpp"
 #include "FunctionWebRequestHandlerTests.hpp"
 #include "HardcodedWebRequestHandlerTests.hpp"
+#include "RouteTests.h"
+#include "RoutesTests.h"
 #include "Nemu/WebFramework/linkoptions.hpp"
 #include <Ishiko/Tests.hpp>
 
@@ -26,6 +28,8 @@ int main(int argc, char* argv[])
     theTests.append<IshikoSingleConnectionServerTests>();
     theTests.append<IshikoWebRequestTests>();
     theTests.append<IshikoWebResponseBuilderTests>();
+    theTests.append<RouteTests>();
+    theTests.append<RoutesTests>();
     theTests.append<HardcodedWebRequestHandlerTests>();
     theTests.append<FunctionWebRequestHandlerTests>();
     theTests.append<FileSystemWebRequestHandlerTests>();

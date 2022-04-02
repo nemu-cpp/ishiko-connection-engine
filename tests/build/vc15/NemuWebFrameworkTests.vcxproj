@@ -159,6 +159,8 @@
     <ClCompile Include="..\..\src\IshikoSingleConnectionServerTests.cpp" />
     <ClCompile Include="..\..\src\IshikoWebRequestTests.cpp" />
     <ClCompile Include="..\..\src\IshikoWebResponseBuilderTests.cpp" />
+    <ClCompile Include="..\..\src\RouteTests.cpp" />
+    <ClCompile Include="..\..\src\RoutesTests.cpp" />
     <ClCompile Include="..\..\src\FileSystemWebRequestHandlerTests.cpp" />
     <ClCompile Include="..\..\src\FunctionWebRequestHandlerTests.cpp" />
     <ClCompile Include="..\..\src\HardcodedWebRequestHandlerTests.cpp" />
@@ -175,6 +177,8 @@
     <ClInclude Include="..\..\src\FileSystemWebRequestHandlerTests.hpp" />
     <ClInclude Include="..\..\src\FunctionWebRequestHandlerTests.hpp" />
     <ClInclude Include="..\..\src\HardcodedWebRequestHandlerTests.hpp" />
+    <ClInclude Include="..\..\src\RouteTests.h" />
+    <ClInclude Include="..\..\src\RoutesTests.h" />
     <ClInclude Include="..\..\src\Helpers\TestConnectionHandler.hpp" />
     <ClInclude Include="..\..\src\Helpers\TestServerObserver.hpp" />
     <ClInclude Include="..\..\src\Helpers\TestWebRequest.hpp" />
