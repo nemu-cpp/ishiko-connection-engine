@@ -34,6 +34,8 @@ void FunctionWebRequestHandlerTests::ConstructorTest1(Test& test)
 void FunctionWebRequestHandlerTests::RunTest1(FileComparisonTest& test)
 {
     path outputPath(test.context().getTestOutputPath("FunctionWebRequestHandlerTests_RunTest1.bin"));
+    std::ofstream stream(outputPath.c_str(), std::ios::binary);
+
     path referencePath(test.context().getReferenceDataPath("FunctionWebRequestHandlerTests_RunTest1.bin"));
 
     int data = 0;
@@ -53,6 +55,8 @@ void FunctionWebRequestHandlerTests::RunTest1(FileComparisonTest& test)
     requestHandler.run(request, responseBuilder, log);
 
     ISHIKO_TEST_FAIL_IF_NEQ(data, 1);
+
+    stream << responseBuilder.toString();
 
     test.setOutputFilePath(outputPath);
     test.setReferenceFilePath(referencePath);
