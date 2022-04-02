@@ -9,7 +9,7 @@
 
 #include "WebFramework/Route.hpp"
 #include "WebFramework/Routes.hpp"
-#include "WebFramework/SingleWebConnectionServer.hpp"
+#include "WebFramework/SingleConnectionWebServer.hpp"
 #include "WebFramework/Views.hpp"
 #include "WebFramework/WebApplication.hpp"
 #include "WebFramework/WebRequest.hpp"

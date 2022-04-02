@@ -7,7 +7,7 @@
 #ifndef _NEMU_CPP_WEBFRAMEWORK_REQUESTHANDLERS_HARDCODEDWEBREQUESTHANDLER_HPP_
 #define _NEMU_CPP_WEBFRAMEWORK_REQUESTHANDLERS_HARDCODEDWEBREQUESTHANDLER_HPP_
 
-#include "WebRequestHandler.hpp"
+#include "../WebRequestHandler.hpp"
 #include <string>
 
 namespace Nemu

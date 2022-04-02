@@ -7,7 +7,7 @@
 #ifndef _NEMU_CPP_WEBFRAMEWORK_REQUESTHANDLERS_FILESYSTEMWEBREQUESTHANDLER_HPP_
 #define _NEMU_CPP_WEBFRAMEWORK_REQUESTHANDLERS_FILESYSTEMWEBREQUESTHANDLER_HPP_
 
-#include "WebRequestHandler.hpp"
+#include "../WebRequestHandler.hpp"
 #include <boost/filesystem.hpp>
 #include <string>
 #include <vector>
