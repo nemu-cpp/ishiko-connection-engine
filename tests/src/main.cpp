@@ -4,7 +4,6 @@
     See https://github.com/nemu-cpp/web-framework/blob/main/LICENSE.txt
 */
 
-#include "IshikoSingleConnectionServerTests.hpp"
 #include "IshikoWebRequestTests.hpp"
 #include "IshikoWebResponseBuilderTests.hpp"
 #include "FileSystemWebRequestHandlerTests.hpp"
@@ -12,6 +11,7 @@
 #include "HardcodedWebRequestHandlerTests.hpp"
 #include "RouteTests.h"
 #include "RoutesTests.h"
+#include "SingleConnectionWebServerTests.hpp"
 #include "Nemu/WebFramework/linkoptions.hpp"
 #include <Ishiko/Tests.hpp>
 
@@ -19,13 +19,13 @@ using namespace Ishiko;
 
 int main(int argc, char* argv[])
 {
-    TestHarness theTestHarness("NemuIshikoConnectionEngine");
+    TestHarness theTestHarness("NemuWebFramework");
 
     theTestHarness.context().setTestOutputDirectory("../../output");
     theTestHarness.context().setReferenceDataDirectory("../../reference");
 
     TestSequence& theTests = theTestHarness.tests();
-    theTests.append<IshikoSingleConnectionServerTests>();
+    theTests.append<SingleConnectionWebServerTests>();
     theTests.append<IshikoWebRequestTests>();
     theTests.append<IshikoWebResponseBuilderTests>();
     theTests.append<RouteTests>();
