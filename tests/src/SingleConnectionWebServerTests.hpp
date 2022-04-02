@@ -1,18 +1,18 @@
 /*
     Copyright (c) 2022 Xavier Leclercq
     Released under the MIT License
-    See https://github.com/nemu-cpp/ishiko-connection-engine/blob/main/LICENSE.txt
+    See https://github.com/nemu-cpp/web-framework/blob/main/LICENSE.txt
 */
 
-#ifndef _NEMU_CPP_ISHIKOCONNECTIONENGINE_TESTS_ISHIKOSINGLECONNECTIONSERVERTESTS_HPP_
-#define _NEMU_CPP_ISHIKOCONNECTIONENGINE_TESTS_ISHIKOSINGLECONNECTIONSERVERTESTS_HPP_
+#ifndef _NEMU_CPP_WEBFRAMEWORK_TESTS_SINGLECONNECTIONWEBSERVERTESTS_HPP_
+#define _NEMU_CPP_WEBFRAMEWORK_TESTS_SINGLECONNECTIONWEBSERVERTESTS_HPP_
 
 #include <Ishiko/Tests.hpp>
 
-class IshikoSingleConnectionServerTests : public Ishiko::TestSequence
+class SingleConnectionWebServerTests : public Ishiko::TestSequence
 {
 public:
-    IshikoSingleConnectionServerTests(const Ishiko::TestNumber& number, const Ishiko::TestContext& context);
+    SingleConnectionWebServerTests(const Ishiko::TestNumber& number, const Ishiko::TestContext& context);
 
 private:
     static void ConstructorTest1(Ishiko::Test& test);

@@ -7,6 +7,7 @@
 #ifndef _NEMU_CPP_WEBFRAMEWORK_WEBRESPONSEBUILDER_HPP_
 #define _NEMU_CPP_WEBFRAMEWORK_WEBRESPONSEBUILDER_HPP_
 
+#include "Views.hpp"
 #include <Ishiko/HTTP.hpp>
 #include <string>
 
@@ -40,6 +41,7 @@ private:
     Ishiko::HTTPResponse m_response;
     // TODO: I need to refactor HTTPResponse to make this more flexible and remove the redundant and wasteful m_body
     std::string m_body;
+public:
     const Views* m_views;
 };
 
