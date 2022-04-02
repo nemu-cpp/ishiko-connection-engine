@@ -67,6 +67,9 @@ void SingleConnectionWebServerTests::RequestTest1(FileComparisonTest& test)
 
     std::ofstream responseFile(outputPath.string(), std::ios::out | std::ios::binary);
     HTTPClient::Get(IPv4Address::Localhost(), server.socket().port(), "/", responseFile, error);
+
+    ISHIKO_TEST_FAIL_IF(error);
+
     responseFile.close();
 
     server.stop();
@@ -110,7 +113,13 @@ void SingleConnectionWebServerTests::RequestTest2(FileComparisonTest& test)
     // test framework
     std::ofstream responseFile(outputPath.string(), std::ios::out | std::ios::binary);
     HTTPClient::Get(IPv4Address::Localhost(), server.socket().port(), "/", responseFile, error);
+
+    ISHIKO_TEST_FAIL_IF(error);
+
     HTTPClient::Get(IPv4Address::Localhost(), server.socket().port(), "/", responseFile, error);
+
+    ISHIKO_TEST_FAIL_IF(error);
+
     responseFile.close();
 
     server.stop();
@@ -157,6 +166,9 @@ void SingleConnectionWebServerTests::RequestTest3(FileComparisonTest& test)
 
     std::ofstream responseFile(outputPath.string(), std::ios::out | std::ios::binary);
     HTTPClient::Get(IPv4Address::Localhost(), port, "/", responseFile, error);
+
+    ISHIKO_TEST_FAIL_IF(error);
+
     responseFile.close();
 
     server.stop();
