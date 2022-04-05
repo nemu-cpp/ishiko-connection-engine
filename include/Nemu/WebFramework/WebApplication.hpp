@@ -23,7 +23,9 @@ class WebApplication : public Application
 {
 public:
     /// Constructor.
-    WebApplication(std::shared_ptr<WebServer> server, Ishiko::Logger& logger, Ishiko::Error& error);
+    WebApplication(std::shared_ptr<WebServer> server, Ishiko::Logger& logger);
+    // TODO: the shared_ptr violates the no except nature of this function
+    WebApplication(std::shared_ptr<WebServer> server, Ishiko::Logger& logger, Ishiko::Error& error) noexcept;
     WebApplication(std::shared_ptr<WebServer> server, Ishiko::Logger& logger, std::shared_ptr<Routes> routes,
         Ishiko::Error& error);
 

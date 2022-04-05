@@ -9,23 +9,17 @@
 
 int main(int argc, char* argv[])
 {
-    Ishiko::Error error;
-
     // TODO: use the async server
     std::shared_ptr<Nemu::SingleConnectionWebServer> server =
         std::make_shared<Nemu::SingleConnectionWebServer>(Ishiko::TCPServerSocket::AllInterfaces,
-            Ishiko::Port::http, error);
+            Ishiko::Port::http);
 
     // Create a log that sends its output to the console.
     Ishiko::StreamLoggingSink sink(std::cout);
     Ishiko::Logger log(sink);
 
     // TODO: use exceptions
-    Nemu::WebApplication app(server, log, error);
-    if (error)
-    {
-        std::cout << "Error: " << error << std::endl;
-    }
+    Nemu::WebApplication app(server, log);
     
     app.routes().append(
         Nemu::Route("/", 
@@ -33,5 +27,5 @@ int main(int argc, char* argv[])
 
     app.run();
 
-    return error.condition().value();
+    return 0;
 }

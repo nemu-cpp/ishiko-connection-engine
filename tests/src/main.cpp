@@ -13,7 +13,7 @@
 #include "RoutesTests.h"
 #include "SingleConnectionWebServerTests.hpp"
 #include "Nemu/WebFramework/linkoptions.hpp"
-#include <Ishiko/Tests.hpp>
+#include <Ishiko/TestFramework.hpp>
 
 using namespace Ishiko;
 
