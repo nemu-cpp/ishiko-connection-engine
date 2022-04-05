@@ -19,7 +19,8 @@ namespace Nemu
 class SingleConnectionWebServer : public WebServer
 {
 public:
-    SingleConnectionWebServer(Ishiko::IPv4Address address, Ishiko::Port port, Ishiko::Error& error);
+    SingleConnectionWebServer(Ishiko::IPv4Address address, Ishiko::Port port);
+    SingleConnectionWebServer(Ishiko::IPv4Address address, Ishiko::Port port, Ishiko::Error& error) noexcept;
 
     void start() override;
     void stop() override;
