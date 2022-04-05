@@ -24,7 +24,15 @@ void WebApplication::RequestHandler::run(const WebRequest& request, WebResponseB
     route.runHandler(request, response, m_owner.m_logger);
 }
 
-WebApplication::WebApplication(shared_ptr<WebServer> server, Logger& logger, Error& error)
+WebApplication::WebApplication(shared_ptr<WebServer> server, Logger& logger)
+    : Application(logger), m_requestHandler(*this), m_routes(std::make_shared<Routes>())
+{
+    server->m_requestHandler = &m_requestHandler;
+    server->m_logger = &logger;
+    servers().append(server);
+}
+
+WebApplication::WebApplication(shared_ptr<WebServer> server, Logger& logger, Error& error) noexcept
     : Application(logger), m_requestHandler(*this), m_routes(std::make_shared<Routes>())
 {
     server->m_requestHandler = &m_requestHandler;

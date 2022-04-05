@@ -7,7 +7,7 @@
 #ifndef _NEMU_CPP_WEBFRAMEWORK_TESTS_ISHIKOWEBRESPONSEBUILDERTESTS_HPP_
 #define _NEMU_CPP_WEBFRAMEWORK_TESTS_ISHIKOWEBRESPONSEBUILDERTESTS_HPP_
 
-#include <Ishiko/Tests.hpp>
+#include <Ishiko/TestFramework.hpp>
 
 class IshikoWebResponseBuilderTests : public Ishiko::TestSequence
 {

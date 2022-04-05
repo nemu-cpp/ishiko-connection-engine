@@ -7,7 +7,7 @@
 #ifndef _NEMU_CPP_WEBFRAMEWORK_TESTS_FUNCTIONWEBREQUESTHANDLERTESTS_HPP_
 #define _NEMU_CPP_WEBFRAMEWORK_TESTS_FUNCTIONWEBREQUESTHANDLERTESTS_HPP_
 
-#include <Ishiko/Tests.hpp>
+#include <Ishiko/TestFramework.hpp>
 
 class FunctionWebRequestHandlerTests : public Ishiko::TestSequence
 {

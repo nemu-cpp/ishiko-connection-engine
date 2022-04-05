@@ -1,6 +1,6 @@
 ishikopath = envvar("ISHIKO_CPP");
 import $(ishikopath)/http/include/Ishiko/HTTP.bkl;
-import $(ishikopath)/test-framework/include/Ishiko/Tests.bkl;
+import $(ishikopath)/test-framework/include/Ishiko/TestFramework.bkl;
 nemupath = envvar("NEMU_CPP");
 import $(nemupath)/web-framework/include/Nemu/WebFramework.bkl;
 
@@ -12,14 +12,14 @@ vs2017.solutionfile = ../vc15/NemuWebFrameworkTests.sln;
 vs2015.solutionfile = ../vc14/NemuWebFrameworkTests.sln;
 vs2013.solutionfile = ../vc12/NemuWebFrameworkTests.sln;
 
-program NemuWebFrameworkTests: NemuWebFramework, IshikoHTTP, IshikoTests
+program NemuWebFrameworkTests: NemuWebFramework, IshikoHTTP, IshikoTestFramework
 {
     archs = x86 x86_64;
 
     if ($(toolset) == gnu)
     {
         cxx-compiler-options = "-std=c++11";
-        libs += NemuWebFramework NemuCore IshikoHTTP IshikoNetworking IshikoTests IshikoTestsCore IshikoDiff IshikoFileSystem IshikoProcess IshikoTime IshikoText IshikoTypes IshikoLogging IshikoErrors fmt boost_filesystem;
+        libs += NemuWebFramework NemuCore IshikoHTTP IshikoNetworking IshikoTests IshikoTestFrameworkCore IshikoDiff IshikoFileSystem IshikoProcess IshikoTime IshikoText IshikoTypes IshikoLogging IshikoErrors fmt boost_filesystem;
     }
 
     headers

@@ -15,7 +15,12 @@ using namespace std;
 namespace Nemu
 {
 
-SingleConnectionWebServer::SingleConnectionWebServer(IPv4Address address, Port port, Error& error)
+SingleConnectionWebServer::SingleConnectionWebServer(IPv4Address address, Port port)
+    : m_socket(address, port)
+{
+}
+
+SingleConnectionWebServer::SingleConnectionWebServer(IPv4Address address, Port port, Error& error) noexcept
     : m_init(error), m_socket(address, port, error)
 {
 }
