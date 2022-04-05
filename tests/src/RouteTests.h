@@ -7,7 +7,7 @@
 #ifndef _NEMU_CPP_WEBFRAMEWORK_TESTS_ROUTETESTS_H_
 #define _NEMU_CPP_WEBFRAMEWORK_TESTS_ROUTETESTS_H_
 
-#include <Ishiko/Tests.hpp>
+#include <Ishiko/TestFramework.hpp>
 
 class RouteTests : public Ishiko::TestSequence
 {
