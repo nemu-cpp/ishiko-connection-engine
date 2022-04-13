@@ -156,7 +156,6 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\src\SingleConnectionWebServerTests.cpp" />
     <ClCompile Include="..\..\src\IshikoWebRequestTests.cpp" />
     <ClCompile Include="..\..\src\IshikoWebResponseBuilderTests.cpp" />
     <ClCompile Include="..\..\src\RouteTests.cpp" />
@@ -165,18 +164,21 @@
     <ClCompile Include="..\..\src\FunctionWebRequestHandlerTests.cpp" />
     <ClCompile Include="..\..\src\HardcodedWebRequestHandlerTests.cpp" />
     <ClCompile Include="..\..\src\main.cpp" />
+    <ClCompile Include="..\..\src\SingleConnectionWebServerTests.cpp" />
+    <ClCompile Include="..\..\src\WebApplicationTests.cpp" />
     <ClCompile Include="..\..\src\Helpers\TestServerObserver.cpp" />
     <ClCompile Include="..\..\src\Helpers\TestWebRequestHandler.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\src\SingleConnectionWebServerTests.hpp" />
     <ClInclude Include="..\..\src\IshikoWebRequestTests.hpp" />
     <ClInclude Include="..\..\src\IshikoWebResponseBuilderTests.hpp" />
     <ClInclude Include="..\..\src\FileSystemWebRequestHandlerTests.hpp" />
     <ClInclude Include="..\..\src\FunctionWebRequestHandlerTests.hpp" />
     <ClInclude Include="..\..\src\HardcodedWebRequestHandlerTests.hpp" />
-    <ClInclude Include="..\..\src\RouteTests.h" />
-    <ClInclude Include="..\..\src\RoutesTests.h" />
+    <ClInclude Include="..\..\src\RouteTests.hpp" />
+    <ClInclude Include="..\..\src\RoutesTests.hpp" />
+    <ClInclude Include="..\..\src\SingleConnectionWebServerTests.hpp" />
+    <ClInclude Include="..\..\src\WebApplicationTests.hpp" />
     <ClInclude Include="..\..\src\Helpers\TestServerObserver.hpp" />
     <ClInclude Include="..\..\src\Helpers\TestWebRequestHandler.hpp" />
   </ItemGroup>

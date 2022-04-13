@@ -9,9 +9,10 @@
 #include "FileSystemWebRequestHandlerTests.hpp"
 #include "FunctionWebRequestHandlerTests.hpp"
 #include "HardcodedWebRequestHandlerTests.hpp"
-#include "RouteTests.h"
-#include "RoutesTests.h"
+#include "RouteTests.hpp"
+#include "RoutesTests.hpp"
 #include "SingleConnectionWebServerTests.hpp"
+#include "WebApplicationTests.hpp"
 #include "Nemu/WebFramework/linkoptions.hpp"
 #include <Ishiko/TestFramework.hpp>
 
@@ -34,6 +35,7 @@ int main(int argc, char* argv[])
     theTests.append<HardcodedWebRequestHandlerTests>();
     theTests.append<FunctionWebRequestHandlerTests>();
     theTests.append<FileSystemWebRequestHandlerTests>();
+    theTests.append<WebApplicationTests>();
 
     return theTestHarness.run();
 }

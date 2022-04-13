@@ -4,8 +4,8 @@
     See https://github.com/nemu-cpp/web-framework/blob/main/LICENSE.txt
 */
 
-#ifndef _NEMU_CPP_WEBFRAMEWORK_TESTS_ROUTESTESTS_H_
-#define _NEMU_CPP_WEBFRAMEWORK_TESTS_ROUTESTESTS_H_
+#ifndef _NEMU_CPP_WEBFRAMEWORK_TESTS_ROUTESTESTS_HPP_
+#define _NEMU_CPP_WEBFRAMEWORK_TESTS_ROUTESTESTS_HPP_
 
 #include <Ishiko/TestFramework.hpp>
 
