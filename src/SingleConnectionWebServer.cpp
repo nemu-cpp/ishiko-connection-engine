@@ -39,6 +39,7 @@ void SingleConnectionWebServer::start()
                 // TODO: logger is not threadsafe, need to sort this out
                 Ishiko::Logger& logger = m_logger;
 
+                std::cout << "SingleConnectionWebServer server ready" << std::endl;
                 NEMU_LOG_INFO("SingleConnectionWebServer server ready");
 
                 Ishiko::TCPClientSocket clientSocket = m_socket.accept(error);
