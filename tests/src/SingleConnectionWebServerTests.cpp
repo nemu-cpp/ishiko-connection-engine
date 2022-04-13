@@ -148,9 +148,6 @@ void SingleConnectionWebServerTests::RequestTest2(Test& test)
 
 void SingleConnectionWebServerTests::RequestTest3(FileComparisonTest& test)
 {
-    path outputPath(test.context().getTestOutputPath("SingleConnectionWebServerTests_RequestTest3.bin"));
-    path referencePath(test.context().getReferenceDataPath("SingleConnectionWebServerTests_RequestTest3.bin"));
-
     std::shared_ptr<TestServerObserver> observer = std::make_shared<TestServerObserver>();
     Error error;
     SingleConnectionWebServer server(IPv4Address::Localhost(), TCPServerSocket::AnyPort, error);
@@ -164,6 +161,7 @@ void SingleConnectionWebServerTests::RequestTest3(FileComparisonTest& test)
 
     server.start();
 
+    path outputPath(test.context().getTestOutputPath("SingleConnectionWebServerTests_RequestTest3.bin"));
     std::ofstream responseFile(outputPath.string(), std::ios::out | std::ios::binary);
     HTTPClient::Get(IPv4Address::Localhost(), port, "/", responseFile, error);
 
@@ -198,8 +196,7 @@ void SingleConnectionWebServerTests::RequestTest3(FileComparisonTest& test)
     ISHIKO_TEST_FAIL_IF_NEQ(std::get<2>(events[0]), std::get<2>(events[1]));
     */
 
-    test.setOutputFilePath(outputPath);
-    test.setReferenceFilePath(referencePath);
-
+    ISHIKO_TEST_FAIL_IF_FILES_NEQ("SingleConnectionWebServerTests_RequestTest3.bin",
+        "SingleConnectionWebServerTests_RequestTest3.bin");
     ISHIKO_TEST_PASS();
 }
