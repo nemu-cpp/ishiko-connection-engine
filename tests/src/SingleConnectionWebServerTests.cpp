@@ -74,6 +74,7 @@ void SingleConnectionWebServerTests::RequestTest1(Test& test)
 
     // TODO: there is a problem here, first I have to introduce this sleep and also it seems I can't use AnyPort else
     // HTTPClient fails. Need more logging and checks. And yet in subsequent tests it's fine.
+    std::this_thread::yield();
     std::this_thread::sleep_for(std::chrono::seconds(15));
 
 
