@@ -60,7 +60,9 @@ void SingleConnectionWebServer::start()
                     // TODO: we received a partial request
                 }
                 else
-                {                    
+                {                   
+                    NEMU_LOG_INFO("Received request");
+
                     WebResponseBuilder response;
                     m_requestHandler->run(request, response, m_logger);
                     std::string responseString = response.toString();

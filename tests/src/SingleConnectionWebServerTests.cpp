@@ -63,7 +63,7 @@ void SingleConnectionWebServerTests::RequestTest1(Test& test)
 {
     std::shared_ptr<TestServerObserver> observer = std::make_shared<TestServerObserver>();
     Error error;
-    NullLoggingSink sink;
+    StreamLoggingSink sink(std::cout);
     Logger logger(sink);
     SingleConnectionWebServer server(IPv4Address::Localhost(), 8089, logger, error);
 
@@ -76,6 +76,8 @@ void SingleConnectionWebServerTests::RequestTest1(Test& test)
     // HTTPClient fails. Need more logging and checks. And yet in subsequent tests it's fine.
     std::this_thread::sleep_for(std::chrono::seconds(5));
 
+
+    std::cout << "Here1" << std::endl;
     path outputPath(test.context().getTestOutputPath("SingleConnectionWebServerTests_RequestTest1.bin"));
     std::ofstream responseFile(outputPath.string(), std::ios::out | std::ios::binary);
     HTTPClient::Get(IPv4Address::Localhost(), 8089, "/", responseFile, error);
@@ -111,7 +113,7 @@ void SingleConnectionWebServerTests::RequestTest2(Test& test)
 {
     std::shared_ptr<TestServerObserver> observer = std::make_shared<TestServerObserver>();
     Error error;
-    NullLoggingSink sink;
+    StreamLoggingSink sink(std::cout);
     Logger logger(sink);
     SingleConnectionWebServer server(IPv4Address::Localhost(), TCPServerSocket::AnyPort, logger, error);
 
@@ -164,7 +166,7 @@ void SingleConnectionWebServerTests::RequestTest3(Test& test)
 
     std::shared_ptr<TestServerObserver> observer = std::make_shared<TestServerObserver>();
     Error error;
-    NullLoggingSink sink;
+    StreamLoggingSink sink(std::cout);
     Logger logger(sink);
     SingleConnectionWebServer server(IPv4Address::Localhost(), TCPServerSocket::AnyPort, logger, error);
     Port port = server.socket().port();
