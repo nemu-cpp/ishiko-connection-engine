@@ -10,17 +10,24 @@
 
 using namespace Ishiko;
 using namespace Nemu;
-using namespace std;
 
 RouteTests::RouteTests(const TestNumber& number, const TestContext& context)
     : TestSequence(number, "Route tests", context)
 {
     append<HeapAllocationErrorsTest>("Constructor test 1", ConstructorTest1);
+    append<HeapAllocationErrorsTest>("Constructor test 2", ConstructorTest2);
 }
 
 void RouteTests::ConstructorTest1(Test& test)
 {
-    Route route("/", make_shared<HardcodedWebRequestHandler>(200, "Hello World!"));
+    Route route("/", std::make_shared<HardcodedWebRequestHandler>(200, "Hello World!"));
+
+    ISHIKO_TEST_PASS();
+}
+
+void RouteTests::ConstructorTest2(Test& test)
+{
+    Route route("/*", std::make_shared<HardcodedWebRequestHandler>(200, "Hello World!"));
 
     ISHIKO_TEST_PASS();
 }
