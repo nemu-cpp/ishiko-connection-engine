@@ -9,39 +9,44 @@
 #include "WebResponseBuilder.hpp"
 #include <Ishiko/HTTP.hpp>
 
-using namespace Ishiko;
-using namespace std;
-
 namespace Nemu
 {
 
-SingleConnectionWebServer::SingleConnectionWebServer(IPv4Address address, Port port)
-    : m_socket(address, port)
+SingleConnectionWebServer::SingleConnectionWebServer(Ishiko::IPv4Address address, Ishiko::Port port,
+    Ishiko::Logger& logger)
+    : m_logger(logger), m_socket(address, port)
 {
 }
 
-SingleConnectionWebServer::SingleConnectionWebServer(IPv4Address address, Port port, Error& error) noexcept
-    : m_init(error), m_socket(address, port, error)
+SingleConnectionWebServer::SingleConnectionWebServer(Ishiko::IPv4Address address, Ishiko::Port port,
+    Ishiko::Logger& logger, Ishiko::Error& error) noexcept
+    : m_logger(logger), m_init(error), m_socket(address, port, error)
 {
 }
 
 void SingleConnectionWebServer::start()
 {
     // TODO: as a quick hack we put the blocking stuff in a secondary thread
-    m_acceptThread = thread(
+    m_acceptThread = std::thread(
         [this]()
         {
             // TODO: this is a temporary blocking implementation
             // TODO: handle error
             while (!m_stop)
             {
-                Error error;
-                TCPClientSocket clientSocket = m_socket.accept(error);
+                Ishiko::Error error;
+
+                // TODO: logger is not threadsafe, need to sort this out
+                Ishiko::Logger& logger = m_logger;
+
+                NEMU_LOG_INFO("SingleConnectionWebServer server ready");
+
+                Ishiko::TCPClientSocket clientSocket = m_socket.accept(error);
 
 
 
                 WebRequest request;
-                HTTPMessagePushParser requestParser(request);
+                Ishiko::HTTPMessagePushParser requestParser(request);
 
                 // TODO: how big should this buffer be? Adjust automatically?
                 char buffer[1000];
@@ -57,8 +62,8 @@ void SingleConnectionWebServer::start()
                 else
                 {                    
                     WebResponseBuilder response;
-                    m_requestHandler->run(request, response, *m_logger);
-                    string responseString = response.toString();
+                    m_requestHandler->run(request, response, m_logger);
+                    std::string responseString = response.toString();
                     clientSocket.write(responseString.c_str(), responseString.size(), error);
                 }
             }
@@ -75,8 +80,8 @@ void SingleConnectionWebServer::stop()
 {
     m_stop = true;
     // TODO: for now send a dummy request to trigger the accept
-    Error error;
-    TCPClientSocket socket(error);
+    Ishiko::Error error;
+    Ishiko::TCPClientSocket socket(error);
     socket.connect(m_socket.ipAddress(), m_socket.port(), error);
 }
 
@@ -91,7 +96,7 @@ bool SingleConnectionWebServer::isRunning() const
     return false;
 }
 
-const TCPServerSocket& SingleConnectionWebServer::socket() const
+const Ishiko::TCPServerSocket& SingleConnectionWebServer::socket() const
 {
     return m_socket;
 }

@@ -21,11 +21,11 @@ WebApplicationTests::WebApplicationTests(const TestNumber& number, const TestCon
 
 void WebApplicationTests::ConstructorTest1(Test& test)
 {
-    std::shared_ptr<SingleConnectionWebServer> server =
-        std::make_shared<SingleConnectionWebServer>(TCPServerSocket::AllInterfaces, Port::http);
-
     StreamLoggingSink sink(std::cout);
     Logger log(sink);
+
+    std::shared_ptr<SingleConnectionWebServer> server =
+        std::make_shared<SingleConnectionWebServer>(TCPServerSocket::AllInterfaces, Port::http, log);
 
     WebApplication app(server, log);
 
@@ -34,11 +34,11 @@ void WebApplicationTests::ConstructorTest1(Test& test)
 
 void WebApplicationTests::RunTest1(Test& test)
 {
-    std::shared_ptr<SingleConnectionWebServer> server =
-        std::make_shared<SingleConnectionWebServer>(TCPServerSocket::AllInterfaces, Port::http);
-
     StreamLoggingSink sink(std::cout);
     Logger log(sink);
+
+    std::shared_ptr<SingleConnectionWebServer> server =
+        std::make_shared<SingleConnectionWebServer>(TCPServerSocket::AllInterfaces, Port::http, log);
 
     WebApplication app(server, log);
 

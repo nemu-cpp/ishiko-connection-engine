@@ -10,13 +10,13 @@
 #include "Nemu/WebFramework/SingleConnectionWebServer.hpp"
 #include <boost/filesystem.hpp>
 #include <Ishiko/HTTP.hpp>
+#include <Ishiko/Logging.hpp>
 #include <Ishiko/Networking.hpp>
 #include <sstream>
 
 using namespace boost::filesystem;
 using namespace Ishiko;
 using namespace Nemu;
-using namespace std;
 
 SingleConnectionWebServerTests::SingleConnectionWebServerTests(const TestNumber& number, const TestContext& context)
     : TestSequence(number, "SingleConnectionWebServer tests", context)
@@ -31,7 +31,11 @@ SingleConnectionWebServerTests::SingleConnectionWebServerTests(const TestNumber&
 void SingleConnectionWebServerTests::ConstructorTest1(Test& test)
 {
     Error error;
-    SingleConnectionWebServer server(IPv4Address::Localhost(), 0, error);
+
+    NullLoggingSink sink;
+    Logger logger(sink);
+
+    SingleConnectionWebServer server(IPv4Address::Localhost(), 0, logger, error);
 
     ISHIKO_TEST_FAIL_IF(error);
     ISHIKO_TEST_PASS();
@@ -40,7 +44,11 @@ void SingleConnectionWebServerTests::ConstructorTest1(Test& test)
 void SingleConnectionWebServerTests::StartTest1(Test& test)
 {
     Error error;
-    SingleConnectionWebServer server(IPv4Address::Localhost(), 8585, error);
+
+    NullLoggingSink sink;
+    Logger logger(sink);
+
+    SingleConnectionWebServer server(IPv4Address::Localhost(), 8585, logger, error);
 
     ISHIKO_TEST_FAIL_IF(error);
 
@@ -55,7 +63,9 @@ void SingleConnectionWebServerTests::RequestTest1(Test& test)
 {
     std::shared_ptr<TestServerObserver> observer = std::make_shared<TestServerObserver>();
     Error error;
-    SingleConnectionWebServer server(IPv4Address::Localhost(), 8089, error);
+    NullLoggingSink sink;
+    Logger logger(sink);
+    SingleConnectionWebServer server(IPv4Address::Localhost(), 8089, logger, error);
 
     TestWebRequestHandler requestHandler;
     server.m_requestHandler = &requestHandler;
@@ -101,7 +111,9 @@ void SingleConnectionWebServerTests::RequestTest2(Test& test)
 {
     std::shared_ptr<TestServerObserver> observer = std::make_shared<TestServerObserver>();
     Error error;
-    SingleConnectionWebServer server(IPv4Address::Localhost(), TCPServerSocket::AnyPort, error);
+    NullLoggingSink sink;
+    Logger logger(sink);
+    SingleConnectionWebServer server(IPv4Address::Localhost(), TCPServerSocket::AnyPort, logger, error);
 
     TestWebRequestHandler requestHandler;
     server.m_requestHandler = &requestHandler;
@@ -152,7 +164,9 @@ void SingleConnectionWebServerTests::RequestTest3(Test& test)
 
     std::shared_ptr<TestServerObserver> observer = std::make_shared<TestServerObserver>();
     Error error;
-    SingleConnectionWebServer server(IPv4Address::Localhost(), TCPServerSocket::AnyPort, error);
+    NullLoggingSink sink;
+    Logger logger(sink);
+    SingleConnectionWebServer server(IPv4Address::Localhost(), TCPServerSocket::AnyPort, logger, error);
     Port port = server.socket().port();
 
     TestWebRequestHandler requestHandler;
@@ -180,7 +194,7 @@ void SingleConnectionWebServerTests::RequestTest3(Test& test)
     const std::vector<std::tuple<TestServerObserver::EEventType, const Nemu::Server*, std::string>>& events =
         observer->connectionEvents();
 
-    stringstream output;
+    std::stringstream output;
     HTTPClient::Get(IPv4Address::Localhost(), port, "/", output, error);
 
     ISHIKO_TEST_FAIL_IF_NOT(error);
