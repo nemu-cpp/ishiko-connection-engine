@@ -4,19 +4,19 @@
     See https://github.com/nemu-cpp/web-framework/blob/main/LICENSE.txt
 */
 
-#include "IshikoWebRequestTests.hpp"
+#include "WebRequestTests.hpp"
 #include "Nemu/WebFramework/WebRequest.hpp"
 
 using namespace Ishiko;
 using namespace Nemu;
 
-IshikoWebRequestTests::IshikoWebRequestTests(const TestNumber& number, const TestContext& context)
-    : TestSequence(number, "IshikoWebRequest tests", context)
+WebRequestTests::WebRequestTests(const TestNumber& number, const TestContext& context)
+    : TestSequence(number, "WebRequest tests", context)
 {
     append<HeapAllocationErrorsTest>("Constructor test 1", ConstructorTest1);
 }
 
-void IshikoWebRequestTests::ConstructorTest1(Test& test)
+void WebRequestTests::ConstructorTest1(Test& test)
 {
     WebRequest request;
 

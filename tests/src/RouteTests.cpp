@@ -4,7 +4,7 @@
     See https://github.com/nemu-cpp/web-framework/blob/main/LICENSE.txt
 */
 
-#include "RouteTests.h"
+#include "RouteTests.hpp"
 #include "Nemu/WebFramework/Route.hpp"
 #include "Nemu/WebFramework/RequestHandlers/HardcodedWebRequestHandler.hpp"
 

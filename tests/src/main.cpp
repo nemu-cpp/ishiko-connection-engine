@@ -4,14 +4,15 @@
     See https://github.com/nemu-cpp/web-framework/blob/main/LICENSE.txt
 */
 
-#include "IshikoWebRequestTests.hpp"
-#include "IshikoWebResponseBuilderTests.hpp"
 #include "FileSystemWebRequestHandlerTests.hpp"
 #include "FunctionWebRequestHandlerTests.hpp"
 #include "HardcodedWebRequestHandlerTests.hpp"
-#include "RouteTests.h"
-#include "RoutesTests.h"
+#include "RouteTests.hpp"
+#include "RoutesTests.hpp"
 #include "SingleConnectionWebServerTests.hpp"
+#include "WebApplicationTests.hpp"
+#include "WebRequestTests.hpp"
+#include "WebResponseBuilderTests.hpp"
 #include "Nemu/WebFramework/linkoptions.hpp"
 #include <Ishiko/TestFramework.hpp>
 
@@ -27,13 +28,14 @@ int main(int argc, char* argv[])
 
     TestSequence& theTests = theTestHarness.tests();
     theTests.append<SingleConnectionWebServerTests>();
-    theTests.append<IshikoWebRequestTests>();
-    theTests.append<IshikoWebResponseBuilderTests>();
+    theTests.append<WebRequestTests>();
+    theTests.append<WebResponseBuilderTests>();
     theTests.append<RouteTests>();
     theTests.append<RoutesTests>();
     theTests.append<HardcodedWebRequestHandlerTests>();
     theTests.append<FunctionWebRequestHandlerTests>();
     theTests.append<FileSystemWebRequestHandlerTests>();
+    theTests.append<WebApplicationTests>();
 
     return theTestHarness.run();
 }
