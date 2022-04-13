@@ -14,13 +14,13 @@ namespace Nemu
 
 SingleConnectionWebServer::SingleConnectionWebServer(Ishiko::IPv4Address address, Ishiko::Port port,
     Ishiko::Logger& logger)
-    : m_logger(logger), m_socket(address, port)
+    : m_logger(logger), m_socket(address, port), m_stop(false)
 {
 }
 
 SingleConnectionWebServer::SingleConnectionWebServer(Ishiko::IPv4Address address, Ishiko::Port port,
     Ishiko::Logger& logger, Ishiko::Error& error) noexcept
-    : m_logger(logger), m_init(error), m_socket(address, port, error)
+    : m_logger(logger), m_init(error), m_socket(address, port, error), m_stop(false)
 {
 }
 
