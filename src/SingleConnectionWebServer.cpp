@@ -30,6 +30,8 @@ void SingleConnectionWebServer::start()
     m_acceptThread = std::thread(
         [this]()
         {
+            std::cout << "SingleConnectionWebServer server start thread" << std::endl;
+
             // TODO: this is a temporary blocking implementation
             // TODO: handle error
             while (!m_stop)
