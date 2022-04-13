@@ -72,13 +72,6 @@ void SingleConnectionWebServerTests::RequestTest1(Test& test)
 
     server.start();
 
-    // TODO: there is a problem here, first I have to introduce this sleep and also it seems I can't use AnyPort else
-    // HTTPClient fails. Need more logging and checks. And yet in subsequent tests it's fine.
-    std::this_thread::yield();
-    std::this_thread::sleep_for(std::chrono::seconds(15));
-
-
-    std::cout << "Here1" << std::endl;
     path outputPath(test.context().getTestOutputPath("SingleConnectionWebServerTests_RequestTest1.bin"));
     std::ofstream responseFile(outputPath.string(), std::ios::out | std::ios::binary);
     HTTPClient::Get(IPv4Address::Localhost(), 8089, "/", responseFile, error);
@@ -163,8 +156,6 @@ void SingleConnectionWebServerTests::RequestTest2(Test& test)
 
 void SingleConnectionWebServerTests::RequestTest3(Test& test)
 {
-    path outputPath(test.context().getTestOutputPath("SingleConnectionWebServerTests_RequestTest3.bin"));
-
     std::shared_ptr<TestServerObserver> observer = std::make_shared<TestServerObserver>();
     Error error;
     StreamLoggingSink sink(std::cout);
@@ -180,6 +171,7 @@ void SingleConnectionWebServerTests::RequestTest3(Test& test)
 
     server.start();
 
+    path outputPath(test.context().getTestOutputPath("SingleConnectionWebServerTests_RequestTest3.bin"));
     std::ofstream responseFile(outputPath.string(), std::ios::out | std::ios::binary);
     HTTPClient::Get(IPv4Address::Localhost(), port, "/", responseFile, error);
 
