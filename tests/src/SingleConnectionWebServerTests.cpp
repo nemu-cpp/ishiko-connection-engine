@@ -148,6 +148,8 @@ void SingleConnectionWebServerTests::RequestTest2(Test& test)
 
 void SingleConnectionWebServerTests::RequestTest3(Test& test)
 {
+    path outputPath(test.context().getTestOutputPath("SingleConnectionWebServerTests_RequestTest3.bin"));
+
     std::shared_ptr<TestServerObserver> observer = std::make_shared<TestServerObserver>();
     Error error;
     SingleConnectionWebServer server(IPv4Address::Localhost(), TCPServerSocket::AnyPort, error);
@@ -161,7 +163,6 @@ void SingleConnectionWebServerTests::RequestTest3(Test& test)
 
     server.start();
 
-    path outputPath(test.context().getTestOutputPath("SingleConnectionWebServerTests_RequestTest3.bin"));
     std::ofstream responseFile(outputPath.string(), std::ios::out | std::ios::binary);
     HTTPClient::Get(IPv4Address::Localhost(), port, "/", responseFile, error);
 
