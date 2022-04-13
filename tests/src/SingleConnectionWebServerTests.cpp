@@ -25,7 +25,7 @@ SingleConnectionWebServerTests::SingleConnectionWebServerTests(const TestNumber&
     append<HeapAllocationErrorsTest>("start test 1", StartTest1);
     append<HeapAllocationErrorsTest>("Request test 1", RequestTest1);
     append<HeapAllocationErrorsTest>("Request test 2", RequestTest2);
-    append<FileComparisonTest>("Request test 3", RequestTest3);
+    append<HeapAllocationErrorsTest>("Request test 3", RequestTest3);
 }
 
 void SingleConnectionWebServerTests::ConstructorTest1(Test& test)
@@ -146,7 +146,7 @@ void SingleConnectionWebServerTests::RequestTest2(Test& test)
     ISHIKO_TEST_PASS();
 }
 
-void SingleConnectionWebServerTests::RequestTest3(FileComparisonTest& test)
+void SingleConnectionWebServerTests::RequestTest3(Test& test)
 {
     std::shared_ptr<TestServerObserver> observer = std::make_shared<TestServerObserver>();
     Error error;
