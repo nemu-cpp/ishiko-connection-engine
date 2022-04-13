@@ -45,7 +45,8 @@ public:
     void setDefaultRoute(const Route& route);
 
 private:
-    std::vector<Route> m_routes;
+    std::vector<Route> m_exactMatchRoutes;
+    std::vector<Route> m_prefixMatchRoutes;
     Route m_defaultRoute;
 };
 
