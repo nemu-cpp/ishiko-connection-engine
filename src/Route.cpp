@@ -12,14 +12,19 @@ using namespace std;
 namespace Nemu
 {
 
-Route::Route(const string& path, shared_ptr<WebRequestHandler> handler)
-    : m_path(path), m_handler(handler)
+Route::Route(const string& pathPattern, shared_ptr<WebRequestHandler> handler)
+    : m_pathPattern(pathPattern), m_handler(handler)
 {
 }
 
-const string& Route::path() const
+const string& Route::pathPattern() const
 {
-    return m_path;
+    return m_pathPattern;
+}
+
+WebRequestHandler& Route::requestHandler() const
+{
+    return *m_handler;
 }
 
 void Route::runHandler(const WebRequest& request, WebResponseBuilder& response, Logger& logger) const

@@ -17,6 +17,7 @@ public:
 private:
     static void CreationTest1(Ishiko::Test& test);
     static void MatchTest1(Ishiko::Test& test);
+    static void MatchTest2(Ishiko::Test& test);
 };
 
 #endif

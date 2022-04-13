@@ -27,7 +27,7 @@ const Route& Routes::match(const std::string& path) const
 {
     for (const Route& route : m_routes)
     {
-        if (route.path() == path)
+        if (route.pathPattern() == path)
         {
             return route;
         }

@@ -23,18 +23,20 @@ class Route
 public:
     /// Constructor.
     /**
-        @param path The handler handles requests that match this path.
+        @param pathPattern The handler handles requests that match this pattern.
         @param handler The request handler.
     */
-    Route(const std::string& path, std::shared_ptr<WebRequestHandler> handler);
+    Route(const std::string& pathPattern, std::shared_ptr<WebRequestHandler> handler);
     
-    /// Returns the path.
-    const std::string& path() const;
+    /// Returns the path pattern.
+    const std::string& pathPattern() const;
+
+    WebRequestHandler& requestHandler() const;
 
     void runHandler(const WebRequest& request, WebResponseBuilder& response, Ishiko::Logger& logger) const;
 
 private:
-    std::string m_path;
+    std::string m_pathPattern;
     std::shared_ptr<WebRequestHandler> m_handler;
 };
 
