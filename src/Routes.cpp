@@ -7,27 +7,41 @@
 #include "Routes.hpp"
 #include "RequestHandlers/HardcodedWebRequestHandler.hpp"
 
-using namespace Ishiko;
-using namespace std;
-
 namespace Nemu
 {
 
 Routes::Routes()
-    : m_defaultRoute("", make_shared<HardcodedWebRequestHandler>(404, "The requested resource was not found"))
+    : m_defaultRoute("", std::make_shared<HardcodedWebRequestHandler>(404, "The requested resource was not found"))
 {
 }
 
 void Routes::append(const Route& route)
 {
-    m_routes.push_back(route);
+    const std::string& pattern = route.pathPattern();
+    if (!pattern.empty() && (pattern.back() == '*'))
+    {
+        m_prefixMatchRoutes.push_back(route);
+    }
+    else
+    {
+        m_exactMatchRoutes.push_back(route);
+    }
 }
 
 const Route& Routes::match(const std::string& path) const
 {
-    for (const Route& route : m_routes)
+    // TOD: a hashmap would be ideal for this I think
+    for (const Route& route : m_exactMatchRoutes)
     {
         if (route.pathPattern() == path)
+        {
+            return route;
+        }
+    }
+    for (const Route& route : m_prefixMatchRoutes)
+    {
+        const std::string& pattern = route.pathPattern();
+        if (strncmp(path.c_str(), pattern.c_str(), pattern.size() - 1) == 0)
         {
             return route;
         }
