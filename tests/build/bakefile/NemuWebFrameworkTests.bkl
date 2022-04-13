@@ -24,29 +24,31 @@ program NemuWebFrameworkTests: NemuWebFramework, IshikoHTTP, IshikoTestFramework
 
     headers
     {
-        ../../src/SingleConnectionWebServerTests.hpp
-        ../../src/IshikoWebRequestTests.hpp
-        ../../src/IshikoWebResponseBuilderTests.hpp
         ../../src/FileSystemWebRequestHandlerTests.hpp
         ../../src/FunctionWebRequestHandlerTests.hpp
         ../../src/HardcodedWebRequestHandlerTests.hpp
-        ../../src/RouteTests.h
-        ../../src/RoutesTests.h
+        ../../src/RouteTests.hpp
+        ../../src/RoutesTests.hpp
+        ../../src/SingleConnectionWebServerTests.hpp
+        ../../src/WebApplicationTests.hpp
+        ../../src/WebRequestTests.hpp
+        ../../src/WebResponseBuilderTests.hpp
         ../../src/Helpers/TestServerObserver.hpp
         ../../src/Helpers/TestWebRequestHandler.hpp
     }
 
     sources
     {
-        ../../src/SingleConnectionWebServerTests.cpp
-        ../../src/IshikoWebRequestTests.cpp
-        ../../src/IshikoWebResponseBuilderTests.cpp
         ../../src/RouteTests.cpp
         ../../src/RoutesTests.cpp
         ../../src/FileSystemWebRequestHandlerTests.cpp
         ../../src/FunctionWebRequestHandlerTests.cpp
         ../../src/HardcodedWebRequestHandlerTests.cpp
         ../../src/main.cpp
+        ../../src/SingleConnectionWebServerTests.cpp
+        ../../src/WebApplicationTests.cpp
+        ../../src/WebRequestTests.cpp
+        ../../src/WebResponseBuilderTests.cpp
         ../../src/Helpers/TestServerObserver.cpp
         ../../src/Helpers/TestWebRequestHandler.cpp
     }
