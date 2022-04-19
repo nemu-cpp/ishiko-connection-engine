@@ -30,8 +30,6 @@ void SingleConnectionWebServer::start()
     m_acceptThread = std::thread(
         [this]()
         {
-            std::cout << "SingleConnectionWebServer server start thread" << std::endl;
-
             // TODO: this is a temporary blocking implementation
             // TODO: handle error
             while (!m_stop)
@@ -41,12 +39,9 @@ void SingleConnectionWebServer::start()
                 // TODO: logger is not threadsafe, need to sort this out
                 Ishiko::Logger& logger = m_logger;
 
-                std::cout << "SingleConnectionWebServer server ready" << std::endl;
                 NEMU_LOG_INFO("SingleConnectionWebServer server ready");
 
                 Ishiko::TCPClientSocket clientSocket = m_socket.accept(error);
-
-
 
                 WebRequest request;
                 Ishiko::HTTPMessagePushParser requestParser(request);
