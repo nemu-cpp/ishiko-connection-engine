@@ -83,7 +83,14 @@ void SingleConnectionWebServer::stop()
     // TODO: for now send a dummy request to trigger the accept
     Ishiko::Error error;
     Ishiko::TCPClientSocket socket(error);
-    socket.connect(m_socket.ipAddress(), m_socket.port(), error);
+    if (m_socket.ipAddress() == 0)
+    {
+        socket.connect(Ishiko::IPv4Address::Localhost(), m_socket.port(), error);
+    }
+    else
+    {
+        socket.connect(m_socket.ipAddress(), m_socket.port(), error);
+    }
 }
 
 void SingleConnectionWebServer::join()
