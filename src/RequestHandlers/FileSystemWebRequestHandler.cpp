@@ -9,7 +9,6 @@
 
 using namespace boost::filesystem;
 using namespace Ishiko;
-using namespace std;
 
 namespace Nemu
 {
@@ -22,7 +21,8 @@ FileSystemWebRequestHandler::FileSystemWebRequestHandler(path root)
 
 void FileSystemWebRequestHandler::run(const WebRequest& request, WebResponseBuilder& response, Logger& logger)
 {
-    string uri = request.URI();
+    // TODO: this could be a full path
+    std::string uri = request.url().path();
     if (uri == "/")
     {
         for (size_t i = 0; i < m_defaults.size(); ++i)

@@ -20,7 +20,7 @@ WebApplication::RequestHandler::RequestHandler(WebApplication& owner)
 void WebApplication::RequestHandler::run(const WebRequest& request, WebResponseBuilder& response, Logger& logger)
 {
     response.m_views = &m_owner.m_views;
-    const Route& route = m_owner.m_routes->match(request.URI());
+    const Route& route = m_owner.m_routes->match(request.url().path());
     route.runHandler(request, response, m_owner.m_logger);
 }
 

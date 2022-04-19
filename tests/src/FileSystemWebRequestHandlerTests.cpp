@@ -36,7 +36,7 @@ void FileSystemWebRequestHandlerTests::RunTest1(FileComparisonTest& test)
 
     FileSystemWebRequestHandler requestHandler(inputPath.string().c_str());
 
-    WebRequest request("/");
+    WebRequest request(URL("/"));
     WebResponseBuilder responseBuilder;
     NullLoggingSink sink;
     Logger log(sink);

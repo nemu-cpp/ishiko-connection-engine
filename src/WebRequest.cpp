@@ -6,25 +6,27 @@
 
 #include "WebRequest.hpp"
 
-using namespace boost;
-using namespace std;
-
 namespace Nemu
 {
 
-WebRequest::WebRequest(string uri)
-    : m_uri(std::move(uri))
+WebRequest::WebRequest()
+    : m_url("")
 {
 }
 
-string WebRequest::URI() const
+WebRequest::WebRequest(Ishiko::URL url)
+    : m_url(std::move(url))
 {
-    return m_uri;
 }
 
-void WebRequest::onRequestURI(string_view data)
+const Ishiko::URL& WebRequest::url() const
 {
-    m_uri = data.to_string();
+    return m_url;
+}
+
+void WebRequest::onRequestURI(boost::string_view data)
+{
+    m_url = data.to_string();
 }
 
 }
