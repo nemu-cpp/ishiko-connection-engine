@@ -19,6 +19,9 @@ FileSystemWebRequestHandlerTests::FileSystemWebRequestHandlerTests(const TestNum
     append<HeapAllocationErrorsTest>("run test 1", RunTest1);
     append<HeapAllocationErrorsTest>("run test 2", RunTest2);
     append<HeapAllocationErrorsTest>("run test 3", RunTest3);
+    append<HeapAllocationErrorsTest>("run test 4", RunTest4);
+    append<HeapAllocationErrorsTest>("run test 5", RunTest5);
+    append<HeapAllocationErrorsTest>("run test 6", RunTest6);
 }
 
 void FileSystemWebRequestHandlerTests::ConstructorTest1(Test& test)
@@ -100,5 +103,80 @@ void FileSystemWebRequestHandlerTests::RunTest3(Test& test)
 
     ISHIKO_TEST_FAIL_IF_FILES_NEQ("FileSystemWebRequestHandlerTests_RunTest3.bin",
         "FileSystemWebRequestHandlerTests_RunTest3.bin");
+    ISHIKO_TEST_PASS();
+}
+
+void FileSystemWebRequestHandlerTests::RunTest4(Test& test)
+{
+    boost::filesystem::path inputPath(test.context().getTestDataPath("html"));
+
+    boost::filesystem::path outputPath(
+        test.context().getTestOutputPath("FileSystemWebRequestHandlerTests_RunTest4.bin"));
+    std::ofstream stream(outputPath.c_str(), std::ios::binary);
+
+    FileSystemWebRequestHandler requestHandler(inputPath.string().c_str());
+
+    WebRequest request(URL("file1.html"));
+    WebResponseBuilder responseBuilder;
+    NullLoggingSink sink;
+    Logger log(sink);
+
+    requestHandler.run(request, responseBuilder, log);
+
+    stream << responseBuilder.toString();
+    stream.close();
+
+    ISHIKO_TEST_FAIL_IF_FILES_NEQ("FileSystemWebRequestHandlerTests_RunTest4.bin",
+        "FileSystemWebRequestHandlerTests_RunTest4.bin");
+    ISHIKO_TEST_PASS();
+}
+
+void FileSystemWebRequestHandlerTests::RunTest5(Test& test)
+{
+    boost::filesystem::path inputPath(test.context().getTestDataPath("html"));
+
+    boost::filesystem::path outputPath(
+        test.context().getTestOutputPath("FileSystemWebRequestHandlerTests_RunTest5.bin"));
+    std::ofstream stream(outputPath.c_str(), std::ios::binary);
+
+    FileSystemWebRequestHandler requestHandler(inputPath.string().c_str());
+
+    WebRequest request(URL("dir1"));
+    WebResponseBuilder responseBuilder;
+    NullLoggingSink sink;
+    Logger log(sink);
+
+    requestHandler.run(request, responseBuilder, log);
+
+    stream << responseBuilder.toString();
+    stream.close();
+
+    ISHIKO_TEST_FAIL_IF_FILES_NEQ("FileSystemWebRequestHandlerTests_RunTest5.bin",
+        "FileSystemWebRequestHandlerTests_RunTest5.bin");
+    ISHIKO_TEST_PASS();
+}
+
+void FileSystemWebRequestHandlerTests::RunTest6(Test& test)
+{
+    boost::filesystem::path inputPath(test.context().getTestDataPath("html"));
+
+    boost::filesystem::path outputPath(
+        test.context().getTestOutputPath("FileSystemWebRequestHandlerTests_RunTest6.bin"));
+    std::ofstream stream(outputPath.c_str(), std::ios::binary);
+
+    FileSystemWebRequestHandler requestHandler(inputPath.string().c_str());
+
+    WebRequest request(URL("dir1/file2.html"));
+    WebResponseBuilder responseBuilder;
+    NullLoggingSink sink;
+    Logger log(sink);
+
+    requestHandler.run(request, responseBuilder, log);
+
+    stream << responseBuilder.toString();
+    stream.close();
+
+    ISHIKO_TEST_FAIL_IF_FILES_NEQ("FileSystemWebRequestHandlerTests_RunTest6.bin",
+        "FileSystemWebRequestHandlerTests_RunTest6.bin");
     ISHIKO_TEST_PASS();
 }

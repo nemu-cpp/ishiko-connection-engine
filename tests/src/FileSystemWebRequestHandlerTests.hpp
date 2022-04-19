@@ -19,6 +19,9 @@ private:
     static void RunTest1(Ishiko::Test& test);
     static void RunTest2(Ishiko::Test& test);
     static void RunTest3(Ishiko::Test& test);
+    static void RunTest4(Ishiko::Test& test);
+    static void RunTest5(Ishiko::Test& test);
+    static void RunTest6(Ishiko::Test& test);
 };
 
 #endif

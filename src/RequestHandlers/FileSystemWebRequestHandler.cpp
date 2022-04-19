@@ -26,18 +26,20 @@ void FileSystemWebRequestHandler::run(const WebRequest& request, WebResponseBuil
         // TODO: I don't think this can actually happen if the URL comes from a web request
         urlPath = "/";
     }
+    // TODO: does this guarantee we don't ignore the root?
+    boost::filesystem::path filePath = (m_root / urlPath);
     Ishiko::Error error;
     // TODO: this behaviour should be configurable I guess, maybe this should only be done for "/"?
-    if (Ishiko::FileSystem::IsDirectory(urlPath.c_str(), error))
+    if (Ishiko::FileSystem::IsDirectory(filePath.string().c_str(), error))
     {
         for (size_t i = 0; i < m_defaults.size(); ++i)
         {
             response.setStatus(200);
             // TODO: handle multiple default paths correctly
-            boost::filesystem::path filePath = (m_root / m_defaults[i]);
+            boost::filesystem::path defaultFilePath = (filePath / m_defaults[i]);
             // TODO: handle error
             Error error;
-            response.body() = FileSystem::ReadFile(filePath, error);
+            response.body() = FileSystem::ReadFile(defaultFilePath, error);
             return;
         }
     }
@@ -45,7 +47,6 @@ void FileSystemWebRequestHandler::run(const WebRequest& request, WebResponseBuil
     {
         // TODO: verifu this is a regular file? And no a link or something?
         response.setStatus(200);
-        boost::filesystem::path filePath = (m_root / filePath);
         // TODO: handle error
         Error error;
         response.body() = FileSystem::ReadFile(filePath, error);
