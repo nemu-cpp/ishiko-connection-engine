@@ -5,31 +5,43 @@
 */
 
 #include <Nemu/WebFramework.hpp>
+#include <Ishiko/Logging.hpp>
+#include <Ishiko/Networking.hpp>
+#include <exception>
+#include <iostream>
+#include <memory>
 
 int main(int argc, char* argv[])
 {
-    Ishiko::Error error;
-
-    // TODO: use the async server
-    std::shared_ptr<Nemu::SingleConnectionWebServer> server =
-        std::make_shared<Nemu::SingleConnectionWebServer>(Ishiko::TCPServerSocket::AllInterfaces,
-            Ishiko::Port::http, error);
-
     // Create a log that sends its output to the console.
+    // TODO: can I guarantee that this doesn't throw?
     Ishiko::StreamLoggingSink sink(std::cout);
-    Ishiko::Logger log(sink);
+    Ishiko::Logger logger(sink);
 
-    // TODO: use exceptions
-    Nemu::WebApplication app(server, log, error);
-    if (error)
+    try
     {
-        std::cout << "Error: " << error << std::endl;
+        // TODO: use the async server
+        std::shared_ptr<Nemu::SingleConnectionWebServer> server =
+            std::make_shared<Nemu::SingleConnectionWebServer>(Ishiko::TCPServerSocket::AllInterfaces,
+                Ishiko::Port::http, logger);
+
+        Nemu::WebApplication app(server, logger);
+
+        // TODO: I should take this path relative to the executable location
+        app.routes().append(Nemu::Route("/", std::make_shared<Nemu::FileSystemWebRequestHandler>("../../data")));
+
+        app.run();
+
+        return 0;
     }
-
-    // TODO: I should take this path relative to the executable location
-    app.routes().append(Nemu::Route("/", std::make_shared<Nemu::FileSystemWebRequestHandler>("../../data")));
-
-    app.run();
-
-    return error.condition().value();
+    catch (const std::exception& e)
+    {
+        NEMU_LOG_ERROR("Exception thrown: {}", e.what());
+        return -1;
+    }
+    catch (...)
+    {
+        NEMU_LOG_ERROR("Unknown exception thrown");
+        return -1;
+    }
 }

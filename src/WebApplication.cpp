@@ -28,7 +28,6 @@ WebApplication::WebApplication(shared_ptr<WebServer> server, Logger& logger)
     : Application(logger), m_requestHandler(*this), m_routes(std::make_shared<Routes>())
 {
     server->m_requestHandler = &m_requestHandler;
-    server->m_logger = &logger;
     servers().append(server);
 }
 
@@ -36,7 +35,6 @@ WebApplication::WebApplication(shared_ptr<WebServer> server, Logger& logger, Err
     : Application(logger), m_requestHandler(*this), m_routes(std::make_shared<Routes>())
 {
     server->m_requestHandler = &m_requestHandler;
-    server->m_logger = &logger;
     servers().append(server);
 }
 
@@ -44,7 +42,6 @@ WebApplication::WebApplication(shared_ptr<WebServer> server, Logger& logger, sha
     : Application(logger), m_requestHandler(*this), m_routes(routes)
 {
     server->m_requestHandler = &m_requestHandler;
-    server->m_logger = &logger;
     servers().append(server);
 }
 
