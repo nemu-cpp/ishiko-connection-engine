@@ -62,6 +62,7 @@ void SingleConnectionWebServer::start()
                     NEMU_LOG_INFO("Received request");
 
                     WebResponseBuilder response;
+                    // TODO: cope with exceptions
                     m_requestHandler->run(request, response, m_logger);
                     std::string responseString = response.toString();
                     clientSocket.write(responseString.c_str(), responseString.size(), error);
