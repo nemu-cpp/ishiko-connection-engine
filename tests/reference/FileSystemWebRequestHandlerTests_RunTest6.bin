@@ -1,0 +1,11 @@
+HTTP/1.1 200 OK
+Content-Length: 116
+
+<html>
+<head>
+<title>dir1 file 2</title>
+</head>
+<body>
+<p>This is file dir1/file2.html</p>
+</body>
+</html>

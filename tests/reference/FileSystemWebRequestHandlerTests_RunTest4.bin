@@ -1,0 +1,11 @@
+HTTP/1.1 200 OK
+Content-Length: 97
+
+<html>
+<head>
+<title>File 1</title>
+</head>
+<body>
+<p>This is file 1</p>
+</body>
+</html>

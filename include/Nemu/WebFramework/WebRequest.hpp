@@ -8,6 +8,7 @@
 #define _NEMU_CPP_WEBFRAMEWORK_WEBREQUEST_HPP_
 
 #include <Ishiko/HTTP.hpp>
+#include <Ishiko/Types.hpp>
 #include <Nemu/Core.hpp>
 
 namespace Nemu
@@ -17,17 +18,16 @@ namespace Nemu
 class WebRequest : public Ishiko::HTTPMessagePushParser::Callbacks
 {
 public:
-    WebRequest() = default;
-    WebRequest(std::string uri);
+    WebRequest();
+    WebRequest(Ishiko::URL url);
 
-    /// Returns the URI part of the request.
-    // TODO: can we avoid the copy here
-    std::string URI() const;
+    /// Returns the requested URL.
+    const Ishiko::URL& url() const;
 
     void onRequestURI(boost::string_view data) override;
 
 private:
-    std::string m_uri;
+    Ishiko::URL m_url;
 };
 
 }

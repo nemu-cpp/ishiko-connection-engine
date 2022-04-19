@@ -34,6 +34,7 @@ public:
     */
     void append(const Route& route);
 
+    // TODO: this should match URLs including host and scheme
     /// Finds the first route in the sequence that matches the path.
     /**
         If no match is found the default route is returned.
