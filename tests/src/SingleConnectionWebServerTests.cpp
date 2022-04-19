@@ -10,28 +10,32 @@
 #include "Nemu/WebFramework/SingleConnectionWebServer.hpp"
 #include <boost/filesystem.hpp>
 #include <Ishiko/HTTP.hpp>
+#include <Ishiko/Logging.hpp>
 #include <Ishiko/Networking.hpp>
 #include <sstream>
 
 using namespace boost::filesystem;
 using namespace Ishiko;
 using namespace Nemu;
-using namespace std;
 
 SingleConnectionWebServerTests::SingleConnectionWebServerTests(const TestNumber& number, const TestContext& context)
     : TestSequence(number, "SingleConnectionWebServer tests", context)
 {
     append<HeapAllocationErrorsTest>("Constructor test 1", ConstructorTest1);
     append<HeapAllocationErrorsTest>("start test 1", StartTest1);
-    append<FileComparisonTest>("Request test 1", RequestTest1);
-    append<FileComparisonTest>("Request test 2", RequestTest2);
-    append<FileComparisonTest>("Request test 3", RequestTest3);
+    append<HeapAllocationErrorsTest>("Request test 1", RequestTest1);
+    append<HeapAllocationErrorsTest>("Request test 2", RequestTest2);
+    append<HeapAllocationErrorsTest>("Request test 3", RequestTest3);
 }
 
 void SingleConnectionWebServerTests::ConstructorTest1(Test& test)
 {
     Error error;
-    SingleConnectionWebServer server(IPv4Address::Localhost(), 0, error);
+
+    NullLoggingSink sink;
+    Logger logger(sink);
+
+    SingleConnectionWebServer server(IPv4Address::Localhost(), 0, logger, error);
 
     ISHIKO_TEST_FAIL_IF(error);
     ISHIKO_TEST_PASS();
@@ -40,7 +44,11 @@ void SingleConnectionWebServerTests::ConstructorTest1(Test& test)
 void SingleConnectionWebServerTests::StartTest1(Test& test)
 {
     Error error;
-    SingleConnectionWebServer server(IPv4Address::Localhost(), 8585, error);
+
+    NullLoggingSink sink;
+    Logger logger(sink);
+
+    SingleConnectionWebServer server(IPv4Address::Localhost(), 8585, logger, error);
 
     ISHIKO_TEST_FAIL_IF(error);
 
@@ -51,24 +59,20 @@ void SingleConnectionWebServerTests::StartTest1(Test& test)
     ISHIKO_TEST_PASS();
 }
 
-void SingleConnectionWebServerTests::RequestTest1(FileComparisonTest& test)
+void SingleConnectionWebServerTests::RequestTest1(Test& test)
 {
-    path outputPath(test.context().getTestOutputPath("SingleConnectionWebServerTests_RequestTest1.bin"));
-    path referencePath(test.context().getReferenceDataPath("SingleConnectionWebServerTests_RequestTest1.bin"));
-
     std::shared_ptr<TestServerObserver> observer = std::make_shared<TestServerObserver>();
     Error error;
-    SingleConnectionWebServer server(IPv4Address::Localhost(), 8089, error);
+    StreamLoggingSink sink(std::cout);
+    Logger logger(sink);
+    SingleConnectionWebServer server(IPv4Address::Localhost(), 8089, logger, error);
 
     TestWebRequestHandler requestHandler;
     server.m_requestHandler = &requestHandler;
 
     server.start();
 
-    // TODO: there is a problem here, first I have to introduce this sleep and also it seems I can't use AnyPort else
-    // HTTPClient fails. Need more logging and checks. And yet in subsequent tests it's fine.
-    std::this_thread::sleep_for(std::chrono::seconds(1));
-
+    path outputPath(test.context().getTestOutputPath("SingleConnectionWebServerTests_RequestTest1.bin"));
     std::ofstream responseFile(outputPath.string(), std::ios::out | std::ios::binary);
     HTTPClient::Get(IPv4Address::Localhost(), 8089, "/", responseFile, error);
 
@@ -92,42 +96,41 @@ void SingleConnectionWebServerTests::RequestTest1(FileComparisonTest& test)
     ISHIKO_TEST_FAIL_IF_NEQ(std::get<1>(events[1]), &server);
     ISHIKO_TEST_FAIL_IF_NEQ(std::get<2>(events[0]), std::get<2>(events[1]));
     */
-    
-    test.setOutputFilePath(outputPath);
-    test.setReferenceFilePath(referencePath);
+
+    ISHIKO_TEST_FAIL_IF_FILES_NEQ("SingleConnectionWebServerTests_RequestTest1.bin",
+        "SingleConnectionWebServerTests_RequestTest1.bin");
 
     ISHIKO_TEST_PASS();
 }
 
-void SingleConnectionWebServerTests::RequestTest2(FileComparisonTest& test)
+void SingleConnectionWebServerTests::RequestTest2(Test& test)
 {
-    path outputPath(test.context().getTestOutputPath("SingleConnectionWebServerTests_RequestTest2.bin"));
-    path referencePath(test.context().getReferenceDataPath("SingleConnectionWebServerTests_RequestTest2.bin"));
-
     std::shared_ptr<TestServerObserver> observer = std::make_shared<TestServerObserver>();
     Error error;
-    SingleConnectionWebServer server(IPv4Address::Localhost(), TCPServerSocket::AnyPort, error);
+    StreamLoggingSink sink(std::cout);
+    Logger logger(sink);
+    SingleConnectionWebServer server(IPv4Address::Localhost(), TCPServerSocket::AnyPort, logger, error);
 
     TestWebRequestHandler requestHandler;
     server.m_requestHandler = &requestHandler;
 
     server.start();
 
-    // TODO: query for 2 different files, put output in 2 separate files and compare separately (needs improvements to
-    // test framework
-    std::ofstream responseFile(outputPath.string(), std::ios::out | std::ios::binary);
-    HTTPClient::Get(IPv4Address::Localhost(), server.socket().port(), "/", responseFile, error);
+    path outputPath1(test.context().getTestOutputPath("SingleConnectionWebServerTests_RequestTest2_1.bin"));
+    std::ofstream responseFile1(outputPath1.string(), std::ios::out | std::ios::binary);
+    HTTPClient::Get(IPv4Address::Localhost(), server.socket().port(), "/", responseFile1, error);
+    responseFile1.close();
 
     ISHIKO_TEST_FAIL_IF(error);
 
-    HTTPClient::Get(IPv4Address::Localhost(), server.socket().port(), "/", responseFile, error);
+    path outputPath2(test.context().getTestOutputPath("SingleConnectionWebServerTests_RequestTest2_2.bin"));
+    std::ofstream responseFile2(outputPath2.string(), std::ios::out | std::ios::binary);
+    HTTPClient::Get(IPv4Address::Localhost(), server.socket().port(), "/", responseFile2, error);
+    responseFile2.close();
 
     ISHIKO_TEST_FAIL_IF(error);
-
-    responseFile.close();
 
     server.stop();
-
     server.join();
 
     const std::vector<std::tuple<TestServerObserver::EEventType, const Nemu::Server*, std::string>>& events =
@@ -144,20 +147,20 @@ void SingleConnectionWebServerTests::RequestTest2(FileComparisonTest& test)
     ISHIKO_TEST_FAIL_IF_NEQ(std::get<2>(events[0]), std::get<2>(events[1]));
     */
 
-    test.setOutputFilePath(outputPath);
-    test.setReferenceFilePath(referencePath);
-
+    ISHIKO_TEST_FAIL_IF_FILES_NEQ("SingleConnectionWebServerTests_RequestTest2_1.bin",
+        "SingleConnectionWebServerTests_RequestTest2_1.bin");
+    ISHIKO_TEST_FAIL_IF_FILES_NEQ("SingleConnectionWebServerTests_RequestTest2_2.bin",
+        "SingleConnectionWebServerTests_RequestTest2_2.bin");
     ISHIKO_TEST_PASS();
 }
 
-void SingleConnectionWebServerTests::RequestTest3(FileComparisonTest& test)
+void SingleConnectionWebServerTests::RequestTest3(Test& test)
 {
-    path outputPath(test.context().getTestOutputPath("SingleConnectionWebServerTests_RequestTest3.bin"));
-    path referencePath(test.context().getReferenceDataPath("SingleConnectionWebServerTests_RequestTest3.bin"));
-
     std::shared_ptr<TestServerObserver> observer = std::make_shared<TestServerObserver>();
     Error error;
-    SingleConnectionWebServer server(IPv4Address::Localhost(), TCPServerSocket::AnyPort, error);
+    StreamLoggingSink sink(std::cout);
+    Logger logger(sink);
+    SingleConnectionWebServer server(IPv4Address::Localhost(), TCPServerSocket::AnyPort, logger, error);
     Port port = server.socket().port();
 
     TestWebRequestHandler requestHandler;
@@ -168,6 +171,7 @@ void SingleConnectionWebServerTests::RequestTest3(FileComparisonTest& test)
 
     server.start();
 
+    path outputPath(test.context().getTestOutputPath("SingleConnectionWebServerTests_RequestTest3.bin"));
     std::ofstream responseFile(outputPath.string(), std::ios::out | std::ios::binary);
     HTTPClient::Get(IPv4Address::Localhost(), port, "/", responseFile, error);
 
@@ -185,7 +189,7 @@ void SingleConnectionWebServerTests::RequestTest3(FileComparisonTest& test)
     const std::vector<std::tuple<TestServerObserver::EEventType, const Nemu::Server*, std::string>>& events =
         observer->connectionEvents();
 
-    stringstream output;
+    std::stringstream output;
     HTTPClient::Get(IPv4Address::Localhost(), port, "/", output, error);
 
     ISHIKO_TEST_FAIL_IF_NOT(error);
@@ -202,8 +206,7 @@ void SingleConnectionWebServerTests::RequestTest3(FileComparisonTest& test)
     ISHIKO_TEST_FAIL_IF_NEQ(std::get<2>(events[0]), std::get<2>(events[1]));
     */
 
-    test.setOutputFilePath(outputPath);
-    test.setReferenceFilePath(referencePath);
-
+    ISHIKO_TEST_FAIL_IF_FILES_NEQ("SingleConnectionWebServerTests_RequestTest3.bin",
+        "SingleConnectionWebServerTests_RequestTest3.bin");
     ISHIKO_TEST_PASS();
 }
