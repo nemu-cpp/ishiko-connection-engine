@@ -5,3 +5,14 @@
 */
 
 #include "RequestHandlers/ViewWebRequestHandler.hpp"
+
+using namespace Nemu;
+
+ViewWebRequestHandler::ViewWebRequestHandler()
+{
+}
+
+void ViewWebRequestHandler::run(const WebRequest& request, WebResponseBuilder& response, Ishiko::Logger& logger)
+{
+    response.view(request.url().path(), m_context);
+}

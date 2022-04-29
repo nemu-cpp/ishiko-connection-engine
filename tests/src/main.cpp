@@ -10,6 +10,7 @@
 #include "RouteTests.hpp"
 #include "RoutesTests.hpp"
 #include "SingleConnectionWebServerTests.hpp"
+#include "ViewWebRequestHandlerTests.hpp"
 #include "WebApplicationTests.hpp"
 #include "WebRequestTests.hpp"
 #include "WebResponseBuilderTests.hpp"
@@ -35,6 +36,7 @@ int main(int argc, char* argv[])
     theTests.append<HardcodedWebRequestHandlerTests>();
     theTests.append<FunctionWebRequestHandlerTests>();
     theTests.append<FileSystemWebRequestHandlerTests>();
+    theTests.append<ViewWebRequestHandlerTests>();
     theTests.append<WebApplicationTests>();
 
     return theTestHarness.run();
