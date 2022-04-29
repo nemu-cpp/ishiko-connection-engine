@@ -32,7 +32,7 @@ public:
         @param viewName The name of the view to render. How this name is used to find the right template depends on the
         engine and its options.
     */
-    void view(const std::string& viewName, ViewContext& context);
+    void view(const std::string& view, ViewContext& context);
 
     void redirect();
 

@@ -7,6 +7,7 @@
 #ifndef _NEMU_CPP_WEBFRAMEWORK_TEMPLATEENGINE_HPP_
 #define _NEMU_CPP_WEBFRAMEWORK_TEMPLATEENGINE_HPP_
 
+#include "ViewContext.hpp"
 #include <string>
 
 namespace Nemu
@@ -21,7 +22,7 @@ namespace Nemu
 class TemplateEngine
 {
 public:
-    virtual std::string render() const = 0;
+    virtual std::string render(const std::string& view, ViewContext& context) const = 0;
 };
 
 }
