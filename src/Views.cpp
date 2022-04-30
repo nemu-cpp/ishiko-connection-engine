@@ -18,6 +18,11 @@ Views::Views(std::shared_ptr<TemplateEngine> engine)
 {
 }
 
+void Views::add(std::shared_ptr<TemplateEngine> engine)
+{
+    m_engine = engine;
+}
+
 TemplateEngine& Views::engine()
 {
     return *m_engine;

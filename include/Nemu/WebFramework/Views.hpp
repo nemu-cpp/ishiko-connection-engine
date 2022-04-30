@@ -20,6 +20,9 @@ public:
     Views();
     Views(std::shared_ptr<TemplateEngine> engine);
 
+    // TODO: at the momment we only support one view engine but we plan to support more later
+    void add(std::shared_ptr<TemplateEngine> engine);
+
     TemplateEngine& engine();
 
 private:
