@@ -22,7 +22,7 @@ namespace Nemu
 class TemplateEngine
 {
 public:
-    virtual std::string render(const std::string& view, ViewContext& context) const = 0;
+    virtual std::string render(const std::string& view, ViewContext& context) = 0;
 };
 
 }

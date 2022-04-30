@@ -43,7 +43,7 @@ private:
     // TODO: I need to refactor HTTPResponse to make this more flexible and remove the redundant and wasteful m_body
     std::string m_body;
 public:
-    const Views* m_views;
+    Views* m_views;
 };
 
 }
