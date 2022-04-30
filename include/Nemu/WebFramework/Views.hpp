@@ -20,7 +20,7 @@ public:
     Views();
     Views(std::shared_ptr<TemplateEngine> engine);
 
-    const TemplateEngine& engine() const;
+    TemplateEngine& engine();
 
 private:
     std::shared_ptr<TemplateEngine> m_engine;

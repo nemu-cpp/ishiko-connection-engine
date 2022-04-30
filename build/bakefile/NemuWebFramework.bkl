@@ -42,6 +42,7 @@ library NemuWebFramework : NemuCore, IshikoHTTP, IshikoNetworking
         ../../include/Nemu/WebFramework/Routes.hpp
         ../../include/Nemu/WebFramework/SingleConnectionWebServer.hpp
         ../../include/Nemu/WebFramework/TemplateEngine.hpp
+        ../../include/Nemu/WebFramework/ViewContext.hpp
         ../../include/Nemu/WebFramework/Views.hpp
         ../../include/Nemu/WebFramework/WebApplication.hpp
         ../../include/Nemu/WebFramework/WebRequest.hpp
@@ -51,6 +52,7 @@ library NemuWebFramework : NemuCore, IshikoHTTP, IshikoNetworking
         ../../include/Nemu/WebFramework/RequestHandlers/FileSystemWebRequestHandler.hpp
         ../../include/Nemu/WebFramework/RequestHandlers/FunctionWebRequestHandler.hpp
         ../../include/Nemu/WebFramework/RequestHandlers/HardcodedWebRequestHandler.hpp
+        ../../include/Nemu/WebFramework/RequestHandlers/ViewWebRequestHandler.hpp
     }
 
     sources
@@ -58,6 +60,7 @@ library NemuWebFramework : NemuCore, IshikoHTTP, IshikoNetworking
         ../../src/Route.cpp
         ../../src/Routes.cpp
         ../../src/SingleConnectionWebServer.cpp
+        ../../src/ViewContext.cpp
         ../../src/Views.cpp
         ../../src/WebApplication.cpp
         ../../src/WebRequest.cpp
@@ -65,5 +68,6 @@ library NemuWebFramework : NemuCore, IshikoHTTP, IshikoNetworking
         ../../src/RequestHandlers/FileSystemWebRequestHandler.cpp
         ../../src/RequestHandlers/FunctionWebRequestHandler.cpp
         ../../src/RequestHandlers/HardcodedWebRequestHandler.cpp
+        ../../src/RequestHandlers/ViewWebRequestHandler.cpp
     }
 }
