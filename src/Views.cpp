@@ -18,7 +18,7 @@ Views::Views(std::shared_ptr<TemplateEngine> engine)
 {
 }
 
-const TemplateEngine& Views::engine() const
+TemplateEngine& Views::engine()
 {
     return *m_engine;
 }

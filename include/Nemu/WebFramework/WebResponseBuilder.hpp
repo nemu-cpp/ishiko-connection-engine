@@ -7,6 +7,7 @@
 #ifndef _NEMU_CPP_WEBFRAMEWORK_WEBRESPONSEBUILDER_HPP_
 #define _NEMU_CPP_WEBFRAMEWORK_WEBRESPONSEBUILDER_HPP_
 
+#include "ViewContext.hpp"
 #include "Views.hpp"
 #include <Ishiko/HTTP.hpp>
 #include <string>
@@ -31,7 +32,7 @@ public:
         @param viewName The name of the view to render. How this name is used to find the right template depends on the
         engine and its options.
     */
-    void view(const std::string& viewName);
+    void view(const std::string& view, ViewContext& context);
 
     void redirect();
 
@@ -42,7 +43,7 @@ private:
     // TODO: I need to refactor HTTPResponse to make this more flexible and remove the redundant and wasteful m_body
     std::string m_body;
 public:
-    const Views* m_views;
+    Views* m_views;
 };
 
 }

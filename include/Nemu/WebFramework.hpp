@@ -10,6 +10,7 @@
 #include "WebFramework/Route.hpp"
 #include "WebFramework/Routes.hpp"
 #include "WebFramework/SingleConnectionWebServer.hpp"
+#include "WebFramework/ViewContext.hpp"
 #include "WebFramework/Views.hpp"
 #include "WebFramework/WebApplication.hpp"
 #include "WebFramework/WebRequest.hpp"
@@ -18,6 +19,7 @@
 #include "WebFramework/RequestHandlers/FileSystemWebRequestHandler.hpp"
 #include "WebFramework/RequestHandlers/FunctionWebRequestHandler.hpp"
 #include "WebFramework/RequestHandlers/HardcodedWebRequestHandler.hpp"
+#include "WebFramework/RequestHandlers/ViewWebRequestHandler.hpp"
 
 #include "WebFramework/linkoptions.hpp"
 

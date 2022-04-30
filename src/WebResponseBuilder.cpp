@@ -6,14 +6,11 @@
 
 #include "WebResponseBuilder.hpp"
 
-using namespace Ishiko;
-using namespace std;
-
 namespace Nemu
 {
 
 WebResponseBuilder::WebResponseBuilder()
-    : m_response(HTTPStatusCode::internalServerError), m_views(nullptr)
+    : m_response(Ishiko::HTTPStatusCode::internalServerError), m_views(nullptr)
 {
     // TODO: this doesn't work as the user would be left with specifying all the right headers. Do I assume some default?
 }
@@ -28,30 +25,32 @@ void WebResponseBuilder::setDateHeader(const Ishiko::UTCTime& time)
     m_response.setDateHeader(time);
 }
 
-string& WebResponseBuilder::body()
+std::string& WebResponseBuilder::body()
 {
     return m_body;
 }
 
-string WebResponseBuilder::toString() const
+std::string WebResponseBuilder::toString() const
 {
     // TODO: wasteful
-    HTTPResponse response(m_response);
+    Ishiko::HTTPResponse response(m_response);
     response.setBody(m_body);
     return response.toString();
 }
 
-void WebResponseBuilder::view(const std::string& viewName)
+void WebResponseBuilder::view(const std::string& view, ViewContext& context)
 {
-    body() = m_views->engine().render();
+    body() = m_views->engine().render(view, context);
 }
 
 void WebResponseBuilder::redirect()
 {
+    // TODO
 }
 
 void WebResponseBuilder::state()
 {
+    // TODO
 }
 
 }
