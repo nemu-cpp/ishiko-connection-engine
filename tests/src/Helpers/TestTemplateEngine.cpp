@@ -12,6 +12,12 @@ std::string TestTemplateEngine::render(const std::string& view, Nemu::ViewContex
     return "<html></html>";
 }
 
+std::string TestTemplateEngine::render(const std::string& view, Nemu::ViewContext& context, const std::string& layout)
+{
+    m_view = view;
+    return "<html></html>";
+}
+
 const std::string& TestTemplateEngine::view() const
 {
     return m_view;

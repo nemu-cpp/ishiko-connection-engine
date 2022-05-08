@@ -14,6 +14,7 @@ class TestTemplateEngine : public Nemu::TemplateEngine
 {
 public:
     std::string render(const std::string& view, Nemu::ViewContext& context) override;
+    std::string render(const std::string& view, Nemu::ViewContext& context, const std::string& layout) override;
 
     const std::string& view() const;
 
