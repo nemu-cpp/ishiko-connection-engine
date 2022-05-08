@@ -6,8 +6,7 @@
 
 #include "WebResponseBuilder.hpp"
 
-namespace Nemu
-{
+using namespace Nemu;
 
 WebResponseBuilder::WebResponseBuilder()
     : m_response(Ishiko::HTTPStatusCode::internalServerError), m_views(nullptr)
@@ -43,6 +42,11 @@ void WebResponseBuilder::view(const std::string& view, ViewContext& context)
     body() = m_views->engine().render(view, context);
 }
 
+void WebResponseBuilder::view(const std::string& view, ViewContext& context, const std::string& layout)
+{
+    body() = m_views->engine().render(view, context, layout);
+}
+
 void WebResponseBuilder::redirect()
 {
     // TODO
@@ -51,6 +55,4 @@ void WebResponseBuilder::redirect()
 void WebResponseBuilder::state()
 {
     // TODO
-}
-
 }
