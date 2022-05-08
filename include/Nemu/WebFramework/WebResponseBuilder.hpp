@@ -33,6 +33,7 @@ public:
         engine and its options.
     */
     void view(const std::string& view, ViewContext& context);
+    void view(const std::string& view, ViewContext& context, const std::string& layout);
 
     void redirect();
 
