@@ -74,6 +74,7 @@ void SingleConnectionWebServerTests::RequestTest1(Test& test)
 
     path outputPath(test.context().getTestOutputPath("SingleConnectionWebServerTests_RequestTest1.bin"));
     std::ofstream responseFile(outputPath.string(), std::ios::out | std::ios::binary);
+    // TODO: this seems to leak memory but only the first time it is used, does Boost allocate some global variables?
     HTTPClient::Get(IPv4Address::Localhost(), 8089, "/", responseFile, error);
 
     ISHIKO_TEST_FAIL_IF(error);
