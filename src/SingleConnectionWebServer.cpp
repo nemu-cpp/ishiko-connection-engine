@@ -30,17 +30,17 @@ void SingleConnectionWebServer::start()
     m_acceptThread = std::thread(
         [this]()
         {
+            // TODO: logger is not threadsafe, need to sort this out
+            Ishiko::Logger& logger = m_logger;
+
+            NEMU_LOG_INFO("Server ready to accept connections on socket bound to {}:{}",
+                m_socket.ipAddress().toString(), m_socket.port().toString());
+
             // TODO: this is a temporary blocking implementation
             // TODO: handle error
             while (!m_stop)
             {
                 Ishiko::Error error;
-
-                // TODO: logger is not threadsafe, need to sort this out
-                Ishiko::Logger& logger = m_logger;
-
-                NEMU_LOG_INFO("SingleConnectionWebServer server ready");
-
                 Ishiko::TCPClientSocket clientSocket = m_socket.accept(error);
 
                 WebRequest request;
@@ -59,7 +59,8 @@ void SingleConnectionWebServer::start()
                 }
                 else
                 {                   
-                    NEMU_LOG_INFO("Received request");
+                    NEMU_LOG_INFO("Server received request from {}:{}",
+                        clientSocket.getPeerIPAddress(error).toString(), clientSocket.getPeerPort(error).toString());
 
                     WebResponseBuilder response;
                     // TODO: cope with exceptions
