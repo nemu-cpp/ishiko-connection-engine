@@ -44,7 +44,7 @@ void SingleConnectionWebServer::start()
                 Ishiko::TCPClientSocket clientSocket = m_socket.accept(error);
 
                 WebRequest request;
-                Ishiko::HTTPMessagePushParser requestParser(request);
+                Ishiko::HTTPRequestPushParser requestParser(request);
 
                 // TODO: how big should this buffer be? Adjust automatically?
                 char buffer[1000];

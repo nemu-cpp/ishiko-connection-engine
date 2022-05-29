@@ -16,7 +16,7 @@ program NemuHelloWorldServer : NemuWebFramework
     if ($(toolset) == gnu)
     {
         cxx-compiler-options = "-std=c++11";
-        libs += NemuWebFramework NemuCore IshikoHTTP IshikoNetworking IshikoTime IshikoText IshikoTypes IshikoLogging IshikoErrors fmt;
+        libs += NemuWebFramework NemuCore IshikoHTTP IshikoNetworking IshikoTime IshikoText IshikoTypes IshikoLogging IshikoMemory IshikoErrors fmt;
     }
 
     outputdir = ../../bin;
