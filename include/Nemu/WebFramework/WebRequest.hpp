@@ -15,7 +15,7 @@ namespace Nemu
 {
 
 /// An interface to the request that was received from the client
-class WebRequest : public Ishiko::HTTPMessagePushParser::Callbacks
+class WebRequest : public Ishiko::HTTPRequestPushParser::Callbacks
 {
 public:
     WebRequest();
