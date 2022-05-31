@@ -186,7 +186,7 @@ void SingleConnectionWebServerTests::RequestTest3(Test& test)
 
     // At this stage the server is stopped but not destroyed. Verify that attempts to connect fail.
 
-
+    // TODO
     const std::vector<std::tuple<TestServerObserver::EEventType, const Nemu::Server*, std::string>>& events =
         observer->connectionEvents();
 
