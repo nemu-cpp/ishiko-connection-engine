@@ -45,7 +45,12 @@ WebApplication::WebApplication(shared_ptr<WebServer> server, Logger& logger, sha
     servers().append(server);
 }
 
-Routes& WebApplication::routes()
+const Routes& WebApplication::routes() const noexcept
+{
+    return *m_routes;
+}
+
+Routes& WebApplication::routes() noexcept
 {
     return *m_routes;
 }

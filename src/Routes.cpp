@@ -7,12 +7,32 @@
 #include "Routes.hpp"
 #include "RequestHandlers/HardcodedWebRequestHandler.hpp"
 
-namespace Nemu
-{
+using namespace Nemu;
 
 Routes::Routes()
-    : m_defaultRoute("", std::make_shared<HardcodedWebRequestHandler>(404, "The requested resource was not found"))
+    : m_defaultRoute("*", std::make_shared<HardcodedWebRequestHandler>(404, "The requested resource was not found"))
 {
+}
+
+size_t Routes::size() const noexcept
+{
+    return (m_exactMatchRoutes.size() + m_prefixMatchRoutes.size() + 1);
+}
+
+const Route& Routes::at(size_t pos) const
+{
+    if (pos < m_exactMatchRoutes.size())
+    {
+        return m_exactMatchRoutes[pos];
+    }
+    else if (pos < (m_exactMatchRoutes.size() + m_prefixMatchRoutes.size()))
+    {
+        return m_prefixMatchRoutes[pos - m_exactMatchRoutes.size()];
+    }
+    else if (pos < (m_exactMatchRoutes.size() + m_prefixMatchRoutes.size() + 1))
+    {
+        return m_defaultRoute;
+    }
 }
 
 void Routes::append(const Route& route)
@@ -57,6 +77,4 @@ const Route& Routes::defaultRoute() const
 void Routes::setDefaultRoute(const Route& route)
 {
     m_defaultRoute = route;
-}
-
 }

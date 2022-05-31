@@ -28,6 +28,9 @@ public:
     /// Constructor.
     Routes();
 
+    size_t size() const noexcept;
+    const Route& at(size_t pos) const;
+
     /// Appends a route to the sequence.
     /**
         @param route The route to add.
