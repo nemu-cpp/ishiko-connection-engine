@@ -30,7 +30,8 @@ public:
         Ishiko::Error& error);
 
     /// Returns the routes.
-    Routes& routes();
+    const Routes& routes() const noexcept;
+    Routes& routes() noexcept;
 
     Views& views();
 
