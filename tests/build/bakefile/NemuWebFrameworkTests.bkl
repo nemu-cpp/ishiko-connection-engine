@@ -19,7 +19,7 @@ program NemuWebFrameworkTests: NemuWebFramework, IshikoHTTP, IshikoTestFramework
     if ($(toolset) == gnu)
     {
         cxx-compiler-options = "-std=c++11";
-        libs += NemuWebFramework NemuCore IshikoHTTP IshikoNetworking IshikoTestFramework IshikoTestFrameworkCore IshikoDiff IshikoFileSystem IshikoProcess IshikoTime IshikoText IshikoTypes IshikoLogging IshikoMemory IshikoErrors fmt boost_filesystem;
+        libs += NemuWebFramework NemuCore IshikoHTTP IshikoNetworking IshikoTestFramework IshikoTestFrameworkCore IshikoConfiguration IshikoDiff IshikoFileSystem IshikoProcess IshikoTime IshikoText IshikoTypes IshikoLogging IshikoMemory IshikoErrors fmt boost_filesystem;
     }
 
     headers
