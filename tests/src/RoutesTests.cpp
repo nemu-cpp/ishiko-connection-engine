@@ -16,7 +16,7 @@ using namespace Nemu;
 RoutesTests::RoutesTests(const TestNumber& number, const TestContext& context)
     : TestSequence(number, "Routes tests", context)
 {
-    append<HeapAllocationErrorsTest>("Creation test 1", CreationTest1);
+    append<HeapAllocationErrorsTest>("Constructor test 1", ConstructorTest1);
     append<HeapAllocationErrorsTest>("add test 1", AddTest1);
     append<HeapAllocationErrorsTest>("add test 2", AddTest2);
     append<HeapAllocationErrorsTest>("add test 3", AddTest3);
@@ -27,7 +27,7 @@ RoutesTests::RoutesTests(const TestNumber& number, const TestContext& context)
     append<HeapAllocationErrorsTest>("match test 5", MatchTest5);
 }
 
-void RoutesTests::CreationTest1(Test& test)
+void RoutesTests::ConstructorTest1(Test& test)
 {
     Routes routes;
 
