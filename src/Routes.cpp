@@ -33,6 +33,8 @@ const Route& Routes::at(size_t pos) const
     {
         return m_defaultRoute;
     }
+    // TODO: error
+    throw std::exception();
 }
 
 void Routes::add(const Route& route)
@@ -48,13 +50,17 @@ void Routes::add(const Route& route)
     }
 }
 
-void Routes::add(const Routes& routes)
+void Routes::add(std::vector<Route>& routes)
 {
-    // TODO: check for duplicates
-    m_exactMatchRoutes.insert(m_exactMatchRoutes.end(), routes.m_exactMatchRoutes.begin(),
-        routes.m_exactMatchRoutes.end());
-    m_prefixMatchRoutes.insert(m_prefixMatchRoutes.end(), routes.m_prefixMatchRoutes.begin(),
-        routes.m_prefixMatchRoutes.end());
+    add(routes.begin(), routes.end());
+}
+
+void Routes::add(std::vector<Route>::iterator begin, std::vector<Route>::iterator end)
+{
+    for (; begin != end; ++begin)
+    {
+        add(*begin);
+    }
 }
 
 const Route& Routes::match(const std::string& path) const

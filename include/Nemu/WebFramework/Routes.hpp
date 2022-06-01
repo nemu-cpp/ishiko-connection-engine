@@ -35,8 +35,11 @@ public:
     /**
         @param route The route to add.
     */
+    // TODO: argument isn't really const due to the shared pointer unless I can guarantee it's immutable?
     void add(const Route& route);
-    void add(const Routes& routes);
+    void add(std::vector<Route>& routes);
+    // TODO: can these be const_iterator
+    void add(std::vector<Route>::iterator begin, std::vector<Route>::iterator end);
 
     // TODO: this should match URLs including host and scheme
     /// Finds the first route in the sequence that matches the path.
