@@ -5,7 +5,7 @@
 */
 
 #include "ViewWebRequestHandlerTests.hpp"
-#include "Helpers/TestTemplateEngine.hpp"
+#include "helpers/TestTemplateEngine.hpp"
 #include "Nemu/WebFramework/RequestHandlers/ViewWebRequestHandler.hpp"
 
 using namespace Ishiko;
