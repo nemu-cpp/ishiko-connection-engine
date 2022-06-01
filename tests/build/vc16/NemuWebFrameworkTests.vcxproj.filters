@@ -47,13 +47,16 @@
     <ClInclude Include="..\..\src\WebResponseBuilderTests.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\Helpers\TestServerObserver.hpp">
+    <ClInclude Include="..\..\src\helpers\TestServerObserver.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\Helpers\TestTemplateEngine.hpp">
+    <ClInclude Include="..\..\src\helpers\TestTemplateEngine.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\Helpers\TestWebRequestHandler.hpp">
+    <ClInclude Include="..\..\src\helpers\TestTemplateEngineProfile.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\helpers\TestWebRequestHandler.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -91,13 +94,16 @@
     <ClCompile Include="..\..\src\WebResponseBuilderTests.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\Helpers\TestServerObserver.cpp">
+    <ClCompile Include="..\..\src\helpers\TestServerObserver.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\Helpers\TestTemplateEngine.cpp">
+    <ClCompile Include="..\..\src\helpers\TestTemplateEngine.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\Helpers\TestWebRequestHandler.cpp">
+    <ClCompile Include="..\..\src\helpers\TestTemplateEngineProfile.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\helpers\TestWebRequestHandler.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

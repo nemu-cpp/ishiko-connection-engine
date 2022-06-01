@@ -10,6 +10,8 @@
 #include "WebFramework/Route.hpp"
 #include "WebFramework/Routes.hpp"
 #include "WebFramework/SingleConnectionWebServer.hpp"
+#include "WebFramework/TemplateEngine.hpp"
+#include "WebFramework/TemplateEngineProfile.hpp"
 #include "WebFramework/ViewContext.hpp"
 #include "WebFramework/Views.hpp"
 #include "WebFramework/WebApplication.hpp"
