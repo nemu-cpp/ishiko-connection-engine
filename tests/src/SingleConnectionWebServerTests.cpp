@@ -5,8 +5,8 @@
 */
 
 #include "SingleConnectionWebServerTests.hpp"
-#include "Helpers/TestServerObserver.hpp"
-#include "Helpers/TestWebRequestHandler.hpp"
+#include "helpers/TestServerObserver.hpp"
+#include "helpers/TestWebRequestHandler.hpp"
 #include "Nemu/WebFramework/SingleConnectionWebServer.hpp"
 #include <boost/filesystem.hpp>
 #include <Ishiko/HTTP.hpp>
