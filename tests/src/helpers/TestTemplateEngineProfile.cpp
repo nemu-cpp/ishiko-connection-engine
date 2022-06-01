@@ -6,13 +6,18 @@
 
 #include "TestTemplateEngineProfile.hpp"
 
+TestTemplateEngineProfile::TestTemplateEngineProfile(std::string text)
+    : m_text(std::move(text))
+{
+}
+
 std::string TestTemplateEngineProfile::render(const std::string& view, Nemu::ViewContext& context)
 {
-    return "<html></html>";
+    return ("<html>" + m_text + "</html>");
 }
 
 std::string TestTemplateEngineProfile::render(const std::string& view, Nemu::ViewContext& context,
     const std::string& layout)
 {
-    return "<html></html>";
+    return ("<html>" + m_text + "</html>");
 }

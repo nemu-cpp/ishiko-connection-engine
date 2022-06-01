@@ -6,6 +6,7 @@
 
 #include "ViewsTests.hpp"
 #include "helpers/TestTemplateEngine.hpp"
+#include "helpers/TestTemplateEngineProfile.hpp"
 #include "Nemu/WebFramework/Views.hpp"
 #include <Ishiko/Configuration.hpp>
 #include <memory>
@@ -33,7 +34,9 @@ void ViewsTests::ConstructorTest1(Test& test)
 void ViewsTests::ConstructorTest2(Test& test)
 {
     TestTemplateEngine engine;
-    std::shared_ptr<TemplateEngineProfile> profile = engine.createProfile(Ishiko::Configuration());
+    Ishiko::Configuration configuration;
+    configuration.set("text", "ViewsTests_ConstructorTest2");
+    std::shared_ptr<TemplateEngineProfile> profile = engine.createProfile(configuration);
     Views views(profile);
 
     ISHIKO_TEST_FAIL_IF_NEQ(&views.defaultProfile(), profile.get());
@@ -45,7 +48,9 @@ void ViewsTests::SetTest1(Test& test)
     Views views;
 
     TestTemplateEngine engine;
-    std::shared_ptr<TemplateEngineProfile> profile = engine.createProfile(Ishiko::Configuration());
+    Ishiko::Configuration configuration;
+    configuration.set("text", "ViewsTests_SetTest1");
+    std::shared_ptr<TemplateEngineProfile> profile = engine.createProfile(configuration);
 
     views.set("profile1", profile);
 
@@ -58,8 +63,12 @@ void ViewsTests::SetTest2(Test& test)
     Views views;
 
     TestTemplateEngine engine;
-    std::shared_ptr<TemplateEngineProfile> profile1 = engine.createProfile(Ishiko::Configuration());
-    std::shared_ptr<TemplateEngineProfile> profile2 = engine.createProfile(Ishiko::Configuration());
+    Ishiko::Configuration configuration1;
+    configuration1.set("text", "ViewsTests_SetTest2_1");
+    std::shared_ptr<TemplateEngineProfile> profile1 = engine.createProfile(configuration1);
+    Ishiko::Configuration configuration2;
+    configuration2.set("text", "ViewsTests_SetTest2_2");
+    std::shared_ptr<TemplateEngineProfile> profile2 = engine.createProfile(configuration2);
 
     views.set("profile1", profile1);
     views.set("profile2", profile2);
@@ -74,8 +83,12 @@ void ViewsTests::SetTest3(Test& test)
     Views views;
 
     TestTemplateEngine engine;
-    std::shared_ptr<TemplateEngineProfile> profile1 = engine.createProfile(Ishiko::Configuration());
-    std::shared_ptr<TemplateEngineProfile> profile2 = engine.createProfile(Ishiko::Configuration());
+    Ishiko::Configuration configuration1;
+    configuration1.set("text", "ViewsTests_SetTest2_1");
+    std::shared_ptr<TemplateEngineProfile> profile1 = engine.createProfile(configuration1);
+    Ishiko::Configuration configuration2;
+    configuration2.set("text", "ViewsTests_SetTest2_2");
+    std::shared_ptr<TemplateEngineProfile> profile2 = engine.createProfile(configuration2);
 
     views.set("profile", profile1);
 
