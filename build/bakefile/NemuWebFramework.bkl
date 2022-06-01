@@ -42,6 +42,7 @@ library NemuWebFramework : NemuCore, IshikoHTTP, IshikoNetworking
         ../../include/Nemu/WebFramework/Routes.hpp
         ../../include/Nemu/WebFramework/SingleConnectionWebServer.hpp
         ../../include/Nemu/WebFramework/TemplateEngine.hpp
+        ../../include/Nemu/WebFramework/TemplateEngineProfile.hpp
         ../../include/Nemu/WebFramework/ViewContext.hpp
         ../../include/Nemu/WebFramework/Views.hpp
         ../../include/Nemu/WebFramework/WebApplication.hpp
