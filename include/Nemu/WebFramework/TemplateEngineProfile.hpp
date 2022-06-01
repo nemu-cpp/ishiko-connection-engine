@@ -13,6 +13,8 @@
 namespace Nemu
 {
 
+// TODO: this is a template engine with a specific set of options. What these options are is engine specific.
+// TODO: TemplateEngine::createProfile acts as a factory.
 class TemplateEngineProfile
 {
 public:

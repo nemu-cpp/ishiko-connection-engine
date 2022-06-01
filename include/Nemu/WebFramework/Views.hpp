@@ -24,7 +24,7 @@ public:
     // TODO: at the momment we only support one view engine but we plan to support more later
     void add(std::shared_ptr<TemplateEngine> engine);
 
-    TemplateEngineProfile& engine();
+    TemplateEngineProfile& defaultProfile();
 
 private:
     std::shared_ptr<TemplateEngineProfile> m_engine;

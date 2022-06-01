@@ -23,7 +23,7 @@ void Views::add(std::shared_ptr<TemplateEngine> engine)
     m_engine = engine->createProfile();
 }
 
-TemplateEngineProfile& Views::engine()
+TemplateEngineProfile& Views::defaultProfile()
 {
     return *m_engine;
 }
