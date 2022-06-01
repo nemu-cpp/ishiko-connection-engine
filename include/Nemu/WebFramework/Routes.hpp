@@ -31,11 +31,12 @@ public:
     size_t size() const noexcept;
     const Route& at(size_t pos) const;
 
-    /// Appends a route to the sequence.
+    /// Adds a route to the sequence.
     /**
         @param route The route to add.
     */
-    void append(const Route& route);
+    void add(const Route& route);
+    void add(const Routes& routes);
 
     // TODO: this should match URLs including host and scheme
     /// Finds the first route in the sequence that matches the path.

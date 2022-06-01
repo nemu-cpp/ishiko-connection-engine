@@ -15,6 +15,9 @@ RoutesTests::RoutesTests(const TestNumber& number, const TestContext& context)
     : TestSequence(number, "Routes tests", context)
 {
     append<HeapAllocationErrorsTest>("Creation test 1", CreationTest1);
+    append<HeapAllocationErrorsTest>("add test 1", AddTest1);
+    append<HeapAllocationErrorsTest>("add test 2", AddTest2);
+    append<HeapAllocationErrorsTest>("add test 3", AddTest3);
     append<HeapAllocationErrorsTest>("match test 1", MatchTest1);
     append<HeapAllocationErrorsTest>("match test 2", MatchTest2);
     append<HeapAllocationErrorsTest>("match test 3", MatchTest3);
@@ -26,6 +29,58 @@ void RoutesTests::CreationTest1(Test& test)
 {
     Routes routes;
 
+    ISHIKO_TEST_ABORT_IF_NEQ(routes.size(), 1);
+    ISHIKO_TEST_FAIL_IF_NEQ(routes.at(0).pathPattern(), "*");
+    ISHIKO_TEST_PASS();
+}
+
+void RoutesTests::AddTest1(Test& test)
+{
+    Routes routes;
+    std::shared_ptr<TestWebRequestHandler> handler = std::make_shared<TestWebRequestHandler>();
+    routes.add(Route("/", handler));
+
+    ISHIKO_TEST_ABORT_IF_NEQ(routes.size(), 2);
+    ISHIKO_TEST_FAIL_IF_NEQ(routes.at(0).pathPattern(), "/");
+    ISHIKO_TEST_FAIL_IF_NEQ(&routes.at(0).requestHandler(), handler.get());
+    ISHIKO_TEST_FAIL_IF_NEQ(routes.at(1).pathPattern(), "*");
+    ISHIKO_TEST_PASS();
+}
+
+void RoutesTests::AddTest2(Test& test)
+{
+    Routes routes;
+
+    Routes moreRoutes;
+    std::shared_ptr<TestWebRequestHandler> handler = std::make_shared<TestWebRequestHandler>();
+    moreRoutes.add(Route("/", handler));
+
+    routes.add(moreRoutes);
+
+    ISHIKO_TEST_ABORT_IF_NEQ(routes.size(), 2);
+    ISHIKO_TEST_FAIL_IF_NEQ(routes.at(0).pathPattern(), "/");
+    ISHIKO_TEST_FAIL_IF_NEQ(&routes.at(0).requestHandler(), handler.get());
+    ISHIKO_TEST_FAIL_IF_NEQ(routes.at(1).pathPattern(), "*");
+    ISHIKO_TEST_PASS();
+}
+
+void RoutesTests::AddTest3(Test& test)
+{
+    Routes routes;
+
+    Routes moreRoutes;
+    std::shared_ptr<TestWebRequestHandler> handler = std::make_shared<TestWebRequestHandler>();
+    moreRoutes.add(Route("/", handler));
+    moreRoutes.add(Route("/*", handler));
+
+    routes.add(moreRoutes);
+
+    ISHIKO_TEST_ABORT_IF_NEQ(routes.size(), 3);
+    ISHIKO_TEST_FAIL_IF_NEQ(routes.at(0).pathPattern(), "/");
+    ISHIKO_TEST_FAIL_IF_NEQ(&routes.at(0).requestHandler(), handler.get());
+    ISHIKO_TEST_FAIL_IF_NEQ(routes.at(1).pathPattern(), "/*");
+    ISHIKO_TEST_FAIL_IF_NEQ(&routes.at(1).requestHandler(), handler.get());
+    ISHIKO_TEST_FAIL_IF_NEQ(routes.at(2).pathPattern(), "*");
     ISHIKO_TEST_PASS();
 }
 
@@ -42,7 +97,7 @@ void RoutesTests::MatchTest2(Test& test)
 {
     Routes routes;
     std::shared_ptr<TestWebRequestHandler> handler = std::make_shared<TestWebRequestHandler>();
-    routes.append(Route("/", handler));
+    routes.add(Route("/", handler));
 
     const Route& matchedRoute1 = routes.match("/");
     const Route& matchedRoute2 = routes.match("/index.html");
@@ -56,7 +111,7 @@ void RoutesTests::MatchTest3(Test& test)
 {
     Routes routes;
     std::shared_ptr<TestWebRequestHandler> handler = std::make_shared<TestWebRequestHandler>();
-    routes.append(Route("/*", handler));
+    routes.add(Route("/*", handler));
 
     const Route& matchedRoute1 = routes.match("/");
     const Route& matchedRoute2 = routes.match("/index.html");
@@ -70,9 +125,9 @@ void RoutesTests::MatchTest4(Test& test)
 {
     Routes routes;
     std::shared_ptr<TestWebRequestHandler> prefixHandler = std::make_shared<TestWebRequestHandler>();
-    routes.append(Route("/*", prefixHandler));
+    routes.add(Route("/*", prefixHandler));
     std::shared_ptr<TestWebRequestHandler> exactHandler = std::make_shared<TestWebRequestHandler>();
-    routes.append(Route("/", exactHandler));
+    routes.add(Route("/", exactHandler));
 
     const Route& matchedRoute1 = routes.match("/");
     const Route& matchedRoute2 = routes.match("/index.html");
@@ -86,9 +141,9 @@ void RoutesTests::MatchTest5(Test& test)
 {
     Routes routes;
     std::shared_ptr<TestWebRequestHandler> prefixHandler = std::make_shared<TestWebRequestHandler>();
-    routes.append(Route("/subdir/*", prefixHandler));
+    routes.add(Route("/subdir/*", prefixHandler));
     std::shared_ptr<TestWebRequestHandler> exactHandler = std::make_shared<TestWebRequestHandler>();
-    routes.append(Route("/subdir/index.html", exactHandler));
+    routes.add(Route("/subdir/index.html", exactHandler));
 
     const Route& matchedRoute1 = routes.match("/");
     const Route& matchedRoute2 = routes.match("/subdir/file.html");
