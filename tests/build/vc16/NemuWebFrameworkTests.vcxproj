@@ -167,9 +167,10 @@
     <ClCompile Include="..\..\src\WebApplicationTests.cpp" />
     <ClCompile Include="..\..\src\WebRequestTests.cpp" />
     <ClCompile Include="..\..\src\WebResponseBuilderTests.cpp" />
-    <ClCompile Include="..\..\src\Helpers\TestServerObserver.cpp" />
-    <ClCompile Include="..\..\src\Helpers\TestTemplateEngine.cpp" />
-    <ClCompile Include="..\..\src\Helpers\TestWebRequestHandler.cpp" />
+    <ClCompile Include="..\..\src\helpers\TestServerObserver.cpp" />
+    <ClCompile Include="..\..\src\helpers\TestTemplateEngine.cpp" />
+    <ClCompile Include="..\..\src\helpers\TestTemplateEngineProfile.cpp" />
+    <ClCompile Include="..\..\src\helpers\TestWebRequestHandler.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\src\FileSystemWebRequestHandlerTests.hpp" />
@@ -182,9 +183,10 @@
     <ClInclude Include="..\..\src\WebApplicationTests.hpp" />
     <ClInclude Include="..\..\src\WebRequestTests.hpp" />
     <ClInclude Include="..\..\src\WebResponseBuilderTests.hpp" />
-    <ClInclude Include="..\..\src\Helpers\TestServerObserver.hpp" />
-    <ClInclude Include="..\..\src\Helpers\TestTemplateEngine.hpp" />
-    <ClInclude Include="..\..\src\Helpers\TestWebRequestHandler.hpp" />
+    <ClInclude Include="..\..\src\helpers\TestServerObserver.hpp" />
+    <ClInclude Include="..\..\src\helpers\TestTemplateEngine.hpp" />
+    <ClInclude Include="..\..\src\helpers\TestTemplateEngineProfile.hpp" />
+    <ClInclude Include="..\..\src\helpers\TestWebRequestHandler.hpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
