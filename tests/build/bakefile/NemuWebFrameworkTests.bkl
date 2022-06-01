@@ -34,9 +34,10 @@ program NemuWebFrameworkTests: NemuWebFramework, IshikoHTTP, IshikoTestFramework
         ../../src/WebApplicationTests.hpp
         ../../src/WebRequestTests.hpp
         ../../src/WebResponseBuilderTests.hpp
-        ../../src/Helpers/TestServerObserver.hpp
-        ../../src/Helpers/TestTemplateEngine.hpp
-        ../../src/Helpers/TestWebRequestHandler.hpp
+        ../../src/helpers/TestServerObserver.hpp
+        ../../src/helpers/TestTemplateEngine.hpp
+        ../../src/helpers/TestTemplateEngineProfile.hpp
+        ../../src/helpers/TestWebRequestHandler.hpp
     }
 
     sources
@@ -52,8 +53,9 @@ program NemuWebFrameworkTests: NemuWebFramework, IshikoHTTP, IshikoTestFramework
         ../../src/WebApplicationTests.cpp
         ../../src/WebRequestTests.cpp
         ../../src/WebResponseBuilderTests.cpp
-        ../../src/Helpers/TestServerObserver.cpp
-        ../../src/Helpers/TestTemplateEngine.cpp
-        ../../src/Helpers/TestWebRequestHandler.cpp
+        ../../src/helpers/TestServerObserver.cpp
+        ../../src/helpers/TestTemplateEngine.cpp
+        ../../src/helpers/TestTemplateEngineProfile.cpp
+        ../../src/helpers/TestWebRequestHandler.cpp
     }
 }

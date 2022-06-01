@@ -1,4 +1,5 @@
 ishikopath = envvar("ISHIKO_CPP");
+import $(ishikopath)/configuration/include/Ishiko/Configuration.bkl;
 import $(ishikopath)/http/include/Ishiko/HTTP.bkl;
 import $(ishikopath)/networking/include/Ishiko/Networking.bkl;
 nemupath = envvar("NEMU_CPP");
@@ -12,7 +13,7 @@ vs2017.solutionfile = ../vc15/NemuWebFramework.sln;
 vs2015.solutionfile = ../vc14/NemuWebFramework.sln;
 vs2013.solutionfile = ../vc12/NemuWebFramework.sln;
 
-library NemuWebFramework : NemuCore, IshikoHTTP, IshikoNetworking
+library NemuWebFramework : NemuCore, IshikoHTTP, IshikoNetworking, IshikoConfiguration
 {
     archs = x86 x86_64;
    
@@ -42,6 +43,7 @@ library NemuWebFramework : NemuCore, IshikoHTTP, IshikoNetworking
         ../../include/Nemu/WebFramework/Routes.hpp
         ../../include/Nemu/WebFramework/SingleConnectionWebServer.hpp
         ../../include/Nemu/WebFramework/TemplateEngine.hpp
+        ../../include/Nemu/WebFramework/TemplateEngineProfile.hpp
         ../../include/Nemu/WebFramework/ViewContext.hpp
         ../../include/Nemu/WebFramework/Views.hpp
         ../../include/Nemu/WebFramework/WebApplication.hpp

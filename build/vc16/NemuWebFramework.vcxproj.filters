@@ -35,6 +35,9 @@
     <ClInclude Include="..\..\include\Nemu\WebFramework\TemplateEngine.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\include\Nemu\WebFramework\TemplateEngineProfile.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
     <ClInclude Include="..\..\include\Nemu\WebFramework\ViewContext.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
