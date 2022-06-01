@@ -1,4 +1,5 @@
 ishikopath = envvar("ISHIKO_CPP");
+import $(ishikopath)/configuration/include/Ishiko/Configuration.bkl;
 import $(ishikopath)/http/include/Ishiko/HTTP.bkl;
 import $(ishikopath)/networking/include/Ishiko/Networking.bkl;
 nemupath = envvar("NEMU_CPP");
@@ -10,7 +11,7 @@ setting NEMU_CPP_WEBFRAMEWORK_ROOT
     default = '$(NEMU_CPP)/web-framework';
 }
 
-template NemuWebFramework : NemuCore, IshikoHTTP, IshikoNetworking
+template NemuWebFramework : NemuCore, IshikoHTTP, IshikoNetworking, IshikoConfiguration
 {
     includedirs += $(NEMU_CPP_WEBFRAMEWORK_ROOT)/include;
 
