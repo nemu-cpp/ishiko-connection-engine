@@ -7,7 +7,8 @@
 #include "TestTemplateEngine.hpp"
 #include "TestTemplateEngineProfile.hpp"
 
-std::shared_ptr<Nemu::TemplateEngineProfile> TestTemplateEngine::createProfile() const
+std::shared_ptr<Nemu::TemplateEngineProfile> TestTemplateEngine::createProfile(
+    const Ishiko::Configuration& configuration) const
 {
     return std::make_shared<TestTemplateEngineProfile>();
 }

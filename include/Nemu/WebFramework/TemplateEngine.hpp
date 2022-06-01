@@ -8,6 +8,7 @@
 #define _NEMU_CPP_WEBFRAMEWORK_TEMPLATEENGINE_HPP_
 
 #include "TemplateEngineProfile.hpp"
+#include <Ishiko/Configuration.hpp>
 #include <memory>
 
 namespace Nemu
@@ -23,7 +24,7 @@ namespace Nemu
 class TemplateEngine
 {
 public:
-    virtual std::shared_ptr<TemplateEngineProfile> createProfile() const = 0;
+    virtual std::shared_ptr<TemplateEngineProfile> createProfile(const Ishiko::Configuration& configuration) const = 0;
 };
 
 }

@@ -8,13 +8,15 @@
 #define _NEMU_CPP_WEBFRAMEWORK_TESTS_HELPERS_TESTTEMPLATEENGINE_HPP_
 
 #include "Nemu/WebFramework/TemplateEngine.hpp"
+#include <Ishiko/Configuration.hpp>
 #include <string>
 #include <memory>
 
 class TestTemplateEngine : public Nemu::TemplateEngine
 {
 public:
-    std::shared_ptr<Nemu::TemplateEngineProfile> createProfile() const override;
+    std::shared_ptr<Nemu::TemplateEngineProfile> createProfile(
+        const Ishiko::Configuration& configuration) const override;
 };
 
 #endif

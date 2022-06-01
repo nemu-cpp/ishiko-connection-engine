@@ -5,6 +5,7 @@
 */
 
 #include "Views.hpp"
+#include <Ishiko/Configuration.hpp>
 
 namespace Nemu
 {
@@ -14,13 +15,13 @@ Views::Views()
 }
 
 Views::Views(std::shared_ptr<TemplateEngine> engine)
-    : m_engine(engine->createProfile())
+    : m_engine(engine->createProfile(Ishiko::Configuration()))
 {
 }
 
 void Views::add(std::shared_ptr<TemplateEngine> engine)
 {
-    m_engine = engine->createProfile();
+    m_engine = engine->createProfile(Ishiko::Configuration());
 }
 
 TemplateEngineProfile& Views::defaultProfile()
