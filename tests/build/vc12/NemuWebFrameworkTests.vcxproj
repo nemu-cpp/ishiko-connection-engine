@@ -163,6 +163,7 @@
     <ClCompile Include="..\..\src\HardcodedWebRequestHandlerTests.cpp" />
     <ClCompile Include="..\..\src\main.cpp" />
     <ClCompile Include="..\..\src\SingleConnectionWebServerTests.cpp" />
+    <ClCompile Include="..\..\src\ViewsTests.cpp" />
     <ClCompile Include="..\..\src\ViewWebRequestHandlerTests.cpp" />
     <ClCompile Include="..\..\src\WebApplicationTests.cpp" />
     <ClCompile Include="..\..\src\WebRequestTests.cpp" />
@@ -179,6 +180,7 @@
     <ClInclude Include="..\..\src\RouteTests.hpp" />
     <ClInclude Include="..\..\src\RoutesTests.hpp" />
     <ClInclude Include="..\..\src\SingleConnectionWebServerTests.hpp" />
+    <ClInclude Include="..\..\src\ViewsTests.hpp" />
     <ClInclude Include="..\..\src\ViewWebRequestHandlerTests.hpp" />
     <ClInclude Include="..\..\src\WebApplicationTests.hpp" />
     <ClInclude Include="..\..\src\WebRequestTests.hpp" />

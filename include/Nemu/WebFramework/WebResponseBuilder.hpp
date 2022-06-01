@@ -34,6 +34,8 @@ public:
     */
     void view(const std::string& view, ViewContext& context);
     void view(const std::string& view, ViewContext& context, const std::string& layout);
+    void view(const std::string& profile, const std::string& view, ViewContext& context);
+    void view(const std::string& profile, const std::string& view, ViewContext& context, const std::string& layout);
 
     void redirect();
 

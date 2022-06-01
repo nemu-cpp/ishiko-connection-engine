@@ -7,6 +7,7 @@
 #include "ViewWebRequestHandlerTests.hpp"
 #include "helpers/TestTemplateEngine.hpp"
 #include "Nemu/WebFramework/RequestHandlers/ViewWebRequestHandler.hpp"
+#include <Ishiko/Configuration.hpp>
 
 using namespace Ishiko;
 using namespace Nemu;
@@ -30,8 +31,10 @@ void ViewWebRequestHandlerTests::RunTest1(Test& test)
     NullLoggingSink sink;
     Logger log(sink);
 
-    std::shared_ptr<TestTemplateEngine> templateEngine = std::make_shared<TestTemplateEngine>();
-    Views views(templateEngine);
+    TestTemplateEngine templateEngine;
+    Ishiko::Configuration configuration;
+    configuration.set("text", "ViewWebRequestHandlerTests_RunTest1");
+    Views views(templateEngine.createProfile(configuration));
 
     WebRequest request(URL("/"));
     WebResponseBuilder responseBuilder;
@@ -40,6 +43,6 @@ void ViewWebRequestHandlerTests::RunTest1(Test& test)
     ViewWebRequestHandler requestHandler;
     requestHandler.run(request, responseBuilder, log);
 
-    ISHIKO_TEST_FAIL_IF_NEQ(responseBuilder.body(), "<html></html>");
+    ISHIKO_TEST_FAIL_IF_NEQ(responseBuilder.body(), "<html>ViewWebRequestHandlerTests_RunTest1</html>");
     ISHIKO_TEST_PASS();
 }

@@ -9,6 +9,7 @@
 
 #include "TemplateEngine.hpp"
 #include "TemplateEngineProfile.hpp"
+#include <map>
 #include <memory>
 
 namespace Nemu
@@ -19,15 +20,17 @@ class Views
 {
 public:
     Views();
-    Views(std::shared_ptr<TemplateEngine> engine);
+    Views(std::shared_ptr<TemplateEngineProfile> defaultProfile);
 
-    // TODO: at the momment we only support one view engine but we plan to support more later
-    void add(std::shared_ptr<TemplateEngine> engine);
+    void setDefaultProfile(std::shared_ptr<TemplateEngineProfile> profile);
+    void set(const std::string& name, std::shared_ptr<TemplateEngineProfile> profile);
 
     TemplateEngineProfile& defaultProfile();
+    TemplateEngineProfile& profile(const std::string& name);
 
 private:
-    std::shared_ptr<TemplateEngineProfile> m_engine;
+    std::shared_ptr<TemplateEngineProfile> m_defaultProfile;
+    std::map<std::string, std::shared_ptr<TemplateEngineProfile>> m_profiles;
 };
 
 }
