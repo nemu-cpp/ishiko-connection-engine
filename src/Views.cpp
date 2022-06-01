@@ -14,19 +14,19 @@ Views::Views()
 {
 }
 
-Views::Views(std::shared_ptr<TemplateEngine> engine)
-    : m_engine(engine->createProfile(Ishiko::Configuration()))
+Views::Views(std::shared_ptr<TemplateEngineProfile> defaultProfile)
+    : m_defaultProfile(defaultProfile)
 {
 }
 
 void Views::add(std::shared_ptr<TemplateEngine> engine)
 {
-    m_engine = engine->createProfile(Ishiko::Configuration());
+    m_defaultProfile = engine->createProfile(Ishiko::Configuration());
 }
 
 TemplateEngineProfile& Views::defaultProfile()
 {
-    return *m_engine;
+    return *m_defaultProfile;
 }
 
 }

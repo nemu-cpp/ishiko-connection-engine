@@ -19,7 +19,7 @@ class Views
 {
 public:
     Views();
-    Views(std::shared_ptr<TemplateEngine> engine);
+    Views(std::shared_ptr<TemplateEngineProfile> defaultProfile);
 
     // TODO: at the momment we only support one view engine but we plan to support more later
     void add(std::shared_ptr<TemplateEngine> engine);
@@ -27,7 +27,7 @@ public:
     TemplateEngineProfile& defaultProfile();
 
 private:
-    std::shared_ptr<TemplateEngineProfile> m_engine;
+    std::shared_ptr<TemplateEngineProfile> m_defaultProfile;
 };
 
 }
