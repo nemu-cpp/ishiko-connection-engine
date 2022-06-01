@@ -8,6 +8,7 @@
 #define _NEMU_CPP_WEBFRAMEWORK_VIEWS_HPP_
 
 #include "TemplateEngine.hpp"
+#include "TemplateEngineProfile.hpp"
 #include <memory>
 
 namespace Nemu
@@ -23,10 +24,10 @@ public:
     // TODO: at the momment we only support one view engine but we plan to support more later
     void add(std::shared_ptr<TemplateEngine> engine);
 
-    TemplateEngine& engine();
+    TemplateEngineProfile& engine();
 
 private:
-    std::shared_ptr<TemplateEngine> m_engine;
+    std::shared_ptr<TemplateEngineProfile> m_engine;
 };
 
 }

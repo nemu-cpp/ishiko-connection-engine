@@ -41,6 +41,5 @@ void ViewWebRequestHandlerTests::RunTest1(Test& test)
     requestHandler.run(request, responseBuilder, log);
 
     ISHIKO_TEST_FAIL_IF_NEQ(responseBuilder.body(), "<html></html>");
-    ISHIKO_TEST_FAIL_IF_NEQ(templateEngine->view(), "/");
     ISHIKO_TEST_PASS();
 }

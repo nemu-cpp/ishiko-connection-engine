@@ -7,4 +7,19 @@
 #ifndef _NEMU_CPP_WEBFRAMEWORK_TEMPLATEENGINEPROFILE_HPP_
 #define _NEMU_CPP_WEBFRAMEWORK_TEMPLATEENGINEPROFILE_HPP_
 
+#include "ViewContext.hpp"
+#include <string>
+
+namespace Nemu
+{
+
+class TemplateEngineProfile
+{
+public:
+    virtual std::string render(const std::string& view, ViewContext& context) = 0;
+    virtual std::string render(const std::string& view, ViewContext& context, const std::string& layout) = 0;
+};
+
+}
+
 #endif

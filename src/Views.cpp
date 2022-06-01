@@ -14,16 +14,16 @@ Views::Views()
 }
 
 Views::Views(std::shared_ptr<TemplateEngine> engine)
-    : m_engine(engine)
+    : m_engine(engine->createProfile())
 {
 }
 
 void Views::add(std::shared_ptr<TemplateEngine> engine)
 {
-    m_engine = engine;
+    m_engine = engine->createProfile();
 }
 
-TemplateEngine& Views::engine()
+TemplateEngineProfile& Views::engine()
 {
     return *m_engine;
 }

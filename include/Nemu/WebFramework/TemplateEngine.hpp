@@ -7,14 +7,15 @@
 #ifndef _NEMU_CPP_WEBFRAMEWORK_TEMPLATEENGINE_HPP_
 #define _NEMU_CPP_WEBFRAMEWORK_TEMPLATEENGINE_HPP_
 
-#include "ViewContext.hpp"
-#include <string>
+#include "TemplateEngineProfile.hpp"
+#include <memory>
 
 namespace Nemu
 {
 
 /// Base class for classes that implement templating engines.
 /**
+    TODO: out of date comment since we now go via the Profile first.
     Templating engines are used by web applications to serve pages generated from templates. In Nemu such engines are
     registered with the Views instance stored in a WebApplication instance. They are invoked from the WebResponse::view
     function.
@@ -22,8 +23,7 @@ namespace Nemu
 class TemplateEngine
 {
 public:
-    virtual std::string render(const std::string& view, ViewContext& context) = 0;
-    virtual std::string render(const std::string& view, ViewContext& context, const std::string& layout) = 0;
+    virtual std::shared_ptr<TemplateEngineProfile> createProfile() const = 0;
 };
 
 }
