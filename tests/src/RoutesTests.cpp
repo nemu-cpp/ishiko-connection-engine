@@ -7,6 +7,8 @@
 #include "RoutesTests.hpp"
 #include "Helpers/TestWebRequestHandler.hpp"
 #include "Nemu/WebFramework/Routes.hpp"
+#include <memory>
+#include <vector>
 
 using namespace Ishiko;
 using namespace Nemu;
@@ -51,9 +53,9 @@ void RoutesTests::AddTest2(Test& test)
 {
     Routes routes;
 
-    Routes moreRoutes;
+    std::vector<Route> moreRoutes;
     std::shared_ptr<TestWebRequestHandler> handler = std::make_shared<TestWebRequestHandler>();
-    moreRoutes.add(Route("/", handler));
+    moreRoutes.emplace_back("/", handler);
 
     routes.add(moreRoutes);
 
@@ -68,10 +70,10 @@ void RoutesTests::AddTest3(Test& test)
 {
     Routes routes;
 
-    Routes moreRoutes;
+    std::vector<Route> moreRoutes;
     std::shared_ptr<TestWebRequestHandler> handler = std::make_shared<TestWebRequestHandler>();
-    moreRoutes.add(Route("/", handler));
-    moreRoutes.add(Route("/*", handler));
+    moreRoutes.emplace_back("/", handler);
+    moreRoutes.emplace_back("/*", handler);
 
     routes.add(moreRoutes);
 
