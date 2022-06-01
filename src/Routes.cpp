@@ -35,7 +35,7 @@ const Route& Routes::at(size_t pos) const
     }
 }
 
-void Routes::append(const Route& route)
+void Routes::add(const Route& route)
 {
     const std::string& pattern = route.pathPattern();
     if (!pattern.empty() && (pattern.back() == '*'))
@@ -46,6 +46,15 @@ void Routes::append(const Route& route)
     {
         m_exactMatchRoutes.push_back(route);
     }
+}
+
+void Routes::add(const Routes& routes)
+{
+    // TODO: check for duplicates
+    m_exactMatchRoutes.insert(m_exactMatchRoutes.end(), routes.m_exactMatchRoutes.begin(),
+        routes.m_exactMatchRoutes.end());
+    m_prefixMatchRoutes.insert(m_prefixMatchRoutes.end(), routes.m_prefixMatchRoutes.begin(),
+        routes.m_prefixMatchRoutes.end());
 }
 
 const Route& Routes::match(const std::string& path) const

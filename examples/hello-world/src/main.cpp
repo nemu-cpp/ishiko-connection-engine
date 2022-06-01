@@ -21,7 +21,7 @@ int main(int argc, char* argv[])
     // TODO: use exceptions
     Nemu::WebApplication app(server, log);
     
-    app.routes().append(
+    app.routes().add(
         Nemu::Route("/", 
             std::make_shared<Nemu::HardcodedWebRequestHandler>(Ishiko::HTTPStatusCode::ok, "Hello World!")));
 

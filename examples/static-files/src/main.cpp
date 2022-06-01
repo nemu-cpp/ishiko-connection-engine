@@ -28,7 +28,7 @@ int main(int argc, char* argv[])
         Nemu::WebApplication app(server, logger);
 
         // TODO: I should take this path relative to the executable location
-        app.routes().append(Nemu::Route("/", std::make_shared<Nemu::FileSystemWebRequestHandler>("../../data")));
+        app.routes().add(Nemu::Route("/", std::make_shared<Nemu::FileSystemWebRequestHandler>("../../data")));
 
         app.run();
 
