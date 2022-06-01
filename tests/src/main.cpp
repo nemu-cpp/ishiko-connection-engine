@@ -10,6 +10,7 @@
 #include "RouteTests.hpp"
 #include "RoutesTests.hpp"
 #include "SingleConnectionWebServerTests.hpp"
+#include "ViewsTests.hpp"
 #include "ViewWebRequestHandlerTests.hpp"
 #include "WebApplicationTests.hpp"
 #include "WebRequestTests.hpp"
@@ -28,6 +29,7 @@ int main(int argc, char* argv[])
     theTestHarness.context().setReferenceDataDirectory("../../reference");
 
     TestSequence& theTests = theTestHarness.tests();
+    theTests.append<ViewsTests>();
     theTests.append<SingleConnectionWebServerTests>();
     theTests.append<WebRequestTests>();
     theTests.append<WebResponseBuilderTests>();

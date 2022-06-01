@@ -13,8 +13,13 @@
 class TestTemplateEngineProfile : public Nemu::TemplateEngineProfile
 {
 public:
+    TestTemplateEngineProfile(std::string text);
+
     std::string render(const std::string& view, Nemu::ViewContext& context) override;
     std::string render(const std::string& view, Nemu::ViewContext& context, const std::string& layout) override;
+
+private:
+    std::string m_text;
 };
 
 #endif

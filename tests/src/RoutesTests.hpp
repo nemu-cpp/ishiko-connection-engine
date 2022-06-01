@@ -15,7 +15,7 @@ public:
     RoutesTests(const Ishiko::TestNumber& number, const Ishiko::TestContext& context);
 
 private:
-    static void CreationTest1(Ishiko::Test& test);
+    static void ConstructorTest1(Ishiko::Test& test);
     static void AddTest1(Ishiko::Test& test);
     static void AddTest2(Ishiko::Test& test);
     static void AddTest3(Ishiko::Test& test);
