@@ -7,4 +7,15 @@
 #ifndef _NEMU_CPP_WEBFRAMEWORK_MAPVIEWCONTEXT_HPP_
 #define _NEMU_CPP_WEBFRAMEWORK_MAPVIEWCONTEXT_HPP_
 
+#include "ViewContext.hpp"
+
+namespace Nemu
+{
+
+class MapViewContext : public ViewContext
+{
+};
+
+}
+
 #endif

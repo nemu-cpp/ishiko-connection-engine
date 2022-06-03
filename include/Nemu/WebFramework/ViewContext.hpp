@@ -7,7 +7,6 @@
 #ifndef _NEMU_CPP_WEBFRAMEWORK_VIEWCONTEXT_HPP_
 #define _NEMU_CPP_WEBFRAMEWORK_VIEWCONTEXT_HPP_
 
-#include <boost/variant.hpp>
 #include <map>
 #include <string>
 
