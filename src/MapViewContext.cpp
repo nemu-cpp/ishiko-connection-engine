@@ -23,6 +23,11 @@ void MapViewContext::getValue(const std::string& variable, std::string& result, 
     }
 }
 
+const std::map<std::string, std::string> MapViewContext::map() const noexcept
+{
+    return m_map;
+}
+
 std::map<std::string, std::string>& MapViewContext::map() noexcept
 {
     return m_map;
