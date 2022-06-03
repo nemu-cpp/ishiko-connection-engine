@@ -8,6 +8,7 @@
 #define _NEMU_CPP_WEBFRAMEWORK_REQUESTHANDLERS_VIEWWEBREQUESTHANDLER_HPP_
 
 #include "../WebRequestHandler.hpp"
+#include <boost/optional.hpp>
 #include <Ishiko/Errors.hpp>
 #include <string>
 
@@ -32,11 +33,13 @@ public:
     };
 
     ViewWebRequestHandler(const Callbacks& callbacks);
+    ViewWebRequestHandler(const Callbacks& callbacks, std::string layout);
 
     void run(const WebRequest& request, WebResponseBuilder& response, Ishiko::Logger& logger) override;
 
 private:
     const Callbacks& m_callbacks;
+    boost::optional<std::string> m_layout;
     ViewContext m_context;
 };
 

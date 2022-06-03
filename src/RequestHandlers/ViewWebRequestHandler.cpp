@@ -19,9 +19,21 @@ ViewWebRequestHandler::ViewWebRequestHandler(const Callbacks& callbacks)
 {
 }
 
+ViewWebRequestHandler::ViewWebRequestHandler(const Callbacks& callbacks, std::string layout)
+    : m_callbacks(callbacks), m_layout(std::move(layout))
+{
+}
+
 void ViewWebRequestHandler::run(const WebRequest& request, WebResponseBuilder& response, Ishiko::Logger& logger)
 {
     // TODO: handle errors
     Ishiko::Error error;
-    response.view(m_callbacks.getView(request, error), m_context);
+    if (m_layout)
+    {
+        response.view(m_callbacks.getView(request, error), m_context, *m_layout);
+    }
+    else
+    {
+        response.view(m_callbacks.getView(request, error), m_context);
+    }
 }
