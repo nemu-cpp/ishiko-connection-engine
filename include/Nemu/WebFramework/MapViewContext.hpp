@@ -18,6 +18,7 @@ class MapViewContext : public ViewContext
 {
 public:
     void getValue(const std::string& variable, std::string& result, Ishiko::Error error) override;
+    const std::map<std::string, std::string> map() const noexcept override;
 
     std::map<std::string, std::string>& map() noexcept;
 
