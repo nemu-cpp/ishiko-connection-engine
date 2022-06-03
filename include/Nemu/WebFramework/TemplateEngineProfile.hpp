@@ -18,8 +18,7 @@ namespace Nemu
 class TemplateEngineProfile
 {
 public:
-    virtual std::string render(const std::string& view, ViewContext& context) = 0;
-    virtual std::string render(const std::string& view, ViewContext& context, const std::string& layout) = 0;
+    virtual std::string render(const std::string& view, ViewContext& context, const std::string* layout) = 0;
 };
 
 }

@@ -11,13 +11,8 @@ TestTemplateEngineProfile::TestTemplateEngineProfile(std::string text)
 {
 }
 
-std::string TestTemplateEngineProfile::render(const std::string& view, Nemu::ViewContext& context)
-{
-    return ("<html>" + m_text + "</html>");
-}
-
 std::string TestTemplateEngineProfile::render(const std::string& view, Nemu::ViewContext& context,
-    const std::string& layout)
+    const std::string* layout)
 {
     return ("<html>" + m_text + "</html>");
 }
