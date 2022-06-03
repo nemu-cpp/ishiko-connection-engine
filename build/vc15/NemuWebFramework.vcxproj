@@ -150,10 +150,10 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\src\MapViewContext.cpp" />
     <ClCompile Include="..\..\src\Route.cpp" />
     <ClCompile Include="..\..\src\Routes.cpp" />
     <ClCompile Include="..\..\src\SingleConnectionWebServer.cpp" />
-    <ClCompile Include="..\..\src\ViewContext.cpp" />
     <ClCompile Include="..\..\src\Views.cpp" />
     <ClCompile Include="..\..\src\WebApplication.cpp" />
     <ClCompile Include="..\..\src\WebRequest.cpp" />
@@ -166,6 +166,7 @@
   <ItemGroup>
     <ClInclude Include="..\..\include\Nemu\WebFramework.hpp" />
     <ClInclude Include="..\..\include\Nemu\WebFramework\linkoptions.hpp" />
+    <ClInclude Include="..\..\include\Nemu\WebFramework\MapViewContext.hpp" />
     <ClInclude Include="..\..\include\Nemu\WebFramework\Route.hpp" />
     <ClInclude Include="..\..\include\Nemu\WebFramework\Routes.hpp" />
     <ClInclude Include="..\..\include\Nemu\WebFramework\SingleConnectionWebServer.hpp" />
