@@ -8,6 +8,8 @@
 #define _NEMU_CPP_WEBFRAMEWORK_REQUESTHANDLERS_VIEWWEBREQUESTHANDLER_HPP_
 
 #include "../WebRequestHandler.hpp"
+#include <Ishiko/Errors.hpp>
+#include <string>
 
 namespace Nemu
 {
@@ -15,11 +17,26 @@ namespace Nemu
 class ViewWebRequestHandler : public WebRequestHandler
 {
 public:
-    ViewWebRequestHandler();
+    class Callbacks
+    {
+    public:
+        virtual ~Callbacks() = default;
+
+        virtual std::string getView(const WebRequest& request, Ishiko::Error& error) const = 0;
+    };
+
+    class PrefixMappingCallbacks : public Callbacks
+    {
+    public:
+        std::string getView(const WebRequest& request, Ishiko::Error& error) const override;
+    };
+
+    ViewWebRequestHandler(const Callbacks& callbacks);
 
     void run(const WebRequest& request, WebResponseBuilder& response, Ishiko::Logger& logger) override;
 
 private:
+    const Callbacks& m_callbacks;
     ViewContext m_context;
 };
 

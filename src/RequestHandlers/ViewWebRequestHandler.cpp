@@ -8,11 +8,20 @@
 
 using namespace Nemu;
 
-ViewWebRequestHandler::ViewWebRequestHandler()
+std::string ViewWebRequestHandler::PrefixMappingCallbacks::getView(const WebRequest& request,
+    Ishiko::Error& error) const
+{
+    return request.url().path();
+}
+
+ViewWebRequestHandler::ViewWebRequestHandler(const Callbacks& callbacks)
+    : m_callbacks(callbacks)
 {
 }
 
 void ViewWebRequestHandler::run(const WebRequest& request, WebResponseBuilder& response, Ishiko::Logger& logger)
 {
-    response.view(request.url().path(), m_context);
+    // TODO: handle errors
+    Ishiko::Error error;
+    response.view(m_callbacks.getView(request, error), m_context);
 }

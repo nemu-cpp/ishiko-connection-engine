@@ -21,7 +21,8 @@ ViewWebRequestHandlerTests::ViewWebRequestHandlerTests(const TestNumber& number,
 
 void ViewWebRequestHandlerTests::ConstructorTest1(Test& test)
 {
-    ViewWebRequestHandler requestHandler;
+    ViewWebRequestHandler::PrefixMappingCallbacks callbacks;
+    ViewWebRequestHandler requestHandler(callbacks);
 
     ISHIKO_TEST_PASS();
 }
@@ -40,7 +41,8 @@ void ViewWebRequestHandlerTests::RunTest1(Test& test)
     WebResponseBuilder responseBuilder;
     responseBuilder.m_views = &views;
 
-    ViewWebRequestHandler requestHandler;
+    ViewWebRequestHandler::PrefixMappingCallbacks callbacks;
+    ViewWebRequestHandler requestHandler(callbacks);
     requestHandler.run(request, responseBuilder, log);
 
     ISHIKO_TEST_FAIL_IF_NEQ(responseBuilder.body(), "<html>ViewWebRequestHandlerTests_RunTest1</html>");
