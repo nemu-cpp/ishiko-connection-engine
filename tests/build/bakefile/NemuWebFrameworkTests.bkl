@@ -27,6 +27,7 @@ program NemuWebFrameworkTests: NemuWebFramework, IshikoHTTP, IshikoTestFramework
         ../../src/FileSystemWebRequestHandlerTests.hpp
         ../../src/FunctionWebRequestHandlerTests.hpp
         ../../src/HardcodedWebRequestHandlerTests.hpp
+        ../../src/MapViewContextTests.hpp
         ../../src/RouteTests.hpp
         ../../src/RoutesTests.hpp
         ../../src/SingleConnectionWebServerTests.hpp
@@ -43,12 +44,13 @@ program NemuWebFrameworkTests: NemuWebFramework, IshikoHTTP, IshikoTestFramework
 
     sources
     {
-        ../../src/RouteTests.cpp
-        ../../src/RoutesTests.cpp
         ../../src/FileSystemWebRequestHandlerTests.cpp
         ../../src/FunctionWebRequestHandlerTests.cpp
         ../../src/HardcodedWebRequestHandlerTests.cpp
         ../../src/main.cpp
+        ../../src/MapViewContextTests.cpp
+        ../../src/RouteTests.cpp
+        ../../src/RoutesTests.cpp
         ../../src/SingleConnectionWebServerTests.cpp
         ../../src/ViewsTests.cpp
         ../../src/ViewWebRequestHandlerTests.cpp

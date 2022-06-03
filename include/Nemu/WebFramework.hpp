@@ -7,6 +7,7 @@
 #ifndef _NEMU_CPP_WEBFRAMEWORK_HPP_
 #define _NEMU_CPP_WEBFRAMEWORK_HPP_
 
+#include "WebFramework/MapViewContext.hpp"
 #include "WebFramework/Route.hpp"
 #include "WebFramework/Routes.hpp"
 #include "WebFramework/SingleConnectionWebServer.hpp"

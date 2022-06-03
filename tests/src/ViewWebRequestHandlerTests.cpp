@@ -48,7 +48,7 @@ void ViewWebRequestHandlerTests::RunTest1(Test& test)
 
     ViewWebRequestHandler::PrefixMappingCallbacks callbacks;
     ViewWebRequestHandler requestHandler(callbacks);
-    requestHandler.context()["text"] = "RunTest1";
+    requestHandler.context().map()["text"] = "RunTest1";
     requestHandler.run(request, responseBuilder, log);
 
     const std::vector<std::string> receivedViews = templateEngineProfile->receivedViews();
@@ -82,7 +82,7 @@ void ViewWebRequestHandlerTests::RunTest2(Test& test)
 
     ViewWebRequestHandler::PrefixMappingCallbacks callbacks;
     ViewWebRequestHandler requestHandler(callbacks, "ViewWebRequestHandlerTests_RunTest2_layout.html");
-    requestHandler.context()["text"] = "RunTest2";
+    requestHandler.context().map()["text"] = "RunTest2";
     requestHandler.run(request, responseBuilder, log);
 
     const std::vector<std::string> receivedViews = templateEngineProfile->receivedViews();

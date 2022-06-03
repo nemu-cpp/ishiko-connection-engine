@@ -7,6 +7,7 @@
 #ifndef _NEMU_CPP_WEBFRAMEWORK_REQUESTHANDLERS_VIEWWEBREQUESTHANDLER_HPP_
 #define _NEMU_CPP_WEBFRAMEWORK_REQUESTHANDLERS_VIEWWEBREQUESTHANDLER_HPP_
 
+#include "../MapViewContext.hpp"
 #include "../WebRequestHandler.hpp"
 #include <boost/optional.hpp>
 #include <Ishiko/Errors.hpp>
@@ -23,7 +24,7 @@ public:
     public:
         virtual ~Callbacks() = default;
 
-        virtual std::string getView(const WebRequest& request, Ishiko::Error& error) const = 0;
+        virtual std::string getView(const WebRequest& request, Ishiko::Error& error) = 0;
         // TODO: ultimately this is what I want I think but until I make ViewContext an interface this would involve
         // too much copying
         //virtual ViewContext getContext(const WebRequest& request, Ishiko::Error& error) const = 0;
@@ -32,21 +33,21 @@ public:
     class PrefixMappingCallbacks : public Callbacks
     {
     public:
-        std::string getView(const WebRequest& request, Ishiko::Error& error) const override;
+        std::string getView(const WebRequest& request, Ishiko::Error& error) override;
     };
 
-    ViewWebRequestHandler(const Callbacks& callbacks);
-    ViewWebRequestHandler(const Callbacks& callbacks, std::string layout);
+    ViewWebRequestHandler(Callbacks& callbacks);
+    ViewWebRequestHandler(Callbacks& callbacks, std::string layout);
 
     void run(const WebRequest& request, WebResponseBuilder& response, Ishiko::Logger& logger) override;
 
-    const ViewContext& context() const noexcept;
-    ViewContext& context() noexcept;
+    const MapViewContext& context() const noexcept;
+    MapViewContext& context() noexcept;
 
 private:
-    const Callbacks& m_callbacks;
+    Callbacks& m_callbacks;
     boost::optional<std::string> m_layout;
-    ViewContext m_context;
+    MapViewContext m_context;
 };
 
 }
