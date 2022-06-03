@@ -4,4 +4,7 @@
     See https://github.com/nemu-cpp/web-framework/blob/main/LICENSE.txt
 */
 
-#include "ViewContext.hpp"
+#ifndef _NEMU_CPP_WEBFRAMEWORK_MAPVIEWCONTEXT_HPP_
+#define _NEMU_CPP_WEBFRAMEWORK_MAPVIEWCONTEXT_HPP_
+
+#endif
