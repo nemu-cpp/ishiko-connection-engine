@@ -19,7 +19,7 @@ class WebRequest : public Ishiko::HTTPRequestPushParser::Callbacks
 {
 public:
     WebRequest();
-    WebRequest(Ishiko::URL url);
+    explicit WebRequest(Ishiko::URL url);
 
     /// Returns the requested URL.
     const Ishiko::URL& url() const;

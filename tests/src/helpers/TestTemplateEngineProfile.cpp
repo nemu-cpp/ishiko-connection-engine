@@ -14,5 +14,24 @@ TestTemplateEngineProfile::TestTemplateEngineProfile(std::string text)
 std::string TestTemplateEngineProfile::render(const std::string& view, Nemu::ViewContext& context,
     const std::string* layout)
 {
-    return ("<html>" + m_text + "</html>");
+    m_receivedViews.push_back(view);
+    if (layout)
+    {
+        m_receivedLayouts.push_back(*layout);
+    }
+    else
+    {
+        m_receivedLayouts.push_back("null");
+    }
+    return ("<html><p>" + m_text + "</p><p>" + context.at("text") + "</p></html>");
+}
+
+const std::vector<std::string> TestTemplateEngineProfile::receivedViews() const
+{
+    return m_receivedViews;
+}
+
+const std::vector<std::string> TestTemplateEngineProfile::receivedLayouts() const
+{
+    return m_receivedLayouts;
 }
