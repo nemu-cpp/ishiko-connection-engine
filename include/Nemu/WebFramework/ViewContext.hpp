@@ -7,15 +7,18 @@
 #ifndef _NEMU_CPP_WEBFRAMEWORK_VIEWCONTEXT_HPP_
 #define _NEMU_CPP_WEBFRAMEWORK_VIEWCONTEXT_HPP_
 
-#include <boost/variant.hpp>
-#include <map>
+#include <Ishiko/Errors.hpp>
 #include <string>
 
 namespace Nemu
 {
 
-class ViewContext : public std::map<std::string, std::string>
+class ViewContext
 {
+public:
+    // TODO: this will append the value to result, is it possible to have something even more generic so that this can
+    // be as efficient as possible
+    virtual void getValue(const std::string& variable, std::string& result, Ishiko::Error error) = 0;
 };
 
 }

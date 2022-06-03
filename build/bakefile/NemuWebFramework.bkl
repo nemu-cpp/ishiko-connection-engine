@@ -39,6 +39,7 @@ library NemuWebFramework : NemuCore, IshikoHTTP, IshikoNetworking, IshikoConfigu
     {
         ../../include/Nemu/WebFramework.hpp
         ../../include/Nemu/WebFramework/linkoptions.hpp
+        ../../include/Nemu/WebFramework/MapViewContext.hpp
         ../../include/Nemu/WebFramework/Route.hpp
         ../../include/Nemu/WebFramework/Routes.hpp
         ../../include/Nemu/WebFramework/SingleConnectionWebServer.hpp
@@ -59,10 +60,10 @@ library NemuWebFramework : NemuCore, IshikoHTTP, IshikoNetworking, IshikoConfigu
 
     sources
     {
+        ../../src/MapViewContext.cpp
         ../../src/Route.cpp
         ../../src/Routes.cpp
         ../../src/SingleConnectionWebServer.cpp
-        ../../src/ViewContext.cpp
         ../../src/Views.cpp
         ../../src/WebApplication.cpp
         ../../src/WebRequest.cpp

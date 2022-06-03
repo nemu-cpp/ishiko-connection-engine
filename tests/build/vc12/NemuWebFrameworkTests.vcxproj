@@ -156,12 +156,13 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\src\RouteTests.cpp" />
-    <ClCompile Include="..\..\src\RoutesTests.cpp" />
     <ClCompile Include="..\..\src\FileSystemWebRequestHandlerTests.cpp" />
     <ClCompile Include="..\..\src\FunctionWebRequestHandlerTests.cpp" />
     <ClCompile Include="..\..\src\HardcodedWebRequestHandlerTests.cpp" />
     <ClCompile Include="..\..\src\main.cpp" />
+    <ClCompile Include="..\..\src\MapViewContextTests.cpp" />
+    <ClCompile Include="..\..\src\RouteTests.cpp" />
+    <ClCompile Include="..\..\src\RoutesTests.cpp" />
     <ClCompile Include="..\..\src\SingleConnectionWebServerTests.cpp" />
     <ClCompile Include="..\..\src\ViewsTests.cpp" />
     <ClCompile Include="..\..\src\ViewWebRequestHandlerTests.cpp" />
@@ -177,6 +178,7 @@
     <ClInclude Include="..\..\src\FileSystemWebRequestHandlerTests.hpp" />
     <ClInclude Include="..\..\src\FunctionWebRequestHandlerTests.hpp" />
     <ClInclude Include="..\..\src\HardcodedWebRequestHandlerTests.hpp" />
+    <ClInclude Include="..\..\src\MapViewContextTests.hpp" />
     <ClInclude Include="..\..\src\RouteTests.hpp" />
     <ClInclude Include="..\..\src\RoutesTests.hpp" />
     <ClInclude Include="..\..\src\SingleConnectionWebServerTests.hpp" />

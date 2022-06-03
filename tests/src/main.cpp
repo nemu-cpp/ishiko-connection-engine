@@ -7,6 +7,7 @@
 #include "FileSystemWebRequestHandlerTests.hpp"
 #include "FunctionWebRequestHandlerTests.hpp"
 #include "HardcodedWebRequestHandlerTests.hpp"
+#include "MapViewContextTests.hpp"
 #include "RouteTests.hpp"
 #include "RoutesTests.hpp"
 #include "SingleConnectionWebServerTests.hpp"
@@ -29,6 +30,7 @@ int main(int argc, char* argv[])
     theTestHarness.context().setReferenceDataDirectory("../../reference");
 
     TestSequence& theTests = theTestHarness.tests();
+    theTests.append<MapViewContextTests>();
     theTests.append<ViewsTests>();
     theTests.append<SingleConnectionWebServerTests>();
     theTests.append<WebRequestTests>();
