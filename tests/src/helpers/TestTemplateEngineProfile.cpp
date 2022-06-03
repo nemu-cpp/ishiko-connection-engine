@@ -23,7 +23,7 @@ std::string TestTemplateEngineProfile::render(const std::string& view, Nemu::Vie
     {
         m_receivedLayouts.push_back("null");
     }
-    return ("<html>" + m_text + "</html>");
+    return ("<html><p>" + m_text + "</p><p>" + context.at("text") + "</p></html>");
 }
 
 const std::vector<std::string> TestTemplateEngineProfile::receivedViews() const

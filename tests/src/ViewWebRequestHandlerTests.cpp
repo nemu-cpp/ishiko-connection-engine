@@ -48,6 +48,7 @@ void ViewWebRequestHandlerTests::RunTest1(Test& test)
 
     ViewWebRequestHandler::PrefixMappingCallbacks callbacks;
     ViewWebRequestHandler requestHandler(callbacks);
+    requestHandler.context()["text"] = "RunTest1";
     requestHandler.run(request, responseBuilder, log);
 
     const std::vector<std::string> receivedViews = templateEngineProfile->receivedViews();
@@ -57,7 +58,8 @@ void ViewWebRequestHandlerTests::RunTest1(Test& test)
     ISHIKO_TEST_FAIL_IF_NEQ(receivedViews[0], "/");
     ISHIKO_TEST_ABORT_IF_NEQ(receivedLayouts.size(), 1);
     ISHIKO_TEST_FAIL_IF_NEQ(receivedLayouts[0], "null");
-    ISHIKO_TEST_FAIL_IF_NEQ(responseBuilder.body(), "<html>ViewWebRequestHandlerTests_RunTest1</html>");
+    ISHIKO_TEST_FAIL_IF_NEQ(responseBuilder.body(),
+        "<html><p>ViewWebRequestHandlerTests_RunTest1</p><p>RunTest1</p></html>");
     ISHIKO_TEST_PASS();
 }
 
@@ -80,6 +82,7 @@ void ViewWebRequestHandlerTests::RunTest2(Test& test)
 
     ViewWebRequestHandler::PrefixMappingCallbacks callbacks;
     ViewWebRequestHandler requestHandler(callbacks, "ViewWebRequestHandlerTests_RunTest2_layout.html");
+    requestHandler.context()["text"] = "RunTest2";
     requestHandler.run(request, responseBuilder, log);
 
     const std::vector<std::string> receivedViews = templateEngineProfile->receivedViews();
@@ -89,6 +92,7 @@ void ViewWebRequestHandlerTests::RunTest2(Test& test)
     ISHIKO_TEST_FAIL_IF_NEQ(receivedViews[0], "/");
     ISHIKO_TEST_ABORT_IF_NEQ(receivedLayouts.size(), 1);
     ISHIKO_TEST_FAIL_IF_NEQ(receivedLayouts[0], "ViewWebRequestHandlerTests_RunTest2_layout.html");
-    ISHIKO_TEST_FAIL_IF_NEQ(responseBuilder.body(), "<html>ViewWebRequestHandlerTests_RunTest2</html>");
+    ISHIKO_TEST_FAIL_IF_NEQ(responseBuilder.body(),
+        "<html><p>ViewWebRequestHandlerTests_RunTest2</p><p>RunTest2</p></html>");
     ISHIKO_TEST_PASS();
 }

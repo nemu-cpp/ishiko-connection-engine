@@ -37,3 +37,13 @@ void ViewWebRequestHandler::run(const WebRequest& request, WebResponseBuilder& r
         response.view(m_callbacks.getView(request, error), m_context);
     }
 }
+
+const ViewContext& ViewWebRequestHandler::context() const noexcept
+{
+    return m_context;
+}
+
+ViewContext& ViewWebRequestHandler::context() noexcept
+{
+    return m_context;
+}

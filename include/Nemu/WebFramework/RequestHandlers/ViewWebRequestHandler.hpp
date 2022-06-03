@@ -24,6 +24,9 @@ public:
         virtual ~Callbacks() = default;
 
         virtual std::string getView(const WebRequest& request, Ishiko::Error& error) const = 0;
+        // TODO: ultimately this is what I want I think but until I make ViewContext an interface this would involve
+        // too much copying
+        //virtual ViewContext getContext(const WebRequest& request, Ishiko::Error& error) const = 0;
     };
 
     class PrefixMappingCallbacks : public Callbacks
@@ -36,6 +39,9 @@ public:
     ViewWebRequestHandler(const Callbacks& callbacks, std::string layout);
 
     void run(const WebRequest& request, WebResponseBuilder& response, Ishiko::Logger& logger) override;
+
+    const ViewContext& context() const noexcept;
+    ViewContext& context() noexcept;
 
 private:
     const Callbacks& m_callbacks;

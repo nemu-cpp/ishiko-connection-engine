@@ -42,9 +42,11 @@ void WebResponseBuilderTests::ViewTest1(Test& test)
     responseBuilder.m_views = &views;
 
     ViewContext context;
+    context["text"] = "ViewTest1";
     responseBuilder.view("index", context);
 
-    ISHIKO_TEST_FAIL_IF_NEQ(responseBuilder.body(), "<html>WebResponseBuilderTests_ViewTest1</html>");
+    ISHIKO_TEST_FAIL_IF_NEQ(responseBuilder.body(),
+        "<html><p>WebResponseBuilderTests_ViewTest1</p><p>ViewTest1</p></html>");
     ISHIKO_TEST_PASS();
 }
 
@@ -60,9 +62,11 @@ void WebResponseBuilderTests::ViewTest2(Test& test)
     responseBuilder.m_views = &views;
 
     ViewContext context;
+    context["text"] = "ViewTest2";
     responseBuilder.view("profile1", "index", context);
 
-    ISHIKO_TEST_FAIL_IF_NEQ(responseBuilder.body(), "<html>WebResponseBuilderTests_ViewTest2</html>");
+    ISHIKO_TEST_FAIL_IF_NEQ(responseBuilder.body(), 
+        "<html><p>WebResponseBuilderTests_ViewTest2</p><p>ViewTest2</p></html>");
     ISHIKO_TEST_PASS();
 }
 
@@ -81,13 +85,16 @@ void WebResponseBuilderTests::ViewTest3(Test& test)
     responseBuilder.m_views = &views;
 
     ViewContext context;
+    context["text"] = "ViewTest3";
     responseBuilder.view("profile1", "index", context);
 
-    ISHIKO_TEST_FAIL_IF_NEQ(responseBuilder.body(), "<html>WebResponseBuilderTests_ViewTest3_1</html>");
+    ISHIKO_TEST_FAIL_IF_NEQ(responseBuilder.body(),
+        "<html><p>WebResponseBuilderTests_ViewTest3_1</p><p>ViewTest3</p></html>");
 
     responseBuilder.view("profile2", "index", context);
 
-    ISHIKO_TEST_FAIL_IF_NEQ(responseBuilder.body(), "<html>WebResponseBuilderTests_ViewTest3_2</html>");
+    ISHIKO_TEST_FAIL_IF_NEQ(responseBuilder.body(),
+        "<html><p>WebResponseBuilderTests_ViewTest3_2</p><p>ViewTest3</p></html>");
 
     ISHIKO_TEST_PASS();
 }
