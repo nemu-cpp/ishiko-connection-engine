@@ -41,21 +41,21 @@ void WebResponseBuilder::view(const std::string& view, ViewContext& context)
 {
     // TODO: correct error handling and tests
     m_response.setStatusCode(Ishiko::HTTPStatusCode::ok);
-    body() = m_views->defaultProfile().render(view, context);
+    body() = m_views->defaultProfile().render(view, context, nullptr);
 }
 
 void WebResponseBuilder::view(const std::string& view, ViewContext& context, const std::string& layout)
 {
     // TODO: correct error handling and tests
     m_response.setStatusCode(Ishiko::HTTPStatusCode::ok);
-    body() = m_views->defaultProfile().render(view, context, layout);
+    body() = m_views->defaultProfile().render(view, context, &layout);
 }
 
 void WebResponseBuilder::view(const std::string& profile, const std::string& view, ViewContext& context)
 {
     // TODO: correct error handling and tests
     m_response.setStatusCode(Ishiko::HTTPStatusCode::ok);
-    body() = m_views->profile(profile).render(view, context);
+    body() = m_views->profile(profile).render(view, context, nullptr);
 }
 
 void WebResponseBuilder::view(const std::string& profile, const std::string& view, ViewContext& context,
@@ -63,7 +63,7 @@ void WebResponseBuilder::view(const std::string& profile, const std::string& vie
 {
     // TODO: correct error handling and tests
     m_response.setStatusCode(Ishiko::HTTPStatusCode::ok);
-    body() = m_views->profile(profile).render(view, context, layout);
+    body() = m_views->profile(profile).render(view, context, &layout);
 }
 
 void WebResponseBuilder::redirect()
