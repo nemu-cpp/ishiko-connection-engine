@@ -8,6 +8,7 @@
 #include "helpers/TestTemplateEngine.hpp"
 #include "helpers/TestTemplateEngineProfile.hpp"
 #include "Nemu/Core.hpp"
+#include "Nemu/WebFramework/MapViewContext.hpp"
 #include "Nemu/WebFramework/Views.hpp"
 #include "Nemu/WebFramework/WebResponseBuilder.hpp"
 #include <Ishiko/Configuration.hpp>
@@ -41,8 +42,8 @@ void WebResponseBuilderTests::ViewTest1(Test& test)
     Views views(engine.createProfile(configuration));
     responseBuilder.m_views = &views;
 
-    ViewContext context;
-    context["text"] = "ViewTest1";
+    MapViewContext context;
+    context.map()["text"] = "ViewTest1";
     responseBuilder.view("index", context);
 
     ISHIKO_TEST_FAIL_IF_NEQ(responseBuilder.body(),
@@ -61,8 +62,8 @@ void WebResponseBuilderTests::ViewTest2(Test& test)
     views.set("profile1", engine.createProfile(configuration));
     responseBuilder.m_views = &views;
 
-    ViewContext context;
-    context["text"] = "ViewTest2";
+    MapViewContext context;
+    context.map()["text"] = "ViewTest2";
     responseBuilder.view("profile1", "index", context);
 
     ISHIKO_TEST_FAIL_IF_NEQ(responseBuilder.body(), 
@@ -84,8 +85,8 @@ void WebResponseBuilderTests::ViewTest3(Test& test)
     views.set("profile2", engine.createProfile(configuration2));
     responseBuilder.m_views = &views;
 
-    ViewContext context;
-    context["text"] = "ViewTest3";
+    MapViewContext context;
+    context.map()["text"] = "ViewTest3";
     responseBuilder.view("profile1", "index", context);
 
     ISHIKO_TEST_FAIL_IF_NEQ(responseBuilder.body(),
