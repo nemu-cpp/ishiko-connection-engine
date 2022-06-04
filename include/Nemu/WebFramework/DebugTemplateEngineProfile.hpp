@@ -7,4 +7,17 @@
 #ifndef _NEMU_CPP_WEBFRAMEWORK_DEBUGTEMPLATEENGINEPROFILE_HPP_
 #define _NEMU_CPP_WEBFRAMEWORK_DEBUGTEMPLATEENGINEPROFILE_HPP_
 
+#include "TemplateEngineProfile.hpp"
+
+namespace Nemu
+{
+
+class DebugTemplateEngineProfile : public TemplateEngineProfile
+{
+public:
+    std::string render(const std::string& view, ViewContext& context, const std::string* layout) override;
+};
+
+}
+
 #endif

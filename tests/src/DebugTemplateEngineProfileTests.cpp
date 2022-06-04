@@ -5,8 +5,10 @@
 */
 
 #include "DebugTemplateEngineProfileTests.hpp"
+#include "Nemu/WebFramework/DebugTemplateEngineProfile.hpp"
 
 using namespace Ishiko;
+using namespace Nemu;
 
 DebugTemplateEngineProfileTests::DebugTemplateEngineProfileTests(const TestNumber& number,
     const TestContext& context)
@@ -17,4 +19,7 @@ DebugTemplateEngineProfileTests::DebugTemplateEngineProfileTests(const TestNumbe
 
 void DebugTemplateEngineProfileTests::ConstructorTest1(Test& test)
 {
+    DebugTemplateEngineProfile templateEngineProfile;
+
+    ISHIKO_TEST_PASS();
 }

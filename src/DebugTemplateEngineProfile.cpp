@@ -5,3 +5,11 @@
 */
 
 #include "DebugTemplateEngineProfile.hpp"
+
+using namespace Nemu;
+
+std::string DebugTemplateEngineProfile::render(const std::string& view, ViewContext& context,
+    const std::string* layout)
+{
+    return "";
+}
