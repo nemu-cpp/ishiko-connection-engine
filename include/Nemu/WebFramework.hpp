@@ -7,6 +7,8 @@
 #ifndef _NEMU_CPP_WEBFRAMEWORK_HPP_
 #define _NEMU_CPP_WEBFRAMEWORK_HPP_
 
+#include "WebFramework/DebugTemplateEngine.hpp"
+#include "WebFramework/DebugTemplateEngineProfile.hpp"
 #include "WebFramework/MapViewContext.hpp"
 #include "WebFramework/Route.hpp"
 #include "WebFramework/Routes.hpp"
