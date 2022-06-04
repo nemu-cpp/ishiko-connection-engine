@@ -38,6 +38,8 @@ library NemuWebFramework : NemuCore, IshikoHTTP, IshikoNetworking, IshikoConfigu
     headers
     {
         ../../include/Nemu/WebFramework.hpp
+        ../../include/Nemu/WebFramework/DebugTemplateEngine.hpp
+        ../../include/Nemu/WebFramework/DebugTemplateEngineProfile.hpp
         ../../include/Nemu/WebFramework/linkoptions.hpp
         ../../include/Nemu/WebFramework/MapViewContext.hpp
         ../../include/Nemu/WebFramework/Route.hpp
@@ -60,6 +62,8 @@ library NemuWebFramework : NemuCore, IshikoHTTP, IshikoNetworking, IshikoConfigu
 
     sources
     {
+        ../../src/DebugTemplateEngine.cpp
+        ../../src/DebugTemplateEngineProfile.cpp
         ../../src/MapViewContext.cpp
         ../../src/Route.cpp
         ../../src/Routes.cpp

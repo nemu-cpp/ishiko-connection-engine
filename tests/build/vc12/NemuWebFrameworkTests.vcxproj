@@ -156,6 +156,8 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\src\DebugTemplateEngineProfileTests.cpp" />
+    <ClCompile Include="..\..\src\DebugTemplateEngineTests.cpp" />
     <ClCompile Include="..\..\src\FileSystemWebRequestHandlerTests.cpp" />
     <ClCompile Include="..\..\src\FunctionWebRequestHandlerTests.cpp" />
     <ClCompile Include="..\..\src\HardcodedWebRequestHandlerTests.cpp" />
@@ -175,6 +177,8 @@
     <ClCompile Include="..\..\src\helpers\TestWebRequestHandler.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\src\DebugTemplateEngineProfileTests.hpp" />
+    <ClInclude Include="..\..\src\DebugTemplateEngineTests.hpp" />
     <ClInclude Include="..\..\src\FileSystemWebRequestHandlerTests.hpp" />
     <ClInclude Include="..\..\src\FunctionWebRequestHandlerTests.hpp" />
     <ClInclude Include="..\..\src\HardcodedWebRequestHandlerTests.hpp" />

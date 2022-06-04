@@ -4,6 +4,8 @@
     See https://github.com/nemu-cpp/web-framework/blob/main/LICENSE.txt
 */
 
+#include "DebugTemplateEngineProfileTests.hpp"
+#include "DebugTemplateEngineTests.hpp"
 #include "FileSystemWebRequestHandlerTests.hpp"
 #include "FunctionWebRequestHandlerTests.hpp"
 #include "HardcodedWebRequestHandlerTests.hpp"
@@ -32,6 +34,8 @@ int main(int argc, char* argv[])
     TestSequence& theTests = theTestHarness.tests();
     theTests.append<MapViewContextTests>();
     theTests.append<ViewsTests>();
+    theTests.append<DebugTemplateEngineTests>();
+    theTests.append<DebugTemplateEngineProfileTests>();
     theTests.append<SingleConnectionWebServerTests>();
     theTests.append<WebRequestTests>();
     theTests.append<WebResponseBuilderTests>();
