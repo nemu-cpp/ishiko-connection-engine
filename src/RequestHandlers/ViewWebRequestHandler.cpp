@@ -15,6 +15,12 @@ boost::optional<std::string> ViewWebRequestHandler::Callbacks::getProfile(const 
     return boost::optional<std::string>();
 }
 
+boost::optional<std::string> ViewWebRequestHandler::Callbacks::getLayout(const WebRequest& request,
+    Ishiko::Error& error)
+{
+    return boost::optional<std::string>();
+}
+
 ViewWebRequestHandler::PrefixMappingCallbacks::PrefixMappingCallbacks(std::string urlPathPrefix,
     std::string contentPrefix)
     : m_urlPathPrefix(std::move(urlPathPrefix)), m_contentPrefix(std::move(contentPrefix))
@@ -39,9 +45,23 @@ std::string ViewWebRequestHandler::PrefixMappingCallbacks::getView(const WebRequ
     return result;
 }
 
+ViewWebRequestHandler::DeclarativeCallbacks::DeclarativeCallbacks(const char* profile, const char* layout,
+    const char* urlPathPrefix, const char* contentPrefix)
+    : PrefixMappingCallbacks(urlPathPrefix, contentPrefix)
+{
+    if (profile)
+    {
+        m_profile = profile;
+    }
+    if (layout)
+    {
+        m_layout = layout;
+    }
+}
+
 ViewWebRequestHandler::DeclarativeCallbacks::DeclarativeCallbacks(boost::optional<std::string> profile,
-    std::string urlPathPrefix, std::string contentPrefix)
-    : m_profile(std::move(profile)), PrefixMappingCallbacks(urlPathPrefix, contentPrefix)
+    boost::optional<std::string> layout, std::string urlPathPrefix, std::string contentPrefix)
+    : m_profile(std::move(profile)), m_layout(std::move(layout)), PrefixMappingCallbacks(urlPathPrefix, contentPrefix)
 {
 }
 
@@ -51,13 +71,14 @@ boost::optional<std::string> ViewWebRequestHandler::DeclarativeCallbacks::getPro
     return m_profile;
 }
 
-ViewWebRequestHandler::ViewWebRequestHandler(Callbacks& callbacks)
-    : m_callbacks(callbacks)
+boost::optional<std::string> ViewWebRequestHandler::DeclarativeCallbacks::getLayout(const WebRequest& request,
+    Ishiko::Error& error)
 {
+    return m_layout;
 }
 
-ViewWebRequestHandler::ViewWebRequestHandler(Callbacks& callbacks, std::string layout)
-    : m_callbacks(callbacks), m_layout(std::move(layout))
+ViewWebRequestHandler::ViewWebRequestHandler(Callbacks& callbacks)
+    : m_callbacks(callbacks)
 {
 }
 
@@ -66,11 +87,12 @@ void ViewWebRequestHandler::run(const WebRequest& request, WebResponseBuilder& r
     // TODO: handle errors
     Ishiko::Error error;
     boost::optional<std::string> profile = m_callbacks.getProfile(request, error);
+    boost::optional<std::string> layout = m_callbacks.getLayout(request, error);
     if (profile)
     {
-        if (m_layout)
+        if (layout)
         {
-            response.view(*profile, m_callbacks.getView(request, error), m_context, *m_layout);
+            response.view(*profile, m_callbacks.getView(request, error), m_context, *layout);
         }
         else
         {
@@ -79,9 +101,9 @@ void ViewWebRequestHandler::run(const WebRequest& request, WebResponseBuilder& r
     }
     else
     {
-        if (m_layout)
+        if (layout)
         {
-            response.view(m_callbacks.getView(request, error), m_context, *m_layout);
+            response.view(m_callbacks.getView(request, error), m_context, *layout);
         }
         else
         {
