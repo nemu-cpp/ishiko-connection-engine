@@ -24,6 +24,8 @@ program NemuWebFrameworkTests: NemuWebFramework, IshikoHTTP, IshikoTestFramework
 
     headers
     {
+        ../../src/DebugTemplateEngineProfileTests.hpp
+        ../../src/DebugTemplateEngineTests.hpp
         ../../src/FileSystemWebRequestHandlerTests.hpp
         ../../src/FunctionWebRequestHandlerTests.hpp
         ../../src/HardcodedWebRequestHandlerTests.hpp
@@ -44,6 +46,8 @@ program NemuWebFrameworkTests: NemuWebFramework, IshikoHTTP, IshikoTestFramework
 
     sources
     {
+        ../../src/DebugTemplateEngineProfileTests.cpp
+        ../../src/DebugTemplateEngineTests.cpp
         ../../src/FileSystemWebRequestHandlerTests.cpp
         ../../src/FunctionWebRequestHandlerTests.cpp
         ../../src/HardcodedWebRequestHandlerTests.cpp
