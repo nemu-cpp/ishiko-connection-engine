@@ -62,8 +62,8 @@ library NemuWebFramework : NemuCore, IshikoHTTP, IshikoNetworking, IshikoConfigu
 
     sources
     {
-        ../../srd/DebugTemplateEngine.cpp
-        ../../srd/DebugTemplateEngineProfile.cpp
+        ../../src/DebugTemplateEngine.cpp
+        ../../src/DebugTemplateEngineProfile.cpp
         ../../src/MapViewContext.cpp
         ../../src/Route.cpp
         ../../src/Routes.cpp

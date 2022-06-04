@@ -150,8 +150,8 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\srd\DebugTemplateEngine.cpp" />
-    <ClCompile Include="..\..\srd\DebugTemplateEngineProfile.cpp" />
+    <ClCompile Include="..\..\src\DebugTemplateEngine.cpp" />
+    <ClCompile Include="..\..\src\DebugTemplateEngineProfile.cpp" />
     <ClCompile Include="..\..\src\MapViewContext.cpp" />
     <ClCompile Include="..\..\src\Route.cpp" />
     <ClCompile Include="..\..\src\Routes.cpp" />

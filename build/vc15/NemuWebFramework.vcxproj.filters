@@ -82,10 +82,10 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\srd\DebugTemplateEngine.cpp">
+    <ClCompile Include="..\..\src\DebugTemplateEngine.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\srd\DebugTemplateEngineProfile.cpp">
+    <ClCompile Include="..\..\src\DebugTemplateEngineProfile.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\..\src\MapViewContext.cpp">
