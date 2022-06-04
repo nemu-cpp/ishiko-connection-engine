@@ -9,6 +9,12 @@
 
 using namespace Nemu;
 
+boost::optional<std::string> ViewWebRequestHandler::Callbacks::getProfile(const WebRequest& request,
+    Ishiko::Error& error)
+{
+    return boost::optional<std::string>();
+}
+
 ViewWebRequestHandler::PrefixMappingCallbacks::PrefixMappingCallbacks(std::string urlPathPrefix,
     std::string contentPrefix)
     : m_urlPathPrefix(std::move(urlPathPrefix)), m_contentPrefix(std::move(contentPrefix))
@@ -33,6 +39,18 @@ std::string ViewWebRequestHandler::PrefixMappingCallbacks::getView(const WebRequ
     return result;
 }
 
+ViewWebRequestHandler::DeclarativeCallbacks::DeclarativeCallbacks(boost::optional<std::string> profile,
+    std::string urlPathPrefix, std::string contentPrefix)
+    : m_profile(std::move(profile)), PrefixMappingCallbacks(urlPathPrefix, contentPrefix)
+{
+}
+
+boost::optional<std::string> ViewWebRequestHandler::DeclarativeCallbacks::getProfile(const WebRequest& request,
+    Ishiko::Error& error)
+{
+    return m_profile;
+}
+
 ViewWebRequestHandler::ViewWebRequestHandler(Callbacks& callbacks)
     : m_callbacks(callbacks)
 {
@@ -47,13 +65,28 @@ void ViewWebRequestHandler::run(const WebRequest& request, WebResponseBuilder& r
 {
     // TODO: handle errors
     Ishiko::Error error;
-    if (m_layout)
+    boost::optional<std::string> profile = m_callbacks.getProfile(request, error);
+    if (profile)
     {
-        response.view(m_callbacks.getView(request, error), m_context, *m_layout);
+        if (m_layout)
+        {
+            response.view(*profile, m_callbacks.getView(request, error), m_context, *m_layout);
+        }
+        else
+        {
+            response.view(*profile, m_callbacks.getView(request, error), m_context);
+        }
     }
     else
     {
-        response.view(m_callbacks.getView(request, error), m_context);
+        if (m_layout)
+        {
+            response.view(m_callbacks.getView(request, error), m_context, *m_layout);
+        }
+        else
+        {
+            response.view(m_callbacks.getView(request, error), m_context);
+        }
     }
 }
 

@@ -21,6 +21,7 @@ ViewWebRequestHandlerTests::ViewWebRequestHandlerTests(const TestNumber& number,
     append<HeapAllocationErrorsTest>("run test 2", RunTest2);
     append<HeapAllocationErrorsTest>("run test 3", RunTest3);
     append<HeapAllocationErrorsTest>("run test 4", RunTest4);
+    append<HeapAllocationErrorsTest>("run test 5", RunTest5);
 }
 
 void ViewWebRequestHandlerTests::ConstructorTest1(Test& test)
@@ -164,5 +165,40 @@ void ViewWebRequestHandlerTests::RunTest4(Test& test)
     ISHIKO_TEST_FAIL_IF_NEQ(receivedLayouts[0], "null");
     ISHIKO_TEST_FAIL_IF_NEQ(responseBuilder.body(),
         "<html><p>ViewWebRequestHandlerTests_RunTest4</p><p>RunTest4</p></html>");
+    ISHIKO_TEST_PASS();
+}
+
+void ViewWebRequestHandlerTests::RunTest5(Test& test)
+{
+    NullLoggingSink sink;
+    Logger log(sink);
+
+    TestTemplateEngine templateEngine;
+    Ishiko::Configuration configuration;
+    configuration.set("text", "ViewWebRequestHandlerTests_RunTest1");
+    // We need to keep a pointer to the actual template engine profile because we want to run some tests on it.
+    std::shared_ptr<TestTemplateEngineProfile> templateEngineProfile =
+        std::static_pointer_cast<TestTemplateEngineProfile>(templateEngine.createProfile(configuration));
+    Views views;
+    views.set("profile1", templateEngineProfile);
+
+    WebRequest request(URL("/"));
+    WebResponseBuilder responseBuilder;
+    responseBuilder.m_views = &views;
+
+    ViewWebRequestHandler::DeclarativeCallbacks callbacks(std::string("profile1"), "", "");
+    ViewWebRequestHandler requestHandler(callbacks);
+    requestHandler.context().map()["text"] = "RunTest1";
+    requestHandler.run(request, responseBuilder, log);
+
+    const std::vector<std::string> receivedViews = templateEngineProfile->receivedViews();
+    const std::vector<std::string> receivedLayouts = templateEngineProfile->receivedLayouts();
+
+    ISHIKO_TEST_ABORT_IF_NEQ(receivedViews.size(), 1);
+    ISHIKO_TEST_FAIL_IF_NEQ(receivedViews[0], "/");
+    ISHIKO_TEST_ABORT_IF_NEQ(receivedLayouts.size(), 1);
+    ISHIKO_TEST_FAIL_IF_NEQ(receivedLayouts[0], "null");
+    ISHIKO_TEST_FAIL_IF_NEQ(responseBuilder.body(),
+        "<html><p>ViewWebRequestHandlerTests_RunTest1</p><p>RunTest1</p></html>");
     ISHIKO_TEST_PASS();
 }
