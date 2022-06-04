@@ -83,8 +83,9 @@ void ViewWebRequestHandlerTests::RunTest2(Test& test)
     WebResponseBuilder responseBuilder;
     responseBuilder.m_views = &views;
 
-    ViewWebRequestHandler::PrefixMappingCallbacks callbacks("", "");
-    ViewWebRequestHandler requestHandler(callbacks, "ViewWebRequestHandlerTests_RunTest2_layout.html");
+    ViewWebRequestHandler::DeclarativeCallbacks callbacks(nullptr, "ViewWebRequestHandlerTests_RunTest2_layout.html",
+        "", "");
+    ViewWebRequestHandler requestHandler(callbacks);
     requestHandler.context().map()["text"] = "RunTest2";
     requestHandler.run(request, responseBuilder, log);
 
@@ -186,7 +187,7 @@ void ViewWebRequestHandlerTests::RunTest5(Test& test)
     WebResponseBuilder responseBuilder;
     responseBuilder.m_views = &views;
 
-    ViewWebRequestHandler::DeclarativeCallbacks callbacks(std::string("profile1"), "", "");
+    ViewWebRequestHandler::DeclarativeCallbacks callbacks("profile1", nullptr, "", "");
     ViewWebRequestHandler requestHandler(callbacks);
     requestHandler.context().map()["text"] = "RunTest1";
     requestHandler.run(request, responseBuilder, log);
