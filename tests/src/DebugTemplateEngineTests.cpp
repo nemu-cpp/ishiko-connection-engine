@@ -15,11 +15,22 @@ DebugTemplateEngineTests::DebugTemplateEngineTests(const TestNumber& number,
     : TestSequence(number, "DebugTemplateEngine tests", context)
 {
     append<HeapAllocationErrorsTest>("Constructor test 1", ConstructorTest1);
+    append<HeapAllocationErrorsTest>("createProfile test 1", CreateProfileTest1);
 }
 
 void DebugTemplateEngineTests::ConstructorTest1(Test& test)
 {
     DebugTemplateEngine templateEngine;
+
+    ISHIKO_TEST_PASS();
+}
+
+void DebugTemplateEngineTests::CreateProfileTest1(Test& test)
+{
+    DebugTemplateEngine templateEngine;
+
+    Ishiko::Configuration configuration;
+    std::shared_ptr<TemplateEngineProfile> templateEngineProfile = templateEngine.createProfile(configuration);
 
     ISHIKO_TEST_PASS();
 }
