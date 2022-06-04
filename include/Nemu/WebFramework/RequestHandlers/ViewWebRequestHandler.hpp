@@ -30,6 +30,8 @@ public:
         //virtual ViewContext getContext(const WebRequest& request, Ishiko::Error& error) const = 0;
     };
 
+    // TODO: the most basic case would be to remove the leading '/' to make it a relative path. Should I make this the
+    // default constructor?
     class PrefixMappingCallbacks : public Callbacks
     {
     public:

@@ -24,6 +24,11 @@ std::string ViewWebRequestHandler::PrefixMappingCallbacks::getView(const WebRequ
         {
             result.insert(result.begin(), m_contentPrefix.begin(), m_contentPrefix.end());
         }
+        else
+        {
+            // TODO: this needs to be an error! Security risk, although the routing should prevent this in the first
+            // place
+        }
     }
     return result;
 }
