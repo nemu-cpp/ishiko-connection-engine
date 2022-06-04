@@ -33,7 +33,16 @@ public:
     class PrefixMappingCallbacks : public Callbacks
     {
     public:
+        PrefixMappingCallbacks(std::string urlPathPrefix, std::string contentPrefix);
+
         std::string getView(const WebRequest& request, Ishiko::Error& error) override;
+
+    private:
+        // If the URL path starts with hm_urlPathPrefix then the m_urlPathPrefix prefix will be removed and replaced by
+        //  the value of m_contentPrefix. If m_urlPathPrefix is empty then the value of m_contentPrefix will always be
+        // preprended to the URL path. Both m_urlPathPrefix and m_contentPrefix can be empty.
+        std::string m_urlPathPrefix;
+        std::string m_contentPrefix;
     };
 
     ViewWebRequestHandler(Callbacks& callbacks);

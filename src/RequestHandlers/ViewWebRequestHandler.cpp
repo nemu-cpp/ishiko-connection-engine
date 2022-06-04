@@ -5,12 +5,27 @@
 */
 
 #include "RequestHandlers/ViewWebRequestHandler.hpp"
+#include <Ishiko/Text.hpp>
 
 using namespace Nemu;
 
+ViewWebRequestHandler::PrefixMappingCallbacks::PrefixMappingCallbacks(std::string urlPathPrefix,
+    std::string contentPrefix)
+    : m_urlPathPrefix(std::move(urlPathPrefix)), m_contentPrefix(std::move(contentPrefix))
+{
+}
+
 std::string ViewWebRequestHandler::PrefixMappingCallbacks::getView(const WebRequest& request, Ishiko::Error& error)
 {
-    return request.url().path();
+    std::string result = request.url().path();
+    if (!m_urlPathPrefix.empty() || !m_contentPrefix.empty())
+    {
+        if (Ishiko::ASCII::RemovePrefix(m_urlPathPrefix, result))
+        {
+            result.insert(result.begin(), m_contentPrefix.begin(), m_contentPrefix.end());
+        }
+    }
+    return result;
 }
 
 ViewWebRequestHandler::ViewWebRequestHandler(Callbacks& callbacks)
