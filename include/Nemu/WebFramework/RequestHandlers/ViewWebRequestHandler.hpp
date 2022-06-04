@@ -30,8 +30,9 @@ public:
         virtual ~Callbacks() = default;
 
         virtual boost::optional<std::string> getProfile(const WebRequest& request, Ishiko::Error& error);
-
+        virtual boost::optional<std::string> getLayout(const WebRequest& request, Ishiko::Error& error);
         virtual std::string getView(const WebRequest& request, Ishiko::Error& error) = 0;
+        
         // TODO: ultimately this is what I want I think but until I make ViewContext an interface this would involve
         // too much copying
         //virtual ViewContext getContext(const WebRequest& request, Ishiko::Error& error) const = 0;
@@ -59,17 +60,20 @@ public:
     class DeclarativeCallbacks : public PrefixMappingCallbacks
     {
     public:
-        DeclarativeCallbacks(boost::optional<std::string> profile, std::string urlPathPrefix,
-            std::string contentPrefix);
+        DeclarativeCallbacks(const char* profile, const char* layout, const char* urlPathPrefix, 
+            const char* contentPrefix);
+        DeclarativeCallbacks(boost::optional<std::string> profile, boost::optional<std::string> layout,
+            std::string urlPathPrefix, std::string contentPrefix);
 
         boost::optional<std::string> getProfile(const WebRequest& request, Ishiko::Error& error) override;
+        boost::optional<std::string> getLayout(const WebRequest& request, Ishiko::Error& error) override;
 
     private:
         boost::optional<std::string> m_profile;
+        boost::optional<std::string> m_layout;
     };
 
     ViewWebRequestHandler(Callbacks& callbacks);
-    ViewWebRequestHandler(Callbacks& callbacks, std::string layout);
 
     void run(const WebRequest& request, WebResponseBuilder& response, Ishiko::Logger& logger) override;
 
@@ -78,7 +82,6 @@ public:
 
 private:
     Callbacks& m_callbacks;
-    boost::optional<std::string> m_layout;
     MapViewContext m_context;
 };
 
