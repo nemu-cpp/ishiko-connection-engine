@@ -150,6 +150,8 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\srd\DebugTemplateEngine.cpp" />
+    <ClCompile Include="..\..\srd\DebugTemplateEngineProfile.cpp" />
     <ClCompile Include="..\..\src\MapViewContext.cpp" />
     <ClCompile Include="..\..\src\Route.cpp" />
     <ClCompile Include="..\..\src\Routes.cpp" />
@@ -165,6 +167,8 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\include\Nemu\WebFramework.hpp" />
+    <ClInclude Include="..\..\include\Nemu\WebFramework\DebugTemplateEngine.hpp" />
+    <ClInclude Include="..\..\include\Nemu\WebFramework\DebugTemplateEngineProfile.hpp" />
     <ClInclude Include="..\..\include\Nemu\WebFramework\linkoptions.hpp" />
     <ClInclude Include="..\..\include\Nemu\WebFramework\MapViewContext.hpp" />
     <ClInclude Include="..\..\include\Nemu\WebFramework\Route.hpp" />

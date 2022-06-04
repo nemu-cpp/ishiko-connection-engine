@@ -20,6 +20,12 @@
     <ClInclude Include="..\..\include\Nemu\WebFramework.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\include\Nemu\WebFramework\DebugTemplateEngine.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\Nemu\WebFramework\DebugTemplateEngineProfile.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
     <ClInclude Include="..\..\include\Nemu\WebFramework\linkoptions.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -76,6 +82,12 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\srd\DebugTemplateEngine.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\srd\DebugTemplateEngineProfile.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
     <ClCompile Include="..\..\src\MapViewContext.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
