@@ -19,24 +19,30 @@ namespace Nemu
 class ViewContext
 {
 public:
-    class Value : boost::variant<std::string, std::vector<std::string>>
+    class Value : boost::variant<std::string, std::vector<Value>, std::map<std::string, Value>>
     {
     public:
         enum class Type
         {
             string = 0,
-            stringArray = 1
+            valueArray = 1,
+            valueMap = 2
         };
 
         Value() = default;
         Value(const char* value);
         Value(const std::string & value);
         Value(std::string && value);
-        Value(const std::vector<std::string>&value);
+        Value(const std::vector<Value>&value);
+        Value(const std::map<std::string, Value>& value);
 
         Type type() const;
         const std::string& asString() const;
-        const std::vector<std::string>& asStringArray() const;
+        const std::vector<Value>& asValueArray() const;
+        const std::map<std::string, Value>& asValueMap() const;
+
+        bool operator==(const Value& other) const noexcept;
+        bool operator!=(const Value& other) const noexcept;
     };
 
     // TODO: this will append the value to result, is it possible to have something even more generic so that this can

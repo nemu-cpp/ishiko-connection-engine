@@ -78,7 +78,7 @@ void DebugTemplateEngineProfileTests::RenderTest3(Test& test)
     DebugTemplateEngineProfile templateEngineProfile;
 
     MapViewContext context;
-    context.map()["var1"] = std::vector<std::string>({ "value1", "value2" });
+    context.map()["var1"] = std::vector<ViewContext::Value>({ "value1", "value2" });
     std::string renderedView =
         templateEngineProfile.render("DebugTemplateEngineProfileTests_RenderTest3.html", context, nullptr);
 
