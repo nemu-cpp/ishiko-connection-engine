@@ -5,6 +5,8 @@
 */
 
 #include "DebugTemplateEngineProfile.hpp"
+#include <string>
+#include <vector>
 
 using namespace Nemu;
 
@@ -41,9 +43,30 @@ std::string DebugTemplateEngineProfile::render(const std::string& view, ViewCont
         {
             result.append("<li>\"");
             result.append(item.first);
-            result.append("\": \"");
-            result.append(item.second.asString());
-            result.append("\"</li>");
+            result.append("\": ");
+            switch (item.second.type())
+            {
+            case ViewContext::Value::Type::string:
+                result.append("\"" + item.second.asString() + "\"");
+                break;
+
+            case ViewContext::Value::Type::stringArray:
+                {
+                    result.append("[<ol>");
+                    const std::vector<std::string>& array = item.second.asStringArray();
+                    for (const std::string& str : array)
+                    {
+                        result.append("<li>\"" + str + "\"</li>");
+                    }
+                    result.append("</ol>]");
+                }
+                break;
+
+            default:
+                // TODO: error
+                break;
+            }
+            result.append("</li>");
         }
 
         result.append("</ul>");
