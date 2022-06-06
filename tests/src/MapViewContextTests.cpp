@@ -18,6 +18,7 @@ MapViewContextTests::MapViewContextTests(const TestNumber& number, const TestCon
     append<HeapAllocationErrorsTest>("Constructor test 1", ConstructorTest1);
     append<HeapAllocationErrorsTest>("getValue test 1", GetValueTest1);
     append<HeapAllocationErrorsTest>("getValue test 2", GetValueTest2);
+    append<HeapAllocationErrorsTest>("getValue test 3", GetValueTest3);
 }
 
 void MapViewContextTests::ConstructorTest1(Test& test)
@@ -52,5 +53,19 @@ void MapViewContextTests::GetValueTest2(Ishiko::Test& test)
     ISHIKO_TEST_FAIL_IF(error);
     ISHIKO_TEST_ABORT_IF_NEQ(result.type(), ViewContext::Value::Type::stringArray);
     ISHIKO_TEST_FAIL_IF_NEQ(result.asStringArray(), std::vector<std::string>({ "value1", "value2" }));
+    ISHIKO_TEST_PASS();
+}
+
+void MapViewContextTests::GetValueTest3(Ishiko::Test& test)
+{
+    MapViewContext viewContext;
+    viewContext.map()["var1"] = std::map<std::string, std::string>({ { "name1", "value1" } });
+
+    Ishiko::Error error;
+    ViewContext::Value result = viewContext.getValue("var1", error);
+
+    ISHIKO_TEST_FAIL_IF(error);
+    ISHIKO_TEST_ABORT_IF_NEQ(result.type(), ViewContext::Value::Type::stringMap);
+    ISHIKO_TEST_FAIL_IF_NEQ(result.asStringMap(), (std::map<std::string, std::string>({ { "name1", "value1" } })));
     ISHIKO_TEST_PASS();
 }

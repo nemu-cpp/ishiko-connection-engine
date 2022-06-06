@@ -9,22 +9,27 @@
 using namespace Nemu;
 
 ViewContext::Value::Value(const char* value)
-    : boost::variant<std::string, std::vector<std::string>>(value)
+    : boost::variant<std::string, std::vector<std::string>, std::map<std::string, std::string>>(value)
 {
 }
 
 ViewContext::Value::Value(const std::string& value)
-    : boost::variant<std::string, std::vector<std::string>>(value)
+    : boost::variant<std::string, std::vector<std::string>, std::map<std::string, std::string>>(value)
 {
 }
 
 ViewContext::Value::Value(std::string&& value)
-    : boost::variant<std::string, std::vector<std::string>>(value)
+    : boost::variant<std::string, std::vector<std::string>, std::map<std::string, std::string>>(value)
 {
 }
 
 ViewContext::Value::Value(const std::vector<std::string>& value)
-    : boost::variant<std::string, std::vector<std::string>>(value)
+    : boost::variant<std::string, std::vector<std::string>, std::map<std::string, std::string>>(value)
+{
+}
+
+ViewContext::Value::Value(const std::map<std::string, std::string>& value)
+    : boost::variant<std::string, std::vector<std::string>, std::map<std::string, std::string>>(value)
 {
 }
 
@@ -41,4 +46,9 @@ const std::string& ViewContext::Value::asString() const
 const std::vector<std::string>& ViewContext::Value::asStringArray() const
 {
     return boost::get<std::vector<std::string>>(*this);
+}
+
+const std::map<std::string, std::string>& ViewContext::Value::asStringMap() const
+{
+    return boost::get<std::map<std::string, std::string>>(*this);
 }
