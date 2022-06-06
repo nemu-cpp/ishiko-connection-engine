@@ -9,26 +9,27 @@
 
 using namespace Nemu;
 
-void MapViewContext::getValue(const std::string& variable, std::string& result, Ishiko::Error error)
+ViewContext::Value MapViewContext::getValue(const std::string& variable, Ishiko::Error& error)
 {
-    std::map<std::string, std::string>::const_iterator it = m_map.find(variable);
+    std::map<std::string, Value>::const_iterator it = m_map.find(variable);
     if (it != m_map.end())
     {
-        result.append(it->second);
+        return it->second;
     }
     else
     {
         // TODO: better error
         Fail(error, NemuErrorCategory::eGeneric, "", __FILE__, __LINE__);
+        return Value();
     }
 }
 
-const std::map<std::string, std::string> MapViewContext::map() const noexcept
+const std::map<std::string, ViewContext::Value> MapViewContext::toMap() const noexcept
 {
     return m_map;
 }
 
-std::map<std::string, std::string>& MapViewContext::map() noexcept
+std::map<std::string, ViewContext::Value>& MapViewContext::map() noexcept
 {
     return m_map;
 }
