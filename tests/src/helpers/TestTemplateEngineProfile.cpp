@@ -26,7 +26,7 @@ std::string TestTemplateEngineProfile::render(const std::string& view, Nemu::Vie
     std::string result = "<html><p>" + m_text + "</p><p>";
     // TODO: how to handle error? Should render take an error?
     Ishiko::Error error;
-    context.getValue("text", result, error);
+    result.append(context.getValue("text", error).asString());
     result += "</p></html>";
     return result;
 }

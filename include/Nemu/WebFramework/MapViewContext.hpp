@@ -17,13 +17,13 @@ namespace Nemu
 class MapViewContext : public ViewContext
 {
 public:
-    void getValue(const std::string& variable, std::string& result, Ishiko::Error error) override;
-    const std::map<std::string, std::string> map() const noexcept override;
+    Value getValue(const std::string& variable, Ishiko::Error& error) override;
+    const std::map<std::string, Value> toMap() const noexcept override;
 
-    std::map<std::string, std::string>& map() noexcept;
+    std::map<std::string, Value>& map() noexcept;
 
 private:
-    std::map<std::string, std::string> m_map;
+    std::map<std::string, Value> m_map;
 };
 
 }

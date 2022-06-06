@@ -10,5 +10,5 @@
 std::shared_ptr<Nemu::TemplateEngineProfile> TestTemplateEngine::createProfile(
     const Ishiko::Configuration& configuration) const
 {
-    return std::make_shared<TestTemplateEngineProfile>(configuration.value("text"));
+    return std::make_shared<TestTemplateEngineProfile>(configuration.value("text").asString());
 }
