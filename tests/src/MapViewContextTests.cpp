@@ -45,14 +45,14 @@ void MapViewContextTests::GetValueTest1(Ishiko::Test& test)
 void MapViewContextTests::GetValueTest2(Ishiko::Test& test)
 {
     MapViewContext viewContext;
-    viewContext.map()["var1"] = std::vector<std::string>({ "value1", "value2" });
+    viewContext.map()["var1"] = std::vector<ViewContext::Value>({ "value1", "value2" });
 
     Ishiko::Error error;
     ViewContext::Value result = viewContext.getValue("var1", error);
 
     ISHIKO_TEST_FAIL_IF(error);
-    ISHIKO_TEST_ABORT_IF_NEQ(result.type(), ViewContext::Value::Type::stringArray);
-    ISHIKO_TEST_FAIL_IF_NEQ(result.asStringArray(), std::vector<std::string>({ "value1", "value2" }));
+    ISHIKO_TEST_ABORT_IF_NEQ(result.type(), ViewContext::Value::Type::valueArray);
+    ISHIKO_TEST_FAIL_IF_NEQ(result.asValueArray(), std::vector<ViewContext::Value>({ "value1", "value2" }));
     ISHIKO_TEST_PASS();
 }
 

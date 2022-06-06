@@ -50,13 +50,13 @@ std::string DebugTemplateEngineProfile::render(const std::string& view, ViewCont
                 result.append("\"" + item.second.asString() + "\"");
                 break;
 
-            case ViewContext::Value::Type::stringArray:
+            case ViewContext::Value::Type::valueArray:
                 {
                     result.append("[<ol>");
-                    const std::vector<std::string>& array = item.second.asStringArray();
-                    for (const std::string& str : array)
+                    for (const ViewContext::Value& v : item.second.asValueArray())
                     {
-                        result.append("<li>\"" + str + "\"</li>");
+                        // TODO: only copes with arrays of strings
+                        result.append("<li>\"" + v.asString() + "\"</li>");
                     }
                     result.append("</ol>]");
                 }
