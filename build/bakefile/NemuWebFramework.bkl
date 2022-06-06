@@ -68,6 +68,7 @@ library NemuWebFramework : NemuCore, IshikoHTTP, IshikoNetworking, IshikoConfigu
         ../../src/Route.cpp
         ../../src/Routes.cpp
         ../../src/SingleConnectionWebServer.cpp
+        ../../src/ViewContext.cpp
         ../../src/Views.cpp
         ../../src/WebApplication.cpp
         ../../src/WebRequest.cpp

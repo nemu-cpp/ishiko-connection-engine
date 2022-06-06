@@ -156,6 +156,7 @@
     <ClCompile Include="..\..\src\Route.cpp" />
     <ClCompile Include="..\..\src\Routes.cpp" />
     <ClCompile Include="..\..\src\SingleConnectionWebServer.cpp" />
+    <ClCompile Include="..\..\src\ViewContext.cpp" />
     <ClCompile Include="..\..\src\Views.cpp" />
     <ClCompile Include="..\..\src\WebApplication.cpp" />
     <ClCompile Include="..\..\src\WebRequest.cpp" />
