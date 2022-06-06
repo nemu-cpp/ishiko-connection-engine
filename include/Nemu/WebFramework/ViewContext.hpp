@@ -19,18 +19,14 @@ namespace Nemu
 class ViewContext
 {
 public:
-    class Value : boost::variant<std::string, std::vector<Value>, std::map<std::string, std::string>>
+    class Value : boost::variant<std::string, std::vector<Value>, std::map<std::string, Value>>
     {
     public:
         enum class Type
         {
             string = 0,
-            // TODO: should I have valueArray and valueMap instead? I need to get some more feedback about actual usage
-            // in templates before deciding
             valueArray = 1,
-            // TODO: I can't have a nested ViewContext because it is an abstract class, I could have a pointer to a
-            // ViewContext but I don't know if that is really what I want anyway. A map of values I may need though.
-            stringMap = 2
+            valueMap = 2
         };
 
         Value() = default;
@@ -38,12 +34,12 @@ public:
         Value(const std::string & value);
         Value(std::string && value);
         Value(const std::vector<Value>&value);
-        Value(const std::map<std::string, std::string>& value);
+        Value(const std::map<std::string, Value>& value);
 
         Type type() const;
         const std::string& asString() const;
         const std::vector<Value>& asValueArray() const;
-        const std::map<std::string, std::string>& asStringMap() const;
+        const std::map<std::string, Value>& asValueMap() const;
 
         bool operator==(const Value& other) const noexcept;
         bool operator!=(const Value& other) const noexcept;

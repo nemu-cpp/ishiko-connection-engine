@@ -9,27 +9,27 @@
 using namespace Nemu;
 
 ViewContext::Value::Value(const char* value)
-    : boost::variant<std::string, std::vector<Value>, std::map<std::string, std::string>>(value)
+    : boost::variant<std::string, std::vector<Value>, std::map<std::string, Value>>(value)
 {
 }
 
 ViewContext::Value::Value(const std::string& value)
-    : boost::variant<std::string, std::vector<Value>, std::map<std::string, std::string>>(value)
+    : boost::variant<std::string, std::vector<Value>, std::map<std::string, Value>>(value)
 {
 }
 
 ViewContext::Value::Value(std::string&& value)
-    : boost::variant<std::string, std::vector<Value>, std::map<std::string, std::string>>(value)
+    : boost::variant<std::string, std::vector<Value>, std::map<std::string, Value>>(value)
 {
 }
 
 ViewContext::Value::Value(const std::vector<Value>& value)
-    : boost::variant<std::string, std::vector<Value>, std::map<std::string, std::string>>(value)
+    : boost::variant<std::string, std::vector<Value>, std::map<std::string, Value>>(value)
 {
 }
 
-ViewContext::Value::Value(const std::map<std::string, std::string>& value)
-    : boost::variant<std::string, std::vector<Value>, std::map<std::string, std::string>>(value)
+ViewContext::Value::Value(const std::map<std::string, Value>& value)
+    : boost::variant<std::string, std::vector<Value>, std::map<std::string, Value>>(value)
 {
 }
 
@@ -48,17 +48,17 @@ const std::vector<ViewContext::Value>& ViewContext::Value::asValueArray() const
     return boost::get<std::vector<Value>>(*this);
 }
 
-const std::map<std::string, std::string>& ViewContext::Value::asStringMap() const
+const std::map<std::string, ViewContext::Value>& ViewContext::Value::asValueMap() const
 {
-    return boost::get<std::map<std::string, std::string>>(*this);
+    return boost::get<std::map<std::string, Value>>(*this);
 }
 
 bool ViewContext::Value::operator==(const Value& other) const noexcept
 {
     const auto& arg1 =
-        static_cast<const boost::variant<std::string, std::vector<Value>, std::map<std::string, std::string>>&>(*this);
+        static_cast<const boost::variant<std::string, std::vector<Value>, std::map<std::string, Value>>&>(*this);
     const auto& arg2 =
-        static_cast<const boost::variant<std::string, std::vector<Value>, std::map<std::string, std::string>>&>(other);
+        static_cast<const boost::variant<std::string, std::vector<Value>, std::map<std::string, Value>>&>(other);
     return (arg1 == arg2);
 }
 
