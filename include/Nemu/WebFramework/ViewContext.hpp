@@ -42,10 +42,11 @@ public:
     // TODO: this will append the value to result, is it possible to have something even more generic so that this can
     // be as efficient as possible
     // TODO: it's more complicated than that as the value could be an array or an object
-    virtual void getValue(const std::string& variable, std::string& result, Ishiko::Error error) = 0;
+    // TOOD: actually the solution is to return the value and have the value be something more abstract.
+    virtual Value getValue(const std::string& variable, Ishiko::Error& error) = 0;
 
     // TODO: workaround until I can fix mustache or stop using it
-    virtual const std::map<std::string, std::string> map() const noexcept = 0;
+    virtual const std::map<std::string, Value> toMap() const noexcept = 0;
 };
 
 }

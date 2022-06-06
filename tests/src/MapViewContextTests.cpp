@@ -30,10 +30,10 @@ void MapViewContextTests::GetValueTest1(Ishiko::Test& test)
     viewContext.map()["var1"] = "value1";
 
     Ishiko::Error error;
-    std::string result;
-    viewContext.getValue("var1", result, error);
+    ViewContext::Value result = viewContext.getValue("var1", error);
 
     ISHIKO_TEST_FAIL_IF(error);
-    ISHIKO_TEST_FAIL_IF_NEQ(result, "value1");
+    ISHIKO_TEST_ABORT_IF_NEQ(result.type(), ViewContext::Value::Type::string);
+    ISHIKO_TEST_FAIL_IF_NEQ(result.asString(), "value1");
     ISHIKO_TEST_PASS();
 }

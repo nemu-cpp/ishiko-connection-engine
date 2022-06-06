@@ -27,7 +27,8 @@ std::string DebugTemplateEngineProfile::render(const std::string& view, ViewCont
         result.append("null");
     }
     result.append("\"</li></ul><h2>View Context</h2>");
-    if (context.map().empty())
+    std::map<std::string, ViewContext::Value> map = context.toMap();
+    if (map.empty())
     {
         result.append("Empty");
     }
@@ -36,12 +37,12 @@ std::string DebugTemplateEngineProfile::render(const std::string& view, ViewCont
         result.append("<ul>");
 
         // TODO: limit output size
-        for (const std::pair<std::string, std::string> item : context.map())
+        for (const std::pair<std::string, ViewContext::Value> item : map)
         {
             result.append("<li>\"");
             result.append(item.first);
             result.append("\": \"");
-            result.append(item.second);
+            result.append(item.second.asString());
             result.append("\"</li>");
         }
 
