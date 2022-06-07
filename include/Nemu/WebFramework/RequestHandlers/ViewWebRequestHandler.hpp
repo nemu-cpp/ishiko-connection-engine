@@ -10,6 +10,7 @@
 #include "../MapViewContext.hpp"
 #include "../WebRequestHandler.hpp"
 #include <boost/optional.hpp>
+#include <boost/variant.hpp>
 #include <Ishiko/Errors.hpp>
 #include <string>
 
@@ -38,39 +39,38 @@ public:
         //virtual ViewContext getContext(const WebRequest& request, Ishiko::Error& error) const = 0;
     };
 
-    // TODO: this is in fact a mixin.
-    // TODO: should be called something with "View" in it beacuse it only implements getView
-    // TODO: the most basic case would be to remove the leading '/' to make it a relative path. Should I make this the
-    // default constructor?
-    class PrefixMappingCallbacks : public Callbacks
+    class DeclarativeCallbacks : public Callbacks
     {
     public:
-        PrefixMappingCallbacks(std::string urlPathPrefix, std::string contentPrefix);
+        class PrefixMapping
+        {
+        public:
+            PrefixMapping(std::string inputPrefix, std::string outputPrefix);
 
-        std::string getView(const WebRequest& request, Ishiko::Error& error) override;
+            std::string getOutput(const std::string& input) const;
 
-    private:
-        // If the URL path starts with hm_urlPathPrefix then the m_urlPathPrefix prefix will be removed and replaced by
-        //  the value of m_contentPrefix. If m_urlPathPrefix is empty then the value of m_contentPrefix will always be
-        // preprended to the URL path. Both m_urlPathPrefix and m_contentPrefix can be empty.
-        std::string m_urlPathPrefix;
-        std::string m_contentPrefix;
-    };
+        private:
+            // If the input starts with m_inputPrefix then the m_inputPrefix prefix will be removed and replaced by the
+            // value of m_outputPrefix. If m_inputPrefix is empty then the value of m_outputPrefix will always be
+            // preprended to the output. Both m_inputPrefix and m_outputPrefix can be empty.
+            std::string m_inputPrefix;
+            std::string m_outputPrefix;
+        };
 
-    class DeclarativeCallbacks : public PrefixMappingCallbacks
-    {
-    public:
-        DeclarativeCallbacks(const char* profile, const char* layout, const char* urlPathPrefix, 
-            const char* contentPrefix);
+        typedef boost::variant<std::string, PrefixMapping> ResolutionMechanism;
+
+        DeclarativeCallbacks(const char* profile, const char* layout, ResolutionMechanism view);
         DeclarativeCallbacks(boost::optional<std::string> profile, boost::optional<std::string> layout,
-            std::string urlPathPrefix, std::string contentPrefix);
+            ResolutionMechanism view);
 
         boost::optional<std::string> getProfile(const WebRequest& request, Ishiko::Error& error) override;
         boost::optional<std::string> getLayout(const WebRequest& request, Ishiko::Error& error) override;
+        std::string getView(const WebRequest& request, Ishiko::Error& error) override;
 
     private:
         boost::optional<std::string> m_profile;
         boost::optional<std::string> m_layout;
+        ResolutionMechanism m_view;
     };
 
     ViewWebRequestHandler(Callbacks& callbacks);
