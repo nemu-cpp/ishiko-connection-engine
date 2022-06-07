@@ -27,9 +27,9 @@ void WriteValue(const ViewContext::Value& value, std::string& output)
             output.append("[<ol>");
             for (const ViewContext::Value& v : value.asValueArray())
             {
-                output.append("<li>\"");
+                output.append("<li>");
                 WriteValue(v, output);
-                output.append("\"</li>");
+                output.append("</li>");
             }
             output.append("</ol>]");
         }
