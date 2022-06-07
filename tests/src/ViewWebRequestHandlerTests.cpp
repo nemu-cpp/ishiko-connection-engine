@@ -26,7 +26,7 @@ ViewWebRequestHandlerTests::ViewWebRequestHandlerTests(const TestNumber& number,
 
 void ViewWebRequestHandlerTests::ConstructorTest1(Test& test)
 {
-    ViewWebRequestHandler::PrefixMappingCallbacks callbacks("", "");
+    ViewWebRequestHandler::DeclarativeCallbacks callbacks(nullptr, nullptr, "", "");
     ViewWebRequestHandler requestHandler(callbacks);
 
     ISHIKO_TEST_PASS();
@@ -49,7 +49,7 @@ void ViewWebRequestHandlerTests::RunTest1(Test& test)
     WebResponseBuilder responseBuilder;
     responseBuilder.m_views = &views;
 
-    ViewWebRequestHandler::PrefixMappingCallbacks callbacks("", "");
+    ViewWebRequestHandler::DeclarativeCallbacks callbacks(nullptr, nullptr, "", "");
     ViewWebRequestHandler requestHandler(callbacks);
     requestHandler.context().map()["text"] = "RunTest1";
     requestHandler.run(request, responseBuilder, log);
@@ -118,7 +118,7 @@ void ViewWebRequestHandlerTests::RunTest3(Test& test)
     WebResponseBuilder responseBuilder;
     responseBuilder.m_views = &views;
 
-    ViewWebRequestHandler::PrefixMappingCallbacks callbacks("", "pages");
+    ViewWebRequestHandler::DeclarativeCallbacks callbacks(nullptr, nullptr, "", "pages");
     ViewWebRequestHandler requestHandler(callbacks);
     requestHandler.context().map()["text"] = "RunTest3";
     requestHandler.run(request, responseBuilder, log);
@@ -152,7 +152,7 @@ void ViewWebRequestHandlerTests::RunTest4(Test& test)
     WebResponseBuilder responseBuilder;
     responseBuilder.m_views = &views;
 
-    ViewWebRequestHandler::PrefixMappingCallbacks callbacks("mypages", "pages");
+    ViewWebRequestHandler::DeclarativeCallbacks callbacks(nullptr, nullptr, "mypages", "pages");
     ViewWebRequestHandler requestHandler(callbacks);
     requestHandler.context().map()["text"] = "RunTest4";
     requestHandler.run(request, responseBuilder, log);
