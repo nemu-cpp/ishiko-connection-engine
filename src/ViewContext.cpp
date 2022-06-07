@@ -9,27 +9,27 @@
 using namespace Nemu;
 
 ViewContext::Value::Value(const char* value)
-    : boost::variant<std::string, std::vector<Value>, std::map<std::string, Value>>(value)
+    : boost::variant<std::string, Array, Map>(value)
 {
 }
 
 ViewContext::Value::Value(const std::string& value)
-    : boost::variant<std::string, std::vector<Value>, std::map<std::string, Value>>(value)
+    : boost::variant<std::string, Array, Map>(value)
 {
 }
 
 ViewContext::Value::Value(std::string&& value)
-    : boost::variant<std::string, std::vector<Value>, std::map<std::string, Value>>(value)
+    : boost::variant<std::string, Array, Map>(value)
 {
 }
 
 ViewContext::Value::Value(const std::vector<Value>& value)
-    : boost::variant<std::string, std::vector<Value>, std::map<std::string, Value>>(value)
+    : boost::variant<std::string, Array, Map>(value)
 {
 }
 
 ViewContext::Value::Value(const std::map<std::string, Value>& value)
-    : boost::variant<std::string, std::vector<Value>, std::map<std::string, Value>>(value)
+    : boost::variant<std::string, Array, Map>(value)
 {
 }
 
@@ -43,22 +43,35 @@ const std::string& ViewContext::Value::asString() const
     return boost::get<std::string>(*this);
 }
 
-const std::vector<ViewContext::Value>& ViewContext::Value::asValueArray() const
+std::string& ViewContext::Value::asString()
 {
-    return boost::get<std::vector<Value>>(*this);
+    return boost::get<std::string>(*this);
 }
 
-const std::map<std::string, ViewContext::Value>& ViewContext::Value::asValueMap() const
+const ViewContext::Value::Array& ViewContext::Value::asValueArray() const
 {
-    return boost::get<std::map<std::string, Value>>(*this);
+    return boost::get<Array>(*this);
+}
+
+ViewContext::Value::Array& ViewContext::Value::asValueArray()
+{
+    return boost::get<Array>(*this);
+}
+
+const ViewContext::Value::Map& ViewContext::Value::asValueMap() const
+{
+    return boost::get<Map>(*this);
+}
+
+ViewContext::Value::Map& ViewContext::Value::asValueMap()
+{
+    return boost::get<Map>(*this);
 }
 
 bool ViewContext::Value::operator==(const Value& other) const noexcept
 {
-    const auto& arg1 =
-        static_cast<const boost::variant<std::string, std::vector<Value>, std::map<std::string, Value>>&>(*this);
-    const auto& arg2 =
-        static_cast<const boost::variant<std::string, std::vector<Value>, std::map<std::string, Value>>&>(other);
+    const auto& arg1 = static_cast<const boost::variant<std::string, Array, Map>&>(*this);
+    const auto& arg2 = static_cast<const boost::variant<std::string, Array, Map>&>(other);
     return (arg1 == arg2);
 }
 

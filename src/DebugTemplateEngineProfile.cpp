@@ -10,6 +10,52 @@
 
 using namespace Nemu;
 
+namespace
+{
+
+// TODO: remove recursion in this function
+void WriteValue(const ViewContext::Value& value, std::string& output)
+{
+    switch (value.type())
+    {
+    case ViewContext::Value::Type::string:
+        output.append("\"" + value.asString() + "\"");
+        break;
+
+    case ViewContext::Value::Type::valueArray:
+        {
+            output.append("[<ol>");
+            for (const ViewContext::Value& v : value.asValueArray())
+            {
+                output.append("<li>");
+                WriteValue(v, output);
+                output.append("</li>");
+            }
+            output.append("</ol>]");
+        }
+        break;
+
+    case ViewContext::Value::Type::valueMap:
+        {
+            output.append("{<ul>");
+            for (const std::pair<std::string, ViewContext::Value>& v : value.asValueMap())
+            {
+                output.append("<li>\"" + v.first + "\": ");
+                WriteValue(v.second, output);
+                output.append("</li>");
+            }
+            output.append("</ul>}");
+        }
+        break;
+
+    default:
+        // TODO: error
+        break;
+    }
+}
+
+}
+
 std::string DebugTemplateEngineProfile::render(const std::string& view, ViewContext& context,
     const std::string* layout)
 {
@@ -30,47 +76,21 @@ std::string DebugTemplateEngineProfile::render(const std::string& view, ViewCont
     }
     result.append("\"</li></ul><h2>View Context</h2>");
     std::map<std::string, ViewContext::Value> map = context.toMap();
-    if (map.empty())
+    
+    result.append("{<ul>");
+
+    // TODO: limit output size
+    for (const std::pair<std::string, ViewContext::Value> item : map)
     {
-        result.append("Empty");
+        result.append("<li>\"");
+        result.append(item.first);
+        result.append("\": ");
+        WriteValue(item.second, result);
+        result.append("</li>");
     }
-    else
-    {
-        result.append("<ul>");
 
-        // TODO: limit output size
-        for (const std::pair<std::string, ViewContext::Value> item : map)
-        {
-            result.append("<li>\"");
-            result.append(item.first);
-            result.append("\": ");
-            switch (item.second.type())
-            {
-            case ViewContext::Value::Type::string:
-                result.append("\"" + item.second.asString() + "\"");
-                break;
-
-            case ViewContext::Value::Type::valueArray:
-                {
-                    result.append("[<ol>");
-                    for (const ViewContext::Value& v : item.second.asValueArray())
-                    {
-                        // TODO: only copes with arrays of strings
-                        result.append("<li>\"" + v.asString() + "\"</li>");
-                    }
-                    result.append("</ol>]");
-                }
-                break;
-
-            default:
-                // TODO: error
-                break;
-            }
-            result.append("</li>");
-        }
-
-        result.append("</ul>");
-    }
+    result.append("</ul>}");
+   
     result.append("</body>");
 
     return result;
