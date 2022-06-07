@@ -22,6 +22,9 @@ public:
     class Value : boost::variant<std::string, std::vector<Value>, std::map<std::string, Value>>
     {
     public:
+        typedef std::vector<Value> Array;
+        typedef std::map<std::string, Value> Map;
+
         enum class Type
         {
             string = 0,
@@ -38,8 +41,11 @@ public:
 
         Type type() const;
         const std::string& asString() const;
-        const std::vector<Value>& asValueArray() const;
-        const std::map<std::string, Value>& asValueMap() const;
+        std::string& asString();
+        const Array& asValueArray() const;
+        Array& asValueArray();
+        const Map& asValueMap() const;
+        Map& asValueMap();
 
         bool operator==(const Value& other) const noexcept;
         bool operator!=(const Value& other) const noexcept;
