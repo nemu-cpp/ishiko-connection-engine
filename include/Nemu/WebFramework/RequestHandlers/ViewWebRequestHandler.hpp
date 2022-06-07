@@ -57,12 +57,11 @@ public:
             std::string m_outputPrefix;
         };
 
-        typedef boost::variant<std::string, PrefixMapping> Mechanism;
+        typedef boost::variant<std::string, PrefixMapping> ResolutionMechanism;
 
-        DeclarativeCallbacks(const char* profile, const char* layout, const char* urlPathPrefix, 
-            const char* contentPrefix);
+        DeclarativeCallbacks(const char* profile, const char* layout, ResolutionMechanism view);
         DeclarativeCallbacks(boost::optional<std::string> profile, boost::optional<std::string> layout,
-            std::string urlPathPrefix, std::string contentPrefix);
+            ResolutionMechanism view);
 
         boost::optional<std::string> getProfile(const WebRequest& request, Ishiko::Error& error) override;
         boost::optional<std::string> getLayout(const WebRequest& request, Ishiko::Error& error) override;
@@ -71,7 +70,7 @@ public:
     private:
         boost::optional<std::string> m_profile;
         boost::optional<std::string> m_layout;
-        PrefixMapping m_view;
+        ResolutionMechanism m_view;
     };
 
     ViewWebRequestHandler(Callbacks& callbacks);

@@ -46,8 +46,8 @@ std::string ViewWebRequestHandler::DeclarativeCallbacks::PrefixMapping::getOutpu
 }
 
 ViewWebRequestHandler::DeclarativeCallbacks::DeclarativeCallbacks(const char* profile, const char* layout,
-    const char* urlPathPrefix, const char* contentPrefix)
-    : m_view(urlPathPrefix, contentPrefix)
+    ResolutionMechanism view)
+    : m_view(std::move(view))
 {
     if (profile)
     {
@@ -60,8 +60,8 @@ ViewWebRequestHandler::DeclarativeCallbacks::DeclarativeCallbacks(const char* pr
 }
 
 ViewWebRequestHandler::DeclarativeCallbacks::DeclarativeCallbacks(boost::optional<std::string> profile,
-    boost::optional<std::string> layout, std::string urlPathPrefix, std::string contentPrefix)
-    : m_profile(std::move(profile)), m_layout(std::move(layout)), m_view(urlPathPrefix, contentPrefix)
+    boost::optional<std::string> layout, ResolutionMechanism view)
+    : m_profile(std::move(profile)), m_layout(std::move(layout)), m_view(std::move(view))
 {
 }
 
@@ -79,7 +79,18 @@ boost::optional<std::string> ViewWebRequestHandler::DeclarativeCallbacks::getLay
 
 std::string ViewWebRequestHandler::DeclarativeCallbacks::getView(const WebRequest& request, Ishiko::Error& error)
 {
-    return m_view.getOutput(request.url().path());
+    switch (m_view.which())
+    {
+    case 0:
+        return boost::get<std::string>(m_view);
+
+    case 1:
+        return boost::get<PrefixMapping>(m_view).getOutput(request.url().path());
+
+    default:
+        // TODO: impossible
+        return "";
+    }
 }
 
 ViewWebRequestHandler::ViewWebRequestHandler(Callbacks& callbacks)

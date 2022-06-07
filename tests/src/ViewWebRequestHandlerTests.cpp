@@ -26,7 +26,8 @@ ViewWebRequestHandlerTests::ViewWebRequestHandlerTests(const TestNumber& number,
 
 void ViewWebRequestHandlerTests::ConstructorTest1(Test& test)
 {
-    ViewWebRequestHandler::DeclarativeCallbacks callbacks(nullptr, nullptr, "", "");
+    ViewWebRequestHandler::DeclarativeCallbacks callbacks(nullptr, nullptr,
+        ViewWebRequestHandler::DeclarativeCallbacks::PrefixMapping("", ""));
     ViewWebRequestHandler requestHandler(callbacks);
 
     ISHIKO_TEST_PASS();
@@ -49,7 +50,8 @@ void ViewWebRequestHandlerTests::RunTest1(Test& test)
     WebResponseBuilder responseBuilder;
     responseBuilder.m_views = &views;
 
-    ViewWebRequestHandler::DeclarativeCallbacks callbacks(nullptr, nullptr, "", "");
+    ViewWebRequestHandler::DeclarativeCallbacks callbacks(nullptr, nullptr,
+        ViewWebRequestHandler::DeclarativeCallbacks::PrefixMapping("", ""));
     ViewWebRequestHandler requestHandler(callbacks);
     requestHandler.context().map()["text"] = "RunTest1";
     requestHandler.run(request, responseBuilder, log);
@@ -84,7 +86,7 @@ void ViewWebRequestHandlerTests::RunTest2(Test& test)
     responseBuilder.m_views = &views;
 
     ViewWebRequestHandler::DeclarativeCallbacks callbacks(nullptr, "ViewWebRequestHandlerTests_RunTest2_layout.html",
-        "", "");
+        ViewWebRequestHandler::DeclarativeCallbacks::PrefixMapping("", ""));
     ViewWebRequestHandler requestHandler(callbacks);
     requestHandler.context().map()["text"] = "RunTest2";
     requestHandler.run(request, responseBuilder, log);
@@ -118,7 +120,8 @@ void ViewWebRequestHandlerTests::RunTest3(Test& test)
     WebResponseBuilder responseBuilder;
     responseBuilder.m_views = &views;
 
-    ViewWebRequestHandler::DeclarativeCallbacks callbacks(nullptr, nullptr, "", "pages");
+    ViewWebRequestHandler::DeclarativeCallbacks callbacks(nullptr, nullptr,
+        ViewWebRequestHandler::DeclarativeCallbacks::PrefixMapping("", "pages"));
     ViewWebRequestHandler requestHandler(callbacks);
     requestHandler.context().map()["text"] = "RunTest3";
     requestHandler.run(request, responseBuilder, log);
@@ -152,7 +155,8 @@ void ViewWebRequestHandlerTests::RunTest4(Test& test)
     WebResponseBuilder responseBuilder;
     responseBuilder.m_views = &views;
 
-    ViewWebRequestHandler::DeclarativeCallbacks callbacks(nullptr, nullptr, "mypages", "pages");
+    ViewWebRequestHandler::DeclarativeCallbacks callbacks(nullptr, nullptr, 
+        ViewWebRequestHandler::DeclarativeCallbacks::PrefixMapping("mypages", "pages"));
     ViewWebRequestHandler requestHandler(callbacks);
     requestHandler.context().map()["text"] = "RunTest4";
     requestHandler.run(request, responseBuilder, log);
@@ -187,7 +191,8 @@ void ViewWebRequestHandlerTests::RunTest5(Test& test)
     WebResponseBuilder responseBuilder;
     responseBuilder.m_views = &views;
 
-    ViewWebRequestHandler::DeclarativeCallbacks callbacks("profile1", nullptr, "", "");
+    ViewWebRequestHandler::DeclarativeCallbacks callbacks("profile1", nullptr,
+        ViewWebRequestHandler::DeclarativeCallbacks::PrefixMapping("", ""));
     ViewWebRequestHandler requestHandler(callbacks);
     requestHandler.context().map()["text"] = "RunTest1";
     requestHandler.run(request, responseBuilder, log);
