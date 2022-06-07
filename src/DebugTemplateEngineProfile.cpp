@@ -40,9 +40,9 @@ void WriteValue(const ViewContext::Value& value, std::string& output)
             output.append("{<ul>");
             for (const std::pair<std::string, ViewContext::Value>& v : value.asValueMap())
             {
-                output.append("<li>\"" + v.first + "\": \"");
+                output.append("<li>\"" + v.first + "\": ");
                 WriteValue(v.second, output);
-                output.append("\"</li>");
+                output.append("</li>");
             }
             output.append("</ul>}");
         }
