@@ -41,14 +41,13 @@ void DebugTemplateEngineProfileTests::RenderTest1(Test& test)
         templateEngineProfile.render("DebugTemplateEngineProfileTests_RenderTest1.html", context, nullptr);
 
     boost::filesystem::path outputPath =
-        test.context().getTestOutputPath("DebugTemplateEngineProfileTests_RenderTest1.html");
+        test.context().getOutputPath("DebugTemplateEngineProfileTests_RenderTest1.html");
     Error error; // TODO: use exception
     BinaryFile outputFile = BinaryFile::Create(outputPath, error);
     outputFile.write(renderedView.c_str(), renderedView.size());
     outputFile.close();
 
-    ISHIKO_TEST_FAIL_IF_FILES_NEQ("DebugTemplateEngineProfileTests_RenderTest1.html",
-        "DebugTemplateEngineProfileTests_RenderTest1.html");
+    ISHIKO_TEST_FAIL_IF_OUTPUT_AND_REFERENCE_FILES_NEQ("DebugTemplateEngineProfileTests_RenderTest1.html");
     ISHIKO_TEST_PASS();
 }
 
@@ -62,14 +61,13 @@ void DebugTemplateEngineProfileTests::RenderTest2(Test& test)
         templateEngineProfile.render("DebugTemplateEngineProfileTests_RenderTest2.html", context, nullptr);
 
     boost::filesystem::path outputPath =
-        test.context().getTestOutputPath("DebugTemplateEngineProfileTests_RenderTest2.html");
+        test.context().getOutputPath("DebugTemplateEngineProfileTests_RenderTest2.html");
     Error error; // TODO: use exception
     BinaryFile outputFile = BinaryFile::Create(outputPath, error);
     outputFile.write(renderedView.c_str(), renderedView.size());
     outputFile.close();
 
-    ISHIKO_TEST_FAIL_IF_FILES_NEQ("DebugTemplateEngineProfileTests_RenderTest2.html",
-        "DebugTemplateEngineProfileTests_RenderTest2.html");
+    ISHIKO_TEST_FAIL_IF_OUTPUT_AND_REFERENCE_FILES_NEQ("DebugTemplateEngineProfileTests_RenderTest2.html");
     ISHIKO_TEST_PASS();
 }
 
@@ -83,13 +81,12 @@ void DebugTemplateEngineProfileTests::RenderTest3(Test& test)
         templateEngineProfile.render("DebugTemplateEngineProfileTests_RenderTest3.html", context, nullptr);
 
     boost::filesystem::path outputPath =
-        test.context().getTestOutputPath("DebugTemplateEngineProfileTests_RenderTest3.html");
+        test.context().getOutputPath("DebugTemplateEngineProfileTests_RenderTest3.html");
     Error error; // TODO: use exception
     BinaryFile outputFile = BinaryFile::Create(outputPath, error);
     outputFile.write(renderedView.c_str(), renderedView.size());
     outputFile.close();
 
-    ISHIKO_TEST_FAIL_IF_FILES_NEQ("DebugTemplateEngineProfileTests_RenderTest3.html",
-        "DebugTemplateEngineProfileTests_RenderTest3.html");
+    ISHIKO_TEST_FAIL_IF_OUTPUT_AND_REFERENCE_FILES_NEQ("DebugTemplateEngineProfileTests_RenderTest3.html");
     ISHIKO_TEST_PASS();
 }

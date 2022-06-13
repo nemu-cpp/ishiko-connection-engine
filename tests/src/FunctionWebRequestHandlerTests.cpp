@@ -9,7 +9,6 @@
 #include <boost/filesystem.hpp>
 #include <Ishiko/Logging.hpp>
 
-using namespace boost::filesystem;
 using namespace Ishiko;
 using namespace Nemu;
 
@@ -17,7 +16,7 @@ FunctionWebRequestHandlerTests::FunctionWebRequestHandlerTests(const TestNumber&
     : TestSequence(number, "FunctionWebRequestHandler tests", context)
 {
     append<HeapAllocationErrorsTest>("Constructor test 1", ConstructorTest1);
-    append<FileComparisonTest>("run test 1", RunTest1);
+    append<HeapAllocationErrorsTest>("run test 1", RunTest1);
 }
 
 void FunctionWebRequestHandlerTests::ConstructorTest1(Test& test)
@@ -31,12 +30,10 @@ void FunctionWebRequestHandlerTests::ConstructorTest1(Test& test)
     ISHIKO_TEST_PASS();
 }
 
-void FunctionWebRequestHandlerTests::RunTest1(FileComparisonTest& test)
+void FunctionWebRequestHandlerTests::RunTest1(Test& test)
 {
-    path outputPath(test.context().getTestOutputPath("FunctionWebRequestHandlerTests_RunTest1.bin"));
+    boost::filesystem::path outputPath = test.context().getOutputPath("FunctionWebRequestHandlerTests_RunTest1.bin");
     std::ofstream stream(outputPath.c_str(), std::ios::binary);
-
-    path referencePath(test.context().getReferenceDataPath("FunctionWebRequestHandlerTests_RunTest1.bin"));
 
     int data = 0;
     FunctionWebRequestHandler requestHandler(
@@ -57,9 +54,8 @@ void FunctionWebRequestHandlerTests::RunTest1(FileComparisonTest& test)
     ISHIKO_TEST_FAIL_IF_NEQ(data, 1);
 
     stream << responseBuilder.toString();
+    stream.close();
 
-    test.setOutputFilePath(outputPath);
-    test.setReferenceFilePath(referencePath);
-
+    ISHIKO_TEST_FAIL_IF_OUTPUT_AND_REFERENCE_FILES_NEQ("FunctionWebRequestHandlerTests_RunTest1.bin");
     ISHIKO_TEST_PASS();
 }
