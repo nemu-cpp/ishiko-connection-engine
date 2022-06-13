@@ -8,7 +8,6 @@
 #include "Nemu/WebFramework/RequestHandlers/HardcodedWebRequestHandler.hpp"
 #include <Ishiko/Logging.hpp>
 
-using namespace boost::filesystem;
 using namespace Ishiko;
 using namespace Nemu;
 
@@ -16,7 +15,7 @@ HardcodedWebRequestHandlerTests::HardcodedWebRequestHandlerTests(const TestNumbe
     : TestSequence(number, "HardcodedWebRequestHandler tests", context)
 {
     append<HeapAllocationErrorsTest>("Constructor test 1", ConstructorTest1);
-    append<FileComparisonTest>("run test 1", RunTest1);
+    append<HeapAllocationErrorsTest>("run test 1", RunTest1);
 }
 
 void HardcodedWebRequestHandlerTests::ConstructorTest1(Test& test)
@@ -26,12 +25,10 @@ void HardcodedWebRequestHandlerTests::ConstructorTest1(Test& test)
     ISHIKO_TEST_PASS();
 }
 
-void HardcodedWebRequestHandlerTests::RunTest1(FileComparisonTest& test)
+void HardcodedWebRequestHandlerTests::RunTest1(Test& test)
 {
-    path outputPath(test.context().getTestOutputPath("HardcodedWebRequestHandlerTests_RunTest1.bin"));
+    boost::filesystem::path outputPath = test.context().getOutputPath("HardcodedWebRequestHandlerTests_RunTest1.bin");
     std::ofstream stream(outputPath.c_str(), std::ios::binary);
-
-    path referencePath(test.context().getReferenceDataPath("HardcodedWebRequestHandlerTests_RunTest1.bin"));
 
     HardcodedWebRequestHandler requestHandler(200, "body");
 
@@ -43,9 +40,8 @@ void HardcodedWebRequestHandlerTests::RunTest1(FileComparisonTest& test)
     requestHandler.run(request, responseBuilder, log);
     
     stream << responseBuilder.toString();
+    stream.close();
 
-    test.setOutputFilePath(outputPath);
-    test.setReferenceFilePath(referencePath);
-
+    ISHIKO_TEST_FAIL_IF_OUTPUT_AND_REFERENCE_FILES_NEQ("HardcodedWebRequestHandlerTests_RunTest1.bin");
     ISHIKO_TEST_PASS();
 }
