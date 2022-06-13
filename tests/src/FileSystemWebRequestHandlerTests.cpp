@@ -33,10 +33,9 @@ void FileSystemWebRequestHandlerTests::ConstructorTest1(Test& test)
 
 void FileSystemWebRequestHandlerTests::RunTest1(Test& test)
 {
-    boost::filesystem::path inputPath(test.context().getTestDataPath("html"));
+    boost::filesystem::path inputPath = test.context().getDataPath("html");
 
-    boost::filesystem::path outputPath(
-        test.context().getTestOutputPath("FileSystemWebRequestHandlerTests_RunTest1.bin"));
+    boost::filesystem::path outputPath = test.context().getOutputPath("FileSystemWebRequestHandlerTests_RunTest1.bin");
     std::ofstream stream(outputPath.c_str(), std::ios::binary);
 
     FileSystemWebRequestHandler requestHandler(inputPath.string().c_str());
@@ -51,17 +50,15 @@ void FileSystemWebRequestHandlerTests::RunTest1(Test& test)
     stream << responseBuilder.toString();
     stream.close();
 
-    ISHIKO_TEST_FAIL_IF_FILES_NEQ("FileSystemWebRequestHandlerTests_RunTest1.bin",
-        "FileSystemWebRequestHandlerTests_RunTest1.bin");
+    ISHIKO_TEST_FAIL_IF_OUTPUT_AND_REFERENCE_FILES_NEQ("FileSystemWebRequestHandlerTests_RunTest1.bin");
     ISHIKO_TEST_PASS();
 }
 
 void FileSystemWebRequestHandlerTests::RunTest2(Test& test)
 {
-    boost::filesystem::path inputPath(test.context().getTestDataPath("html"));
+    boost::filesystem::path inputPath = test.context().getDataPath("html");
 
-    boost::filesystem::path outputPath(
-        test.context().getTestOutputPath("FileSystemWebRequestHandlerTests_RunTest2.bin"));
+    boost::filesystem::path outputPath = test.context().getOutputPath("FileSystemWebRequestHandlerTests_RunTest2.bin");
     std::ofstream stream(outputPath.c_str(), std::ios::binary);
 
     FileSystemWebRequestHandler requestHandler(inputPath.string().c_str());
@@ -76,17 +73,15 @@ void FileSystemWebRequestHandlerTests::RunTest2(Test& test)
     stream << responseBuilder.toString();
     stream.close();
 
-    ISHIKO_TEST_FAIL_IF_FILES_NEQ("FileSystemWebRequestHandlerTests_RunTest2.bin",
-        "FileSystemWebRequestHandlerTests_RunTest2.bin");
+    ISHIKO_TEST_FAIL_IF_OUTPUT_AND_REFERENCE_FILES_NEQ("FileSystemWebRequestHandlerTests_RunTest2.bin");
     ISHIKO_TEST_PASS();
 }
 
 void FileSystemWebRequestHandlerTests::RunTest3(Test& test)
 {
-    boost::filesystem::path inputPath(test.context().getTestDataPath("html"));
+    boost::filesystem::path inputPath = test.context().getDataPath("html");
 
-    boost::filesystem::path outputPath(
-        test.context().getTestOutputPath("FileSystemWebRequestHandlerTests_RunTest3.bin"));
+    boost::filesystem::path outputPath = test.context().getOutputPath("FileSystemWebRequestHandlerTests_RunTest3.bin");
     std::ofstream stream(outputPath.c_str(), std::ios::binary);
 
     FileSystemWebRequestHandler requestHandler(inputPath.string().c_str());
@@ -101,17 +96,15 @@ void FileSystemWebRequestHandlerTests::RunTest3(Test& test)
     stream << responseBuilder.toString();
     stream.close();
 
-    ISHIKO_TEST_FAIL_IF_FILES_NEQ("FileSystemWebRequestHandlerTests_RunTest3.bin",
-        "FileSystemWebRequestHandlerTests_RunTest3.bin");
+    ISHIKO_TEST_FAIL_IF_OUTPUT_AND_REFERENCE_FILES_NEQ("FileSystemWebRequestHandlerTests_RunTest3.bin");
     ISHIKO_TEST_PASS();
 }
 
 void FileSystemWebRequestHandlerTests::RunTest4(Test& test)
 {
-    boost::filesystem::path inputPath(test.context().getTestDataPath("html"));
+    boost::filesystem::path inputPath = test.context().getDataPath("html");
 
-    boost::filesystem::path outputPath(
-        test.context().getTestOutputPath("FileSystemWebRequestHandlerTests_RunTest4.bin"));
+    boost::filesystem::path outputPath = test.context().getOutputPath("FileSystemWebRequestHandlerTests_RunTest4.bin");
     std::ofstream stream(outputPath.c_str(), std::ios::binary);
 
     FileSystemWebRequestHandler requestHandler(inputPath.string().c_str());
@@ -126,17 +119,15 @@ void FileSystemWebRequestHandlerTests::RunTest4(Test& test)
     stream << responseBuilder.toString();
     stream.close();
 
-    ISHIKO_TEST_FAIL_IF_FILES_NEQ("FileSystemWebRequestHandlerTests_RunTest4.bin",
-        "FileSystemWebRequestHandlerTests_RunTest4.bin");
+    ISHIKO_TEST_FAIL_IF_OUTPUT_AND_REFERENCE_FILES_NEQ("FileSystemWebRequestHandlerTests_RunTest4.bin");
     ISHIKO_TEST_PASS();
 }
 
 void FileSystemWebRequestHandlerTests::RunTest5(Test& test)
 {
-    boost::filesystem::path inputPath(test.context().getTestDataPath("html"));
+    boost::filesystem::path inputPath = test.context().getDataPath("html");
 
-    boost::filesystem::path outputPath(
-        test.context().getTestOutputPath("FileSystemWebRequestHandlerTests_RunTest5.bin"));
+    boost::filesystem::path outputPath = test.context().getOutputPath("FileSystemWebRequestHandlerTests_RunTest5.bin");
     std::ofstream stream(outputPath.c_str(), std::ios::binary);
 
     FileSystemWebRequestHandler requestHandler(inputPath.string().c_str());
@@ -151,17 +142,15 @@ void FileSystemWebRequestHandlerTests::RunTest5(Test& test)
     stream << responseBuilder.toString();
     stream.close();
 
-    ISHIKO_TEST_FAIL_IF_FILES_NEQ("FileSystemWebRequestHandlerTests_RunTest5.bin",
-        "FileSystemWebRequestHandlerTests_RunTest5.bin");
+    ISHIKO_TEST_FAIL_IF_OUTPUT_AND_REFERENCE_FILES_NEQ("FileSystemWebRequestHandlerTests_RunTest5.bin");
     ISHIKO_TEST_PASS();
 }
 
 void FileSystemWebRequestHandlerTests::RunTest6(Test& test)
 {
-    boost::filesystem::path inputPath(test.context().getTestDataPath("html"));
+    boost::filesystem::path inputPath = test.context().getDataPath("html");
 
-    boost::filesystem::path outputPath(
-        test.context().getTestOutputPath("FileSystemWebRequestHandlerTests_RunTest6.bin"));
+    boost::filesystem::path outputPath = test.context().getOutputPath("FileSystemWebRequestHandlerTests_RunTest6.bin");
     std::ofstream stream(outputPath.c_str(), std::ios::binary);
 
     FileSystemWebRequestHandler requestHandler(inputPath.string().c_str());
@@ -176,7 +165,6 @@ void FileSystemWebRequestHandlerTests::RunTest6(Test& test)
     stream << responseBuilder.toString();
     stream.close();
 
-    ISHIKO_TEST_FAIL_IF_FILES_NEQ("FileSystemWebRequestHandlerTests_RunTest6.bin",
-        "FileSystemWebRequestHandlerTests_RunTest6.bin");
+    ISHIKO_TEST_FAIL_IF_OUTPUT_AND_REFERENCE_FILES_NEQ("FileSystemWebRequestHandlerTests_RunTest6.bin");
     ISHIKO_TEST_PASS();
 }

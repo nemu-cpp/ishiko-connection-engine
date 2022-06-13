@@ -14,7 +14,6 @@
 #include <Ishiko/Networking.hpp>
 #include <sstream>
 
-using namespace boost::filesystem;
 using namespace Ishiko;
 using namespace Nemu;
 
@@ -72,7 +71,8 @@ void SingleConnectionWebServerTests::RequestTest1(Test& test)
 
     server.start();
 
-    path outputPath(test.context().getTestOutputPath("SingleConnectionWebServerTests_RequestTest1.bin"));
+    boost::filesystem::path outputPath =
+        test.context().getOutputPath("SingleConnectionWebServerTests_RequestTest1.bin");
     std::ofstream responseFile(outputPath.string(), std::ios::out | std::ios::binary);
     // TODO: this seems to leak memory but only the first time it is used, does Boost allocate some global variables?
     HTTPClient::Get(IPv4Address::Localhost(), 8089, "/", responseFile, error);
@@ -98,9 +98,7 @@ void SingleConnectionWebServerTests::RequestTest1(Test& test)
     ISHIKO_TEST_FAIL_IF_NEQ(std::get<2>(events[0]), std::get<2>(events[1]));
     */
 
-    ISHIKO_TEST_FAIL_IF_FILES_NEQ("SingleConnectionWebServerTests_RequestTest1.bin",
-        "SingleConnectionWebServerTests_RequestTest1.bin");
-
+    ISHIKO_TEST_FAIL_IF_OUTPUT_AND_REFERENCE_FILES_NEQ("SingleConnectionWebServerTests_RequestTest1.bin");
     ISHIKO_TEST_PASS();
 }
 
@@ -117,14 +115,16 @@ void SingleConnectionWebServerTests::RequestTest2(Test& test)
 
     server.start();
 
-    path outputPath1(test.context().getTestOutputPath("SingleConnectionWebServerTests_RequestTest2_1.bin"));
+    boost::filesystem::path outputPath1 =
+        test.context().getOutputPath("SingleConnectionWebServerTests_RequestTest2_1.bin");
     std::ofstream responseFile1(outputPath1.string(), std::ios::out | std::ios::binary);
     HTTPClient::Get(IPv4Address::Localhost(), server.socket().port(), "/", responseFile1, error);
     responseFile1.close();
 
     ISHIKO_TEST_FAIL_IF(error);
 
-    path outputPath2(test.context().getTestOutputPath("SingleConnectionWebServerTests_RequestTest2_2.bin"));
+    boost::filesystem::path outputPath2 =
+        test.context().getOutputPath("SingleConnectionWebServerTests_RequestTest2_2.bin");
     std::ofstream responseFile2(outputPath2.string(), std::ios::out | std::ios::binary);
     HTTPClient::Get(IPv4Address::Localhost(), server.socket().port(), "/", responseFile2, error);
     responseFile2.close();
@@ -148,10 +148,8 @@ void SingleConnectionWebServerTests::RequestTest2(Test& test)
     ISHIKO_TEST_FAIL_IF_NEQ(std::get<2>(events[0]), std::get<2>(events[1]));
     */
 
-    ISHIKO_TEST_FAIL_IF_FILES_NEQ("SingleConnectionWebServerTests_RequestTest2_1.bin",
-        "SingleConnectionWebServerTests_RequestTest2_1.bin");
-    ISHIKO_TEST_FAIL_IF_FILES_NEQ("SingleConnectionWebServerTests_RequestTest2_2.bin",
-        "SingleConnectionWebServerTests_RequestTest2_2.bin");
+    ISHIKO_TEST_FAIL_IF_OUTPUT_AND_REFERENCE_FILES_NEQ("SingleConnectionWebServerTests_RequestTest2_1.bin");
+    ISHIKO_TEST_FAIL_IF_OUTPUT_AND_REFERENCE_FILES_NEQ("SingleConnectionWebServerTests_RequestTest2_2.bin");
     ISHIKO_TEST_PASS();
 }
 
@@ -172,7 +170,8 @@ void SingleConnectionWebServerTests::RequestTest3(Test& test)
 
     server.start();
 
-    path outputPath(test.context().getTestOutputPath("SingleConnectionWebServerTests_RequestTest3.bin"));
+    boost::filesystem::path outputPath =
+        test.context().getOutputPath("SingleConnectionWebServerTests_RequestTest3.bin");
     std::ofstream responseFile(outputPath.string(), std::ios::out | std::ios::binary);
     HTTPClient::Get(IPv4Address::Localhost(), port, "/", responseFile, error);
 
@@ -207,7 +206,6 @@ void SingleConnectionWebServerTests::RequestTest3(Test& test)
     ISHIKO_TEST_FAIL_IF_NEQ(std::get<2>(events[0]), std::get<2>(events[1]));
     */
 
-    ISHIKO_TEST_FAIL_IF_FILES_NEQ("SingleConnectionWebServerTests_RequestTest3.bin",
-        "SingleConnectionWebServerTests_RequestTest3.bin");
+    ISHIKO_TEST_FAIL_IF_OUTPUT_AND_REFERENCE_FILES_NEQ("SingleConnectionWebServerTests_RequestTest3.bin");
     ISHIKO_TEST_PASS();
 }
