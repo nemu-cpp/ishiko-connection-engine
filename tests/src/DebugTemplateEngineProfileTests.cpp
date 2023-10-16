@@ -1,5 +1,5 @@
 /*
-    Copyright (c) 2022 Xavier Leclercq
+    Copyright (c) 2022-2023 Xavier Leclercq
     Released under the MIT License
     See https://github.com/nemu-cpp/web-framework/blob/main/LICENSE.txt
 */
@@ -44,7 +44,7 @@ void DebugTemplateEngineProfileTests::RenderTest1(Test& test)
         test.context().getOutputPath("DebugTemplateEngineProfileTests_RenderTest1.html");
     Error error; // TODO: use exception
     BinaryFile outputFile = BinaryFile::Create(outputPath, error);
-    outputFile.write(renderedView.c_str(), renderedView.size());
+    outputFile.write(renderedView.c_str(), renderedView.size(), error);
     outputFile.close();
 
     ISHIKO_TEST_FAIL_IF_OUTPUT_AND_REFERENCE_FILES_NEQ("DebugTemplateEngineProfileTests_RenderTest1.html");
@@ -64,7 +64,7 @@ void DebugTemplateEngineProfileTests::RenderTest2(Test& test)
         test.context().getOutputPath("DebugTemplateEngineProfileTests_RenderTest2.html");
     Error error; // TODO: use exception
     BinaryFile outputFile = BinaryFile::Create(outputPath, error);
-    outputFile.write(renderedView.c_str(), renderedView.size());
+    outputFile.write(renderedView.c_str(), renderedView.size(), error);
     outputFile.close();
 
     ISHIKO_TEST_FAIL_IF_OUTPUT_AND_REFERENCE_FILES_NEQ("DebugTemplateEngineProfileTests_RenderTest2.html");
@@ -84,7 +84,7 @@ void DebugTemplateEngineProfileTests::RenderTest3(Test& test)
         test.context().getOutputPath("DebugTemplateEngineProfileTests_RenderTest3.html");
     Error error; // TODO: use exception
     BinaryFile outputFile = BinaryFile::Create(outputPath, error);
-    outputFile.write(renderedView.c_str(), renderedView.size());
+    outputFile.write(renderedView.c_str(), renderedView.size(), error);
     outputFile.close();
 
     ISHIKO_TEST_FAIL_IF_OUTPUT_AND_REFERENCE_FILES_NEQ("DebugTemplateEngineProfileTests_RenderTest3.html");
