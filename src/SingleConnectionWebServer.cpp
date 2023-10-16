@@ -1,5 +1,5 @@
 /*
-    Copyright (c) 2022 Xavier Leclercq
+    Copyright (c) 2022-2023 Xavier Leclercq
     Released under the MIT License
     See https://github.com/nemu-cpp/web-framework/blob/main/LICENSE.txt
 */
@@ -33,8 +33,9 @@ void SingleConnectionWebServer::start()
             // TODO: logger is not threadsafe, need to sort this out
             Ishiko::Logger& logger = m_logger;
 
+            // TODO: for now assume IPv4
             NEMU_LOG_INFO("Server ready to accept connections on socket bound to {}:{}",
-                m_socket.ipAddress().toString(), m_socket.port().toString());
+                m_socket.ipAddress().asIPv4Address().toString(), m_socket.port().toString());
 
             // TODO: this is a temporary blocking implementation
             // TODO: handle error
@@ -47,6 +48,7 @@ void SingleConnectionWebServer::start()
                 Ishiko::HTTPRequestPushParser requestParser(request);
 
                 // TODO: how big should this buffer be? Adjust automatically?
+                // TODO: create buffer pool class in Ishiko/C++ memory and use that
                 char buffer[1000];
                 int n = clientSocket.read(buffer, 1000, error); // TODO: handle error
                 while (!requestParser.onData(boost::string_view(buffer, n)) && (n != 0))
@@ -84,13 +86,15 @@ void SingleConnectionWebServer::stop()
     // TODO: for now send a dummy request to trigger the accept
     Ishiko::Error error;
     Ishiko::TCPClientSocket socket(error);
-    if (m_socket.ipAddress() == 0)
+    // TODO: for now assume IPv4
+    if (m_socket.ipAddress().asIPv4Address() == 0)
     {
         socket.connect(Ishiko::IPv4Address::Localhost(), m_socket.port(), error);
     }
     else
     {
-        socket.connect(m_socket.ipAddress(), m_socket.port(), error);
+        // TODO: for now assume IPv4
+        socket.connect(m_socket.ipAddress().asIPv4Address(), m_socket.port(), error);
     }
 }
 
