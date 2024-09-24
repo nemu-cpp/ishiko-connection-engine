@@ -123,7 +123,7 @@ ISHIKO_CPP_TESTS_ROOT ?= $(ISHIKO_CPP_ROOT)/test-framework
 # Path to the Ishiko Logging installation
 ISHIKO_CPP_LOGGING_ROOT ?= $(ISHIKO_CPP_ROOT)/logging
 # Path to the Nemu installation
-NEMU_CPP_CORE_ROOT ?= $(NEMU_CPP)/core
+NEMU_CPP_CORE_ROOT ?= $(NEMU_CPP_ROOT)/core
 # Path to the Nemu WebFramework installation
 NEMU_CPP_WEBFRAMEWORK_ROOT ?= $(NEMU_CPP_ROOT)/web-framework
 

@@ -110,7 +110,7 @@ ISHIKO_CPP_FILESYSTEM_ROOT ?= $(ISHIKO_CPP_ROOT)/filesystem
 # Path to the Ishiko Logging installation
 ISHIKO_CPP_LOGGING_ROOT ?= $(ISHIKO_CPP_ROOT)/logging
 # Path to the Nemu installation
-NEMU_CPP_CORE_ROOT ?= $(NEMU_CPP)/core
+NEMU_CPP_CORE_ROOT ?= $(NEMU_CPP_ROOT)/core
 
 # ------------
 
