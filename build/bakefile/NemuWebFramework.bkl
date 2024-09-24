@@ -1,13 +1,14 @@
-ishikopath = envvar("ISHIKO_CPP");
+ishikopath = envvar("ISHIKO_CPP_ROOT");
 import $(ishikopath)/configuration/include/Ishiko/Configuration.bkl;
 import $(ishikopath)/http/include/Ishiko/HTTP.bkl;
 import $(ishikopath)/networking/include/Ishiko/Networking.bkl;
-nemupath = envvar("NEMU_CPP");
+nemupath = envvar("NEMU_CPP_ROOT");
 import $(nemupath)/core/include/Nemu/Core.bkl;
 
-toolsets = gnu vs2019 vs2017 vs2015 vs2013;
+toolsets = gnu vs2022 vs2019 vs2017 vs2015 vs2013;
 
 gnu.makefile = ../gnumake/GNUmakefile;
+vs2022.solutionfile = ../vc17/NemuWebFramework.sln;
 vs2019.solutionfile = ../vc16/NemuWebFramework.sln;
 vs2017.solutionfile = ../vc15/NemuWebFramework.sln;
 vs2015.solutionfile = ../vc14/NemuWebFramework.sln;
