@@ -2,28 +2,28 @@ version: 2
 jobs:
   build:
     docker:
-      - image: ishiko/gcc-ishiko-cpp:0.41.0
+      - image: ishiko/gcc-ishiko-cpp:0.44.0
     steps:
       - run: 
           name: "Set NEMU_CPP_ROOT environment variable and create workspace directory"
-          command: mkdir -p /projects/nemu/cpp && echo 'export NEMU_CPP_ROOT="/projects/nemu/cpp"' >> $BASH_ENV
+          command: mkdir -p /workspace/projects/nemu/cpp && echo 'export NEMU_CPP_ROOT="/workspace/projects/nemu/cpp"' >> $BASH_ENV
       - run:
           name: "Install build dependency: Nemu/C++ Core"
-          command: cd /projects/nemu/cpp && git clone https://github.com/nemu-cpp/core.git && cd core/build/gnumake && make
+          command: cd /workspace/projects/nemu/cpp && git clone https://github.com/nemu-cpp/core.git && cd core/build-files/gnumake && make
       - checkout:
-          path: /projects/nemu/cpp/web-framework
+          path: /workspace/projects/nemu/cpp/web-framework
       - run:
           name: "Build: Nemu WebFramework"
-          command: cd /projects/nemu/cpp/web-framework/build/gnumake && make
+          command: cd /workspace/projects/nemu/cpp/web-framework/build/gnumake && make
       - run:
           name: "Test: Nemu WebFramework"
-          command: cd /projects/nemu/cpp/web-framework/tests/build/gnumake && make && ./NemuWebFrameworkTests
+          command: cd /workspace/projects/nemu/cpp/web-framework/tests/build/gnumake && make && ./NemuWebFrameworkTests
       - run:
           name: Build HelloWorld example
-          command: cd /projects/nemu/cpp/web-framework/examples/hello-world/build/gnumake && make
+          command: cd /workspace/projects/nemu/cpp/web-framework/examples/hello-world/build/gnumake && make
       - run:
           name: Build StaticFiles example
-          command: cd /projects/nemu/cpp/web-framework/examples/static-files/build/gnumake && make
+          command: cd /workspace/projects/nemu/cpp/web-framework/examples/static-files/build/gnumake && make
 workflows:
   version: 2
   continuous_build:

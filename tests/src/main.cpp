@@ -1,8 +1,5 @@
-/*
-    Copyright (c) 2019-2022 Xavier Leclercq
-    Released under the MIT License
-    See https://github.com/nemu-cpp/web-framework/blob/main/LICENSE.txt
-*/
+// SPDX-FileCopyrightText: 2019-2024 Xavier Leclercq
+// SPDX-License-Identifier: MIT
 
 #include "DebugTemplateEngineProfileTests.hpp"
 #include "DebugTemplateEngineTests.hpp"
@@ -20,32 +17,47 @@
 #include "WebResponseBuilderTests.hpp"
 #include "Nemu/WebFramework/linkoptions.hpp"
 #include <Ishiko/TestFramework.hpp>
+#include <exception>
 
 using namespace Ishiko;
 
 int main(int argc, char* argv[])
 {
-    TestHarness theTestHarness("NemuWebFramework");
+    try
+    {
+        TestHarness::CommandLineSpecification command_line_spec;
+        Configuration configuration = command_line_spec.createDefaultConfiguration();
+        configuration.set("context.data", "../../data");
+        configuration.set("context.output", "../../output");
+        configuration.set("context.reference", "../../reference");
+        CommandLineParser::parse(command_line_spec, argc, argv, configuration);
 
-    theTestHarness.context().setDataDirectory("../../data");
-    theTestHarness.context().setOutputDirectory("../../output");
-    theTestHarness.context().setReferenceDirectory("../../reference");
+        TestHarness the_test_harness("NemuWebFramework Library Tests", configuration);
 
-    TestSequence& theTests = theTestHarness.tests();
-    theTests.append<MapViewContextTests>();
-    theTests.append<ViewsTests>();
-    theTests.append<DebugTemplateEngineTests>();
-    theTests.append<DebugTemplateEngineProfileTests>();
-    theTests.append<SingleConnectionWebServerTests>();
-    theTests.append<WebRequestTests>();
-    theTests.append<WebResponseBuilderTests>();
-    theTests.append<RouteTests>();
-    theTests.append<RoutesTests>();
-    theTests.append<HardcodedWebRequestHandlerTests>();
-    theTests.append<FunctionWebRequestHandlerTests>();
-    theTests.append<FileSystemWebRequestHandlerTests>();
-    theTests.append<ViewWebRequestHandlerTests>();
-    theTests.append<WebApplicationTests>();
+        TestSequence& the_tests = the_test_harness.tests();
+        the_tests.append<MapViewContextTests>();
+        the_tests.append<ViewsTests>();
+        the_tests.append<DebugTemplateEngineTests>();
+        the_tests.append<DebugTemplateEngineProfileTests>();
+        the_tests.append<SingleConnectionWebServerTests>();
+        the_tests.append<WebRequestTests>();
+        the_tests.append<WebResponseBuilderTests>();
+        the_tests.append<RouteTests>();
+        the_tests.append<RoutesTests>();
+        the_tests.append<HardcodedWebRequestHandlerTests>();
+        the_tests.append<FunctionWebRequestHandlerTests>();
+        the_tests.append<FileSystemWebRequestHandlerTests>();
+        the_tests.append<ViewWebRequestHandlerTests>();
+        the_tests.append<WebApplicationTests>();
 
-    return theTestHarness.run();
+        return the_test_harness.run();
+    }
+    catch (const std::exception& e)
+    {
+        return TestApplicationReturnCode::exception;
+    }
+    catch (...)
+    {
+        return TestApplicationReturnCode::exception;
+    }
 }
