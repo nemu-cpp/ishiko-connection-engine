@@ -14,10 +14,10 @@ jobs:
           path: /workspace/projects/nemu/cpp/web-framework
       - run:
           name: "Build: Nemu WebFramework"
-          command: cd /workspace/projects/nemu/cpp/web-framework/build/gnumake && make
+          command: cd /workspace/projects/nemu/cpp/web-framework/build-files/gnumake && make
       - run:
           name: "Test: Nemu WebFramework"
-          command: cd /workspace/projects/nemu/cpp/web-framework/tests/build/gnumake && make && ./NemuWebFrameworkTests
+          command: cd /workspace/projects/nemu/cpp/web-framework/tests/build-files/gnumake && make && ./NemuWebFrameworkTests
       - run:
           name: Build HelloWorld example
           command: cd /workspace/projects/nemu/cpp/web-framework/examples/hello-world/build/gnumake && make
