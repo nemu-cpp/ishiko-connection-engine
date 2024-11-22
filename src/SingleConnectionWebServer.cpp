@@ -20,7 +20,7 @@ SingleConnectionWebServer::SingleConnectionWebServer(Ishiko::IPv4Address address
 
 SingleConnectionWebServer::SingleConnectionWebServer(Ishiko::IPv4Address address, Ishiko::Port port,
     Ishiko::Logger& logger, Ishiko::Error& error) noexcept
-    : m_logger(logger), m_init(error), m_socket(address, port, error), m_stop(false)
+    : m_logger(logger), m_init(error), m_socket(address, port, Ishiko::SocketOption::none, error), m_stop(false)
 {
 }
 
@@ -85,7 +85,7 @@ void SingleConnectionWebServer::stop()
     m_stop = true;
     // TODO: for now send a dummy request to trigger the accept
     Ishiko::Error error;
-    Ishiko::TCPClientSocket socket(error);
+    Ishiko::TCPClientSocket socket(Ishiko::SocketOption::none, error);
     // TODO: for now assume IPv4
     if (m_socket.ipAddress().asIPv4Address() == 0)
     {

@@ -33,6 +33,7 @@ std::string WebResponseBuilder::toString() const
 {
     // TODO: wasteful
     Ishiko::HTTPResponse response(m_response);
+    response.setContentLengthHeader(m_body.size());
     response.setBody(m_body);
     return response.toString();
 }
